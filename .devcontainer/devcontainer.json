@@ -1,0 +1,14 @@
+{
+  "name": "LaTeX (LuaLaTeX)",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "james-yu.latex-workshop"
+      ]
+    }
+  },
+  "remoteUser": "vscode"
+}
