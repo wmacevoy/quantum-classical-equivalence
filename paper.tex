@@ -22,205 +22,208 @@ transformation of coordinates. The approximation may be so close as to be indist
 We give the notes in terms of one spatial dimension, but it is trivial to extend to multiple
 dimensions.
 
-\section*{Quantum Perspective}
+\section{Quantum Perspective}
 
 A tiny one-dimensional non-relativistic particle of mass $M$ in a tiny potential $V(x)$.
 Here the accepted model is the Schr\"odinger equation, where $\Psi(x,t)$ gives the probability
 of observing the particle at location $x$ at time $t$. The wave function $\Psi(x,t)$
 evolves according to the partial differential equation
-\[
-i\hbar \Psi_t = -\frac{\hbar^2}{2M}\Psi_{xx} + V(x)\Psi
-\]
-joule-seconds. $\hbar \approx 1.05 \times 10^{-34}$.
+\begin{equation}
+i\hbar \Psi_t = -\frac{\hbar^2}{2M}\Psi_{xx} + V(x)\Psi \,,
+\end{equation}
+where $\hbar \approx 1.05 \times 10^{-34}$ joule-seconds.
 
-\section*{Classical Perspective}
+\section{Classical Perspective}
 
 A regular one-dimensional non-relativistic particle of mass $M$ in a regular potential $V(x)$.
 The position of the particle $x(t)$ and momentum of the particle $p(t)$ evolves according to
 the ordinary differential equation
-\[
-M \frac{dx}{dt} = p \qquad \frac{dp}{dt} = -\frac{\partial V}{\partial x}.
-\]
+\begin{eqnarray}
+M \frac{dx}{dt} & = & p \,, \\
+\frac{dp}{dt} & = & -\frac{\partial V}{\partial x} \,.
+\end{eqnarray}
 
-\section*{Classical From Quantum Perspective}
+\section{Classical From Quantum Perspective}
 
 There should be a way to see classical mechanics arrive as an approximation of quantum
 mechanics. This should not be surprising, and is included here for completeness.
 
-\medskip
-\noindent
 Approximate:
-\[
-\Psi \approx A \exp\left(\frac{iS}{\hbar}\right)
-\]
+\begin{equation}
+\Psi \approx A \exp\left(\frac{iS}{\hbar}\right) \,.
+\end{equation}
 Keeping the highest order terms
-\[
--S_t = \frac{1}{2M}\left(S_x\right)^2 + V
-\]
+\begin{equation}
+-S_t = \frac{1}{2M}\left(S_x\right)^2 + V \,.
+\end{equation}
 Differentiate with respect to $x$:
-\[
--S_{xt} = \frac{1}{M}S_x S_{xx} + \frac{\partial V}{\partial x}
-\]
+\begin{equation}
+-S_{xt} = \frac{1}{M}S_x S_{xx} + \frac{\partial V}{\partial x} \,.
+\end{equation}
 Now define $P = S_x$
-\[
--P_t = \frac{1}{M}P P_x + \frac{\partial V}{\partial x}
-\]
+\begin{equation}
+-P_t = \frac{1}{M}P P_x + \frac{\partial V}{\partial x} \,.
+\end{equation}
 This is a first order hyperbolic differential equation and is solvable by the method of
-characteristics. $p(t) = P(x(t),t)$
-\[
+characteristics. Using $p(t) = P(x(t),t)$:
+\begin{equation}
 \frac{dp}{dt} = \frac{\partial P}{\partial x}\frac{dx}{dt} + \frac{\partial P}{\partial t}
-= \frac{\partial P}{\partial x}\frac{dx}{dt} - \frac{1}{M}P P_x - \frac{\partial V}{\partial x}
-\]
+= \frac{\partial P}{\partial x}\frac{dx}{dt} - \frac{1}{M}P P_x - \frac{\partial V}{\partial x} \,.
+\end{equation}
 Choosing
-\[
-\frac{dx}{dt} = \frac{1}{M}p \qquad \frac{dp}{dt} = -\frac{\partial V}{\partial x}
-\]
+\begin{eqnarray}
+\frac{dx}{dt} &=& \frac{1}{M}p \,, \\
+\frac{dp}{dt} &=& -\frac{\partial V}{\partial x}
+\end{eqnarray}
 reduces the equation. So, to leading order, the Schr\"odinger equation carries phase-gradient
 information along characteristics defined by the equations of motion for classical mechanics.
 
-\medskip
-\noindent
-$M \frac{dx}{dt} = p$, $\frac{dp}{dt} = -\frac{\partial V}{\partial x}$,
-$x(0) = x_0$, $p(0) = p_0$.
+\begin{eqnarray}
+x(0) &=& x_0\,,\\
+p(0) &=& p_0\,.
+\end{eqnarray}  
 
-\medskip
-\noindent
 Along the characteristics the phase gradient evolves as the classical hamiltonian system.
 Note that characteristics will inevitably be singular.
 
-\section*{Quantum From Probabilistic Classical Perspective}
+\section{Quantum From Probabilistic Classical Perspective}
 
 So what has to be added to classical mechanics to get quantum mechanics? This seems more
 interesting. You could reverse the WKB approximation above, but that is not particularly
 enlightening. We instead combine the following concepts.
 
-\subsection*{1. Any finite dimensional ordinary differential equation in $\mathbb{R}^n$ can be embedded as partial differential equations}
+\subsection{Any finite dimensional ordinary differential equation in $\mathbb{R}^n$ can be embedded as partial differential equations}
 
-These partial differential equations describe the probability of a current value given an initial
-probability distribution.
-
-\subsection*{2. The Fourier transform}
-
-\[
-\text{a. }\Psi(k,t) = \frac{1}{2\pi}\int_{-\infty}^{+\infty} e^{-ikx}\Psi(x,t)\,dx
-\]
-\[
-\text{b. }\partial_x \Psi \rightarrow i k \Psi
-\qquad
-\text{c. }x\Psi \rightarrow i\partial_k \Psi
-\]
-We use $k = p/\hbar$ which compresses the spectrum greatly.
-
-\subsection*{3. The numerical approximation}
-
-\[
-f'(x) \approx \frac{f(x+\varepsilon/2) - f(x-\varepsilon/2)}{\varepsilon}
-+ O(\varepsilon^2)
-\]
-
-\subsection*{Using Concept 1: ODE $\Rightarrow$ PDE}
-
-Big Idea: Think of an ordinary differential equation initial value problem as evolving a
+Think of an ordinary differential equation initial value problem as evolving a
 partial differential equation which describes the probability distribution of the initial values.
 
-\medskip
-\noindent
-ODE
-\[
-\frac{dx_1}{dt} = v_1 \qquad \frac{dx_2}{dt} = v_2 \qquad \cdots \qquad \frac{dx_n}{dt} = v_n
-\]
-PDE
-\[
+ODE:
+\begin{eqnarray}
+\frac{dx_1}{dt} &=& v_1 \,, \\
+\frac{dx_2}{dt} &=& v_2 \,, \\
+&\vdots& \\
+\frac{dx_n}{dt} &=& v_n \,.
+\end{eqnarray}
+
+PDE:
+\begin{equation}
 \frac{\partial f}{\partial t}
 + \frac{\partial (v_1 f)}{\partial x_1}
 + \frac{\partial (v_2 f)}{\partial x_2}
 + \cdots
 + \frac{\partial (v_n f)}{\partial x_n}
 = 0
-\]
+\end{equation}
+
 Using the dirac delta function for the initial value, the PDE recovers the ODE initial value
 problem: $f(x,0) = f_0(x) = \delta(x-x_0)$.
 
-For the hamiltonian system
-\[
-\frac{dx}{dt} = \frac{1}{M}p \qquad \frac{dp}{dt} = -\frac{\partial V}{\partial x}
-\]
-\[
+\subsection{The Fourier transform}
+
+\begin{equation}
+\hat{\Psi}(\hat{p}) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty} e^{-i \frac{\hat{p} p}{\hbar}}\Psi(p)\,dp \,,
+\end{equation}
+\begin{equation}
+\Psi(p) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty} e^{+i \frac{\hat{p} p}{\hbar}} \hat{\Psi}(\hat{p})\,\frac{d\hat{p}}{\hbar} \,,
+\end{equation}
+\begin{equation}
+\partial_p \Psi \rightarrow i \frac{\hat{p}}{\hbar} \hat{\Psi} \,,
+\end{equation}
+\begin{equation}
+p\Psi \rightarrow i \hbar \partial_{\hat{p}} \hat{\Psi} \,.
+\end{equation}
+The use of $\hat{p} = \hbar \omega$ compared to the typical spectral parameter $\omega$ greatly compresses the spectrum.
+
+\subsection{The numerical approximation}
+
+\begin{equation}
+f'(x) \approx \frac{f(x+\varepsilon/2) - f(x-\varepsilon/2)}{\varepsilon}
++ O(\varepsilon^2)  \,.
+\end{equation}
+
+Using the ODE \Rightarrow PDE concept for the classical Hamiltonian system, the ODE is
+\begin{eqnarray}
+\frac{dx}{dt} &=& \frac{1}{M}p \,, \\
+\frac{dp}{dt} &=& -\frac{\partial V}{\partial x} \,.
+\end{eqnarray}
+
+This corresponds to the PDE describing the evolution of the probability density:
+\begin{equation}
 \frac{\partial f}{\partial t}
 + \frac{\partial}{\partial x}\left(\frac{1}{M}pf\right)
 + \frac{\partial}{\partial p}\left(-\frac{\partial V}{\partial x}f\right)
-= 0
-\]
+= 0 \,,
+\end{equation}
+or
+\begin{equation}
+f_t + \frac{p}{M} f_x - \frac{\partial V}{\partial x} f_p = 0 \,.
+\end{equation}
 
-\subsection*{Using concept 2: Momentum Transform}
+Now Fourier transform only with respect to the momentum $p$ results in
+\begin{equation}\label{eq:fourier}
+i\hbar \hat{f}_t - \frac{\hbar^2}{M} \hat{f}_{x\hat{p}} + \hat{p} \frac{\partial V}{\partial x} \hat{f} = 0 \,
+\end{equation}
 
-Now Fourier transform only with respect to the variable $p$ as follows
-\[
-f(x,p,t) = \frac{1}{2\pi}\int_{-\infty}^{+\infty}
-e^{-i p \tilde{p}/\hbar} f(x,\tilde{p},t)\,d\tilde{p}
-\]
-Now the PDE becomes
-\[
-i\hbar f_t - \frac{\hbar^2}{M} f_{xp} + p \frac{\partial V}{\partial x} f = 0
-\]
-
-\subsection*{Using Concept 3: Variable Change and Only Approximation}
-
-Now change variables:
-\[
-z^{+} = x + \frac{p}{2}, \qquad z^{-} = x - \frac{p}{2}
-\]
+We now change variables and use the only approximation. Define
+\begin{equation}
+z^{\pm} = x \pm \frac{\hat{p}}{2} \,,
+\end{equation}
 So
-\[
-\frac{\partial}{\partial x} = \frac{\partial}{\partial z^+} + \frac{\partial}{\partial z^-},
-\qquad
-\frac{\partial}{\partial p} = \frac{1}{2}\frac{\partial}{\partial z^+}
+\begin{eqnarray}
+\frac{\partial}{\partial x} & = & \frac{\partial}{\partial z^+} + \frac{\partial}{\partial z^-}\,,\\
+\frac{\partial}{\partial \hat{p}} &=& \frac{1}{2}\frac{\partial}{\partial z^+}
 - \frac{1}{2}\frac{\partial}{\partial z^-}
-\]
+\end{eqnarray}
+
 And use the approximation
-\[
+\begin{equation}
 \frac{\partial V}{\partial x}
-\approx \frac{V(x+p/2) - V(x-p/2)}{p}
-\]
-\[
-i\hbar f_t - \frac{\hbar^2}{2M}
-\left(\frac{\partial^2}{\partial z^{+2}} - \frac{\partial^2}{\partial z^{-2}}\right)f
-+ [V(z^+) - V(z^-)]f = 0
-\]
+\approx \frac{V(x+\hat{p}/2) - V(x-\hat{p}/2)}{\hat{p}}
+\end{equation}
+
+This tranforms \ref{eq:fourier} into
+\begin{equation}
+i\hbar \hat{f}_t - \frac{\hbar^2}{2M}
+\left(\frac{\partial^2}{\partial z^{+2}} - \frac{\partial^2}{\partial z^{-2}}\right)\hat{f}
++ [V(z^+) - V(z^-)]\hat{f} = 0
+\end{equation}
 While this does not yet look like Schr\"odinger\textquotesingle s equation, this is a linear differential
 equation, and we can look at separation of variables to construct a general solution to this.
-Suppose $f = \sum \Psi^+(z^+)\Psi^-(z^-)$ where each of these terms satisfy the above, we have
+Suppose $\hat{f} = \sum \psi^+(z^+)\psi^-(z^-)$ where each of these terms satisfy the above, we have
 \[
-\pm i\hbar \Psi_t^{\pm} = -\frac{\hbar^2}{2M}\Psi_{zz}^{\pm} + V\Psi^{\pm} = 0
+\pm i\hbar \psi_t^{\pm} = -\frac{\hbar^2}{2M}\psi^{\pm}_{zz} + V\psi^{\pm} = 0
 \]
 Where $z$ takes the respective roles of $z^+$ and $z^-$. For real potential $V$, we can have
-$\Psi^+ = \Psi_\lambda$ and $\Psi^- = \Psi_\lambda^*$ where the $\Psi_\lambda$ are eigenvectors
-of the original Schr\"odinger\textquotesingle s equation. These form a complete basis for for the
-solution of PDE for $f$.
+$\psi^+ = \psi_\lambda$ and $\psi^- = \psi_\lambda^*$ where the $\psi_\lambda$ are eigenvectors
+of the original Schr\"odinger's equation. These form a complete basis for for the
+solution of PDE for $\hat{f}$.
 
-\medskip
-\noindent
-$f(t,z^+,z^-) = \sum_{\lambda,\lambda'} C_{\lambda,\lambda'}
-e^{i(\lambda-\lambda')t}\Psi_\lambda(z^+)\Psi_{\lambda'}^*(z^-)$.
+\begin{equation}
+\hat{f}(t,z^+,z^-) = \sum_{\lambda,\lambda'} C_{\lambda,\lambda'}
+e^{i(\lambda-\lambda')t}\psi_\lambda(z^+)\psi_{\lambda'}^*(z^-)\,.
+\end{equation}
 
 This has a most compelling DC component, which seems too surprising to just be lucky. In
-particular along $p=0$
-\[
-\text{DC}[f](x) = \sum_\lambda C_\lambda |\Psi_\lambda(x)|^2
-\]
+particular along $p=0$:
+\begin{equation}
+\text{DC}[\hat{f}](x) = \sum_\lambda C_\lambda |\psi_\lambda(x)|^2 \,.
+\end{equation}
+
 The only approximation here is the centered difference estimate:
-\[
-p \frac{\partial V}{\partial x}
-\approx V\left(x+\frac{p}{2}\right) - V\left(x-\frac{p}{2}\right)
-= p \frac{\partial V}{\partial x} + \frac{p^3}{24}\frac{\partial^3 V}{\partial x^3} + \cdots
-\]
+\begin{equation}
+\hat{p} \frac{\partial V}{\partial x}
+\approx V\left(x+\frac{\hat{p}}{2}\right) - V\left(x-\frac{\hat{p}}{2}\right)
+= \hat{p} \frac{\partial V}{\partial x} + \frac{\hat{p}^3}{24}\frac{\partial^3 V}{\partial x^3} + \cdots \,.
+\end{equation}
 Looking at the definition of the transform, this is an excellent approximation since it is
 compressed by a factor of $\hbar$. Note this is exact for the harmonic oscillator and very good
 for all small momentum spectra ($p$ is the transform of the momentum). I\textquotesingle m not
 certain there is an experiment that can determine the difference between this and the
 Schr\"odinger equation. The plank constant makes an extreme compression of the spectrum.
 
-Starting from a dirac- initial condition for $f$ at a specific position and momentum, we have
-$f = \delta(x-x_0)e^{i(p-p_0)/\hbar}$ and so $C_\lambda = \Psi_\lambda(x_0)e^{i(p-p_0)/\hbar}$.
+Starting from a dirac- initial condition for $f$ at a specific position and momentum, we have $f = \delta(x-x_0)e^{i(p-p_0)/\hbar}$  and so
+\begin{equation}
+C_\lambda = \psi_\lambda(x_0)e^{i(p-p_0)/\hbar}\,.
+\end{equation}
 
 \end{document}
