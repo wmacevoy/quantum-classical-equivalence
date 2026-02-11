@@ -77,13 +77,6 @@ Choosing
 \end{eqnarray}
 reduces the equation. So, to leading order, the Schr\"odinger equation carries phase-gradient
 information along characteristics defined by the equations of motion for classical mechanics.
-
-\begin{eqnarray}
-x(0) &=& x_0\,,\\
-p(0) &=& p_0\,.
-\end{eqnarray}  
-
-Along the characteristics the phase gradient evolves as the classical hamiltonian system.
 Note that characteristics will inevitably be singular.
 
 \section{Quantum From Probabilistic Classical Perspective}
@@ -190,9 +183,9 @@ i\hbar \hat{f}_t - \frac{\hbar^2}{2M}
 While this does not yet look like Schr\"odinger\textquotesingle s equation, this is a linear differential
 equation, and we can look at separation of variables to construct a general solution to this.
 Suppose $\hat{f} = \sum \psi^+(z^+)\psi^-(z^-)$ where each of these terms satisfy the above, we have
-\[
+\begin{equation}
 \pm i\hbar \psi_t^{\pm} = -\frac{\hbar^2}{2M}\psi^{\pm}_{zz} + V\psi^{\pm} = 0
-\]
+\end{equation}
 Where $z$ takes the respective roles of $z^+$ and $z^-$. For real potential $V$, we can have
 $\psi^+ = \psi_\lambda$ and $\psi^- = \psi_\lambda^*$ where the $\psi_\lambda$ are eigenvectors
 of the original Schr\"odinger's equation. These form a complete basis for for the
@@ -204,7 +197,7 @@ e^{i(\lambda-\lambda')t}\psi_\lambda(z^+)\psi_{\lambda'}^*(z^-)\,.
 \end{equation}
 
 This has a most compelling DC component, which seems too surprising to just be lucky. In
-particular along $p=0$:
+particular along $\hat{p}=0$:
 \begin{equation}
 \text{DC}[\hat{f}](x) = \sum_\lambda C_\lambda |\psi_\lambda(x)|^2 \,.
 \end{equation}
@@ -217,7 +210,7 @@ The only approximation here is the centered difference estimate:
 \end{equation}
 Looking at the definition of the transform, this is an excellent approximation since it is
 compressed by a factor of $\hbar$. Note this is exact for the harmonic oscillator and very good
-for all small momentum spectra ($p$ is the transform of the momentum). I\textquotesingle m not
+for all small momentum spectra ($\hat{p}$ is the transform of the momentum). I\textquotesingle m not
 certain there is an experiment that can determine the difference between this and the
 Schr\"odinger equation. The plank constant makes an extreme compression of the spectrum.
 
