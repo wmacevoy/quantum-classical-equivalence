@@ -109,7 +109,7 @@ PDE:
 = 0 \,.
 \end{equation}
 
-Using the dirac delta function for the initial value, the PDE recovers the ODE initial value
+Using the Dirac delta function for the initial value, the PDE recovers the ODE initial value
 problem: $f(x,0) = f_0(x) = \delta(x-x_0)$.
 
 \subsection{The Fourier transform}
@@ -176,7 +176,7 @@ And use the approximation
 \approx \frac{V(x+\hat{p}/2) - V(x-\hat{p}/2)}{\hat{p}}
 \end{equation}
 
-This tranforms \ref{eq:fourier} into
+This transforms \ref{eq:fourier} into
 \begin{equation}
 i\hbar \hat{f}_t - \frac{\hbar^2}{2M}
 \left(\frac{\partial^2}{\partial z^{+2}} - \frac{\partial^2}{\partial z^{-2}}\right)\hat{f}
@@ -188,7 +188,7 @@ Suppose $\hat{f} = \sum \psi^+(z^+)\psi^-(z^-)$ where each of these terms satisf
 \begin{equation}
 \pm i\hbar \psi_t^{\pm} = -\frac{\hbar^2}{2M}\psi^{\pm}_{zz} + V\psi^{\pm} = 0
 \end{equation}
-Where $z$ takes the respective roles of $z^+$ and $z^-$. For real potential $V$, we can have
+Here $z$ takes the respective roles of $z^+$ and $z^-$. For real potential $V$, we can have
 $\psi^+ = e^{i\lambda t} \psi_\lambda$ and $\psi^- = e^{-i\lambda t}\psi_\lambda^*$ where the $\psi_\lambda$ are eigenvectors
 of the original Schr\"odinger's equation. These form a complete basis for for the
 solution of PDE for $\hat{f}$:
@@ -199,7 +199,7 @@ solution of PDE for $\hat{f}$:
 
 \section{Observed Position}
 
-Now lets compute the probability density function $\rho(x)$ of observed position by integrating $f$ over the momentum:
+Now let us compute the probability density function $\rho(x)$ of observed position by integrating $f$ over the momentum:
 \begin{eqnarray}
 \rho(x) &=& \int_{-\infty}^{+\infty} dp \, f \,, \\
 &=& \int_{-\infty}^{+\infty} dp \, \frac{1}{\sqrt{2\pi} \hbar}\int_{-\infty}^{+\infty} d\hat{p} \, e^{i \frac{\hat{p} p}{\hbar}} \hat{f} \,, \\
@@ -213,12 +213,12 @@ In the final sum, we keep only the DC terms where $\lambda = \lambda'$, which is
 
 \section{Demystifications}
 \subsection{Heisenberg's Uncertainty Principle}
-There is nothing wrong with the distribution specifying the precise initial position and momentum of the particle.  However, we can only observe the Born projection --- which makes the view of momentum fuzzy.
+There is nothing wrong with a distribution that specifies the precise initial position and momentum of the particle.  However, we can only observe the Born projection---which makes the view of momentum fuzzy.
 \subsection{Quantum Entanglement}
-The above derivation is for a single particle in a single space dimension, but it is trivial to extend to multiple particles in three dimensions.  Entanglement amounts to a dependent choice of initial distribution so $f$ cannot be factored into independent components. The underlying mechanism evolves independently, it is only the initial distribution and final Born observation that makes it look like there is something mysterious.  It's actually pretty simple consequence of dependent distributions and the Born projection.
+The above derivation is for a single particle in a single space dimension, but it is trivial to extend to multiple particles in three dimensions.  Entanglement amounts to a dependent choice of initial distribution, so $f$ cannot be factored into independent components. The underlying mechanism evolves independently, it is only the initial distribution and final Born observation that makes it look like there is something mysterious.  It's actually pretty simple consequence of dependent distributions and the Born projection.
 
 \subsection{Computation}
-The power of a Quantum Computer is only in the Fourier transform. If the machine setup starts from a fixed wave function, and therefore fixed distribution $f$, then the machine can only apply classical dynamics to the evolution of that distribution. The only power is the Born projection, which computationally is uninteresting except for the Fourier transform.
+The power of a Quantum Computer is only in the Fourier transform. If the machine setup starts from a fixed wave function, and therefore fixed distribution $f$, then the machine can only apply classical dynamics to the evolution of that distribution. The only power is the Born projection, which computationally is not interesting except for the Fourier transform.
 
 Even if you prefer the standard form of quantum mechanics, this statement is still true --- the formulations are indistinguishable.
 
@@ -231,14 +231,14 @@ The only approximation here is the centered difference estimate:
 \end{equation}
 The fourier transform (\ref{eq:fourier-transform}) compresses the spectrum of momentum by a factor of $\hbar$, so the approximation (\ref{eq:approximation}) is $O(\hbar^3)$.
 I do not think there is an experiment that can determine the difference between this and the
-Schr\"odinger equation; it is an effectively exact recasting of quantum mechanics from all observational purposes.
+Schr\"odinger equation; it is an effectively exact recasting of quantum mechanics for all observational purposes.
 
 Note that the use of step functions and delta functions for a potential is just an approximation of reality.  Modifying these by a $\hbar^2$ scale smoothing is unobservably close and so all the standard results of quantum still apply.
 
 These notes stayed in a drawer for a long time, since I was not convinced they explained anything. But
 \begin{itemize}
-\item They provide a useful de-mystification Quantum, allowing the intiution of classical mechanics to provide insight.
-\item They place the mystery specificly: why does the universe conspire to transform the momentum space, and choose to only reveal only the DC terms to us as observers? No good answer to this kept these notes in my drawer, but others may have better ideas.
+\item They provide a useful de-mystification Quantum, allowing the intuition of classical mechanics to provide insight.
+\item They place the mystery specifically: why does the universe conspire to transform the momentum space, and choose to only reveal only the DC terms to us as observers? No good answer to this kept these notes in my drawer, but others may have better ideas.
 \item They suggest a global unknowable state dependence through the transform that survives observation. Decoherence is real, but maybe a side-effect of large interactions but not as central as postulated?
 \end{itemize}
 
