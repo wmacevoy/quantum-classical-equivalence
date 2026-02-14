@@ -7,14 +7,15 @@
 \onehalfspacing
 \usepackage{hyperref}
 
-\title{\textbf{Deriving Quantum Mechanics from Probabilistic Classical Mechanics}}
-\date{}
+\title{Deriving Quantum Mechanics from Probabilistic Classical Mechanics}
+\author{Warren MacEvoy}
+%\date{}
 
 \begin{document}
 
 \maketitle
 
-\section*{Introduction}
+\section{Introduction}
 
 The goal of these notes is to show non-relativistic quantum mechanics can be closely
 approximated by classical dynamics with probabilistic initial data, along with an interesting
@@ -25,7 +26,7 @@ dimensions.
 \section{Quantum Perspective}
 
 A tiny one-dimensional non-relativistic particle of mass $M$ in a tiny potential $V(x)$.
-Here the accepted model is the Schr\"odinger equation, where $\Psi(x,t)$ gives the probability
+Here the accepted model is the Schr\"odinger equation, where $|\Psi(x,t)|^2$ gives the probability
 of observing the particle at location $x$ at time $t$. The wave function $\Psi(x,t)$
 evolves according to the partial differential equation
 \begin{equation}
@@ -79,13 +80,13 @@ reduces the equation. So, to leading order, the Schr\"odinger equation carries p
 information along characteristics defined by the equations of motion for classical mechanics.
 Note that characteristics will inevitably be singular.
 
-\section{Quantum From Probabilistic Classical Perspective}
+\section{Key Concepts}
 
 So what has to be added to classical mechanics to get quantum mechanics? This seems more
 interesting. You could reverse the WKB approximation above, but that is not particularly
 enlightening. We instead combine the following concepts.
 
-\subsection{Any finite dimensional ordinary differential equation in $\mathbb{R}^n$ can be embedded as partial differential equations}
+\subsection{An ordinary differential equation can be lifted to a linear partial differential equation}
 
 Think of an ordinary differential equation initial value problem as evolving a
 partial differential equation which describes the probability distribution of the initial values.
@@ -105,7 +106,7 @@ PDE:
 + \frac{\partial (v_2 f)}{\partial x_2}
 + \cdots
 + \frac{\partial (v_n f)}{\partial x_n}
-= 0
+= 0 \,.
 \end{equation}
 
 Using the dirac delta function for the initial value, the PDE recovers the ODE initial value
@@ -113,7 +114,7 @@ problem: $f(x,0) = f_0(x) = \delta(x-x_0)$.
 
 \subsection{The Fourier transform}
 
-\begin{equation}
+\begin{equation}\label{eq:fourier-transform}
 \hat{\Psi}(\hat{p}) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty} e^{-i \frac{\hat{p} p}{\hbar}}\Psi(p)\,dp \,,
 \end{equation}
 \begin{equation}
@@ -134,7 +135,8 @@ f'(x) \approx \frac{f(x+\varepsilon/2) - f(x-\varepsilon/2)}{\varepsilon}
 + O(\varepsilon^2)  \,.
 \end{equation}
 
-Using the ODE \Rightarrow PDE concept for the classical Hamiltonian system, the ODE is
+\section{Quantum from Probabilistic Classical Mechanics}
+Using the ODE $\Rightarrow$ PDE concept for the classical Hamiltonian system, the ODE is
 \begin{eqnarray}
 \frac{dx}{dt} &=& \frac{1}{M}p \,, \\
 \frac{dp}{dt} &=& -\frac{\partial V}{\partial x} \,.
@@ -152,9 +154,9 @@ or
 f_t + \frac{p}{M} f_x - \frac{\partial V}{\partial x} f_p = 0 \,.
 \end{equation}
 
-Now Fourier transform only with respect to the momentum $p$ results in
+Now Fourier transform only with respect to the momentum $p$. This results in
 \begin{equation}\label{eq:fourier}
-i\hbar \hat{f}_t - \frac{\hbar^2}{M} \hat{f}_{x\hat{p}} + \hat{p} \frac{\partial V}{\partial x} \hat{f} = 0 \,
+i\hbar \hat{f}_t - \frac{\hbar^2}{M} \hat{f}_{x\hat{p}} + \hat{p} \frac{\partial V}{\partial x} \hat{f} = 0 \,.
 \end{equation}
 
 We now change variables and use the only approximation. Define
@@ -180,43 +182,67 @@ i\hbar \hat{f}_t - \frac{\hbar^2}{2M}
 \left(\frac{\partial^2}{\partial z^{+2}} - \frac{\partial^2}{\partial z^{-2}}\right)\hat{f}
 + [V(z^+) - V(z^-)]\hat{f} = 0
 \end{equation}
-While this does not yet look like Schr\"odinger\textquotesingle s equation, this is a linear differential
+While this does not yet look like Schr\"odinger's equation, this is a linear differential
 equation, and we can look at separation of variables to construct a general solution to this.
 Suppose $\hat{f} = \sum \psi^+(z^+)\psi^-(z^-)$ where each of these terms satisfy the above, we have
 \begin{equation}
 \pm i\hbar \psi_t^{\pm} = -\frac{\hbar^2}{2M}\psi^{\pm}_{zz} + V\psi^{\pm} = 0
 \end{equation}
 Where $z$ takes the respective roles of $z^+$ and $z^-$. For real potential $V$, we can have
-$\psi^+ = \psi_\lambda$ and $\psi^- = \psi_\lambda^*$ where the $\psi_\lambda$ are eigenvectors
+$\psi^+ = e^{i\lambda t} \psi_\lambda$ and $\psi^- = e^{-i\lambda t}\psi_\lambda^*$ where the $\psi_\lambda$ are eigenvectors
 of the original Schr\"odinger's equation. These form a complete basis for for the
-solution of PDE for $\hat{f}$.
-
+solution of PDE for $\hat{f}$:
 \begin{equation}
-\hat{f}(t,z^+,z^-) = \sum_{\lambda,\lambda'} C_{\lambda,\lambda'}
-e^{i(\lambda-\lambda')t}\psi_\lambda(z^+)\psi_{\lambda'}^*(z^-)\,.
+\hat{f}(t,z_+,z_-)=\sum_{\lambda,\lambda'} C_{\lambda,\lambda'} e^{i(\lambda-\lambda')t} \psi_{\lambda}(z_+) \psi^*_{\lambda'}(z_-) \,.
 \end{equation}
 
-This has a most compelling DC component, which seems too surprising to just be lucky. In
-particular along $\hat{p}=0$:
-\begin{equation}
-\text{DC}[\hat{f}](x) = \sum_\lambda C_\lambda |\psi_\lambda(x)|^2 \,.
-\end{equation}
 
+\section{Observed Position}
+
+Now lets compute the probability density function $\rho(x)$ of observed position by integrating $f$ over the momentum:
+\begin{eqnarray}
+\rho(x) &=& \int_{-\infty}^{+\infty} dp \, f \,, \\
+&=& \int_{-\infty}^{+\infty} dp \, \frac{1}{\sqrt{2\pi} \hbar}\int_{-\infty}^{+\infty} d\hat{p} \, e^{i \frac{\hat{p} p}{\hbar}} \hat{f} \,, \\
+&=& \int_{-\infty}^{+\infty} d\hat{p} \, \hat{f} \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty} \frac{dp}{\hbar} \, e^{i \frac{\hat{p} p}{\hbar}}   \,, \\
+&=& \int_{-\infty}^{+\infty} d\hat{p} \, \hat{f}\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty} {dk} \, e^{i \hat{p} k}   \,, \\
+&=& \int_{-\infty}^{+\infty} d\hat{p} \, \hat{f}\sqrt{2\pi} \delta(\hat{p}) \,, \\
+&=& \sqrt{2\pi} \hat{f}_{\hat{p}=0} \,, \\
+&=& \sqrt{2\pi} \sum_\lambda C_{\lambda,\lambda} |\psi_\lambda(x)|^2 \,.
+\end{eqnarray}
+In the final sum, we keep only the DC terms where $\lambda = \lambda'$, which is what would be observed as a time average. Notice it does not affect the dynamics - it is merely the observable projection of the dynamics to a measurement.  We call this the Born projection. This happens to be coupled to decoherence with any practical measurement device we have so far constructed.
+
+\section{Demystifications}
+\subsection{Heisenberg's Uncertainty Principle}
+There is nothing wrong with the distribution specifying the precise initial position and momentum of the particle.  However, we can only observe the Born projection --- which makes the view of momentum fuzzy.
+\subsection{Quantum Entanglement}
+The above derivation is for a single particle in a single space dimension, but it is trivial to extend to multiple particles in three dimensions.  Entanglement amounts to a dependent choice of initial distribution so $f$ cannot be factored into independent components. The underlying mechanism evolves independently, it is only the initial distribution and final Born observation that makes it look like there is something mysterious.  It's actually pretty simple consequence of dependent distributions and the Born projection.
+
+\subsection{Computation}
+The power of a Quantum Computer is only in the Fourier transform. If the machine setup starts from a fixed wave function, and therefore fixed distribution $f$, then the machine can only apply classical dynamics to the evolution of that distribution. The only power is the Born projection, which computationally is uninteresting except for the Fourier transform.
+
+Even if you prefer the standard form of quantum mechanics, this statement is still true --- the formulations are indistinguishable.
+
+\section{Discussion}
 The only approximation here is the centered difference estimate:
-\begin{equation}
+\begin{equation}\label{eq:approximation}
 \hat{p} \frac{\partial V}{\partial x}
 \approx V\left(x+\frac{\hat{p}}{2}\right) - V\left(x-\frac{\hat{p}}{2}\right)
 = \hat{p} \frac{\partial V}{\partial x} + \frac{\hat{p}^3}{24}\frac{\partial^3 V}{\partial x^3} + \cdots \,.
 \end{equation}
-Looking at the definition of the transform, this is an excellent approximation since it is
-compressed by a factor of $\hbar$. Note this is exact for the harmonic oscillator and very good
-for all small momentum spectra ($\hat{p}$ is the transform of the momentum). I\textquotesingle m not
-certain there is an experiment that can determine the difference between this and the
-Schr\"odinger equation. The plank constant makes an extreme compression of the spectrum.
+The fourier transform (\ref{eq:fourier-transform}) compresses the spectrum of momentum by a factor of $\hbar$, so the approximation (\ref{eq:approximation}) is $O(\hbar^3)$.
+I do not think there is an experiment that can determine the difference between this and the
+Schr\"odinger equation; it is an effectively exact recasting of quantum mechanics from all observational purposes.
 
-Starting from a dirac- initial condition for $f$ at a specific position and momentum, we have $f = \delta(x-x_0)e^{i(p-p_0)/\hbar}$  and so
-\begin{equation}
-C_\lambda = \psi_\lambda(x_0)e^{i(p-p_0)/\hbar}\,.
-\end{equation}
+Note that the use of step functions and delta functions for a potential is just an approximation of reality.  Modifying these by a $\hbar^2$ scale smoothing is unobservably close and so all the standard results of quantum still apply.
+
+These notes stayed in a drawer for a long time, since I was not convinced they explained anything. But
+\begin{itemize}
+\item They provide a useful de-mystification Quantum, allowing the intiution of classical mechanics to provide insight.
+\item They place the mystery specificly: why does the universe conspire to transform the momentum space, and choose to only reveal only the DC terms to us as observers? No good answer to this kept these notes in my drawer, but others may have better ideas.
+\item They suggest a global unknowable state dependence through the transform that survives observation. Decoherence is real, but maybe a side-effect of large interactions but not as central as postulated?
+\end{itemize}
+
+
+I hope others find these ideas interesting.
 
 \end{document}
