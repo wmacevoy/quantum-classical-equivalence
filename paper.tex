@@ -20,7 +20,7 @@ We show that non-relativistic quantum mechanics can be derived from classical Ha
 The resulting equation separates into forward and backward Schrödinger equations.
 The only approximation is $O(\hbar^3)$, rendering it indistinguishable from exact.
 The Born rule emerges as a time-averaged marginal over momentum.
-We discuss implications for the uncertainty principle, entanglement, and nonlocality.
+We discuss implications for the uncertainty principle, entanglement, and computation.
 \end{abstract}
 
 \section{Introduction}
@@ -56,11 +56,11 @@ M \frac{dx}{dt} & = & p \,, \\
 There should be a way to see classical mechanics arrive as an approximation of quantum
 mechanics. This should not be surprising, and is included here for completeness \cite{landau1977}.
 
-Approximate:
+Approximate
 \begin{equation}
-\Psi \approx A \exp\left(\frac{iS}{\hbar}\right) \,.
+\Psi \approx A \exp\left(\frac{iS}{\hbar}\right) \,,
 \end{equation}
-Keeping the highest order terms
+and, keeping the highest order terms:
 \begin{equation}
 -S_t = \frac{1}{2M}\left(S_x\right)^2 + V \,.
 \end{equation}
@@ -83,7 +83,9 @@ Choosing
 \frac{dx}{dt} &=& \frac{1}{M}p \,, \\
 \frac{dp}{dt} &=& -\frac{\partial V}{\partial x}
 \end{eqnarray}
-reduces the equation. So, to leading order, the Schr\"odinger equation carries phase-gradient
+reduces the equation.
+
+So, to leading order, the Schr\"odinger equation carries phase-gradient
 information along characteristics defined by the equations of motion for classical mechanics.
 Note that characteristics will inevitably be singular.
 
@@ -151,7 +153,7 @@ We actually approximate $\varepsilon V'$, so with first error term:
 \end{equation}
 
 \section{Quantum from Probabilistic Classical Mechanics}
-We note the structure here is related to the Wigner-Moyal formulation \cite{wigner1932}, \cite{moyal1949} \cite{hillery1984}, arrived at here from the classical rather than quantum direction.
+We note the structure here is related to the Wigner-Moyal formulation \cite{wigner1932} \cite{moyal1949} \cite{hillery1984}, arrived at here from the classical rather than quantum direction.
 
 Using the ODE $\Rightarrow$ PDE concept for the classical Hamiltonian system, the ODE is
 \begin{eqnarray}
@@ -192,7 +194,6 @@ And use the approximation (\ref{eq:approximation-derivative}) with $\varepsilon 
 \frac{\partial V}{\partial x}
 \approx \frac{V(x+\hat{p}/2) - V(x-\hat{p}/2)}{\hat{p}}
 \end{equation}
-Note that the Fourier transform compresses the spectrum of $\hat{p}$ by a factor of $\hbar$, so the approximation is $O(\hbar^3)$. This is indistinguishable from exact for all practical purposes. Even for results where $V$ is not smooth, an $\hbar^2$-scale smoothing of the potential is indistinguishable from the original, so the approximation is effectively exact for all observational purposes.
 
 This transforms (\ref{eq:fourier}) into
 \begin{equation}\label{eq:f-hat-pde}
@@ -268,8 +269,6 @@ The only approximation here is the centered difference estimate:
 = \hat{p} \frac{\partial V}{\partial x} + \frac{\hat{p}^3}{24}\frac{\partial^3 V}{\partial x^3} + \cdots \,.
 \end{equation}
 The fourier transform (\ref{eq:fourier-transform}) compresses the spectrum of momentum by a factor of $\hbar$, so the approximation (\ref{eq:approximation}) is $O(\hbar^3)$, or about $10^{-100}$ of human scales.  This is indistinguishable from exact for all practical purposes. Even for results where $V$ is not smooth, an $\hbar^2$-scale smoothing of the potential is indistinguishable from the original, so the approximation is effectively exact for all observational purposes.
-I do not think there is an experiment that can determine the difference between this and the
-Schr\"odinger equation; it is an effectively exact recasting of quantum mechanics for all observational purposes.
 
 Regarding Bell's theorem \cite{bell1964} \cite{bell1987}, note that the introduced hidden variables (classical momentum) are natural from the classical perspective, and the Fourier transform is the non-locality which allows this reformulation to co-exist with Bell's theorem. The mathematics is indifferent to the interpretation, they are both effectively equivalent, but the interpretation is compelling from the simplicity of the underlying mechanism.
 
