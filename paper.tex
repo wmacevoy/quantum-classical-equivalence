@@ -124,10 +124,10 @@ problem: $f(x,0) = f_0(x) = \delta(x-x_0)$.
 \subsection{The Fourier transform}
 
 \begin{equation}\label{eq:fourier-transform}
-\hat{\Psi}(\hat{p}) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty} dp \, e^{-i \frac{\hat{p} p}{\hbar}}\Psi(p) \,,
+\hat{\Psi}(\hat{p}) = \int_{-\infty}^{+\infty} dp \, e^{-i \frac{\hat{p} p}{\hbar}}\Psi(p) \,,
 \end{equation}
 \begin{equation}
-\Psi(p) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty} \frac{d\hat{p}}{\hbar} \, e^{+i \frac{\hat{p} p}{\hbar}} \hat{\Psi}(\hat{p}) \,,
+\Psi(p) = \int_{-\infty}^{+\infty} \frac{d\hat{p}}{2\pi \hbar} \, e^{+i \frac{\hat{p} p}{\hbar}} \hat{\Psi}(\hat{p}) \,,
 \end{equation}
 \begin{equation}
 \partial_p \Psi \rightarrow i \frac{\hat{p}}{\hbar} \hat{\Psi} \,,
@@ -136,7 +136,7 @@ problem: $f(x,0) = f_0(x) = \delta(x-x_0)$.
 p\Psi \rightarrow i \hbar \partial_{\hat{p}} \hat{\Psi} \,.
 \end{equation}
 \begin{equation}
-\delta(\hat{p})= \frac{1}{2\pi \hbar}\int_{-\infty}^{+\infty} dp \, e^{ i \frac{\hat{p} p}{\hbar}} \,.
+\delta(p)= \int_{-\infty}^{+\infty} \frac{d\hat{p}}{2\pi \hbar} \, e^{ i \frac{\hat{p} p}{\hbar}} \,.
 \end{equation}
 The use of $\hat{p} = \hbar \omega$ compared to the typical spectral parameter $\omega$ greatly compresses the spectrum.
 
@@ -225,13 +225,12 @@ C_{\lambda,\lambda'} &=& \int_{-\infty}^{+\infty} dz^+ \, \int_{-\infty}^{+\inft
 Now let us compute the probability density function $\rho(x)$ of observed position by integrating $f$ over a time window and the momentum:
 \begin{eqnarray}
 \rho(x) &=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \int_{-\infty}^{+\infty} dp \, f(x,p) \,, \\
-&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \int_{-\infty}^{+\infty} dp \, \frac{1}{\sqrt{2\pi} \hbar}\int_{-\infty}^{+\infty} d\hat{p} \, e^{i \frac{\hat{p} p}{\hbar}} \hat{f} \,, \\
-&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \int_{-\infty}^{+\infty} d\hat{p} \, \hat{f} \sqrt{2\pi} \int_{-\infty}^{+\infty} \frac{dp}{2\pi \hbar} \, e^{i \frac{\hat{p} p}{\hbar}}   \,, \\
-&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \int_{-\infty}^{+\infty} d\hat{p} \, \hat{f}\sqrt{2\pi} \delta(\hat{p}) \,, \\
-&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \sqrt{2\pi} \hat{f}_{\hat{p}=0} \,, \\
-&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \sqrt{2\pi} \sum_{\lambda,\lambda'} C_{\lambda,\lambda'} e^{i (\lambda-\lambda')t}\psi_\lambda(x)\psi_{\lambda'}^*(x) \,, \\
-&=& \sqrt{2\pi} \sum_\lambda C_{\lambda,\lambda} |\psi_\lambda(x)|^2 \,, \\
-& \propto & \sum_\lambda C_{\lambda,\lambda} |\psi_\lambda(x)|^2 \,.
+&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \int_{-\infty}^{+\infty} dp \, \int_{-\infty}^{+\infty} \frac{d\hat{p}}{2\pi \hbar} \, e^{i \frac{\hat{p} p}{\hbar}} \hat{f} \,, \\
+&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \int_{-\infty}^{+\infty} d\hat{p} \, \hat{f} \int_{-\infty}^{+\infty} \frac{dp}{2\pi \hbar} \, e^{i \frac{\hat{p} p}{\hbar}}   \,, \\
+&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \int_{-\infty}^{+\infty} d\hat{p} \, \hat{f} \delta(\hat{p}) \,, \\
+&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \hat{f}_{\hat{p}=0} \,, \\
+&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \sum_{\lambda,\lambda'} C_{\lambda,\lambda'} e^{i (\lambda-\lambda')t}\psi_\lambda(x)\psi_{\lambda'}^*(x) \,, \\
+&=& \sqrt{2\pi} \sum_\lambda C_{\lambda,\lambda} |\psi_\lambda(x)|^2 \,.
 \end{eqnarray}
 In the final sum, we keep only the DC terms where $\lambda = \lambda'$, which is what would be observed as a time average. Notice it does not affect the dynamics---it is merely the observable projection of the dynamics to a measurement.  We call this the Born projection. This happens to be coupled to decoherence with any practical measurement device we have so far constructed.
 
@@ -239,20 +238,20 @@ Quantum in its traditional form takes this along with a required decoherence as 
 
 \section{Demystifications}
 \subsection{Heisenberg's Uncertainty Principle}
-There is nothing wrong with a distribution that specifies the precise initial position and momentum of the particle.  However, we can only observe the Born projection---which makes the view of momentum fuzzy.
+There is nothing wrong with a distribution that specifies the precise initial position and momentum of the particle.  However, we can only observe the Born projection---which makes the view fuzzy.
 
-Substitution of $f_0(x,p)=\delta(x-x_0)\delta(p-p_0)$ into the formula for $C_{\lambda,\lambda'}$ gives a scaling of the cross-Wigner function as the coefficients of the expansion of $\hat{f}$ in the eigenbasis of the Schr\"odinger equation:
+Substitution of $f_0(x,p)=\delta(x-x_0)\delta(p-p_0)$ into the formula for $C_{\lambda,\lambda'}$ gives the cross-Wigner function as the coefficients of the expansion of $\hat{f}$ in the eigenbasis of the Schr\"odinger equation:
 \begin{equation}
-C_{\lambda,\lambda'} = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} d\hat{p} \, \psi_\lambda^*(x_0+\frac{\hat{p}}{2}) \psi_{\lambda'}(x_0-\frac{\hat{p}}{2}) e^{-i \frac{\hat{p} p_0}{\hbar}}\,.
+C_{\lambda,\lambda'} = \int_{-\infty}^{+\infty} d\hat{p} \, \psi_\lambda^*(x_0+\frac{\hat{p}}{2}) \psi_{\lambda'}(x_0-\frac{\hat{p}}{2}) e^{-i \frac{\hat{p} p_0}{\hbar}}\,.
 \end{equation}
 The Born projection makes this look imprecise.
 
 \subsection{Quantum Entanglement}
 The above derivation is for a single particle in a single space dimension, but it is trivial to extend to multiple particles in three spatial dimensions.  Entanglement amounts to a dependent choice of initial distribution, so $f$ cannot be factored into independent components. The underlying mechanism evolves independently, it is only the initial distribution and final Born projection that makes it look like there is something mysterious.  It's actually a simple consequence of dependent distributions and the Born projection.
 
-For two particles and some single-particle real eigenstate $\psi_\lambda(x)$, choosing 
+For two particles and some single-particle eigenstate $\psi_\lambda(x)$, choosing 
 \begin{equation}
-\hat{f}_0=\frac{1}{\sqrt{2}}\psi_\lambda(x_1+\frac{1}{2}\hat{p}_1)\psi_\lambda(x_1-\frac{1}{2} \hat{p}_1) +\frac{1}{\sqrt{2}}\psi_\lambda(x_2+\frac{1}{2}\hat{p}_2)\psi_\lambda(x_2-\frac{1}{2} \hat{p}_2) \,,
+\hat{f}_0=\frac{1}{\sqrt{2}}\psi_\lambda(x_1+\frac{1}{2}\hat{p}_1)\psi^*_\lambda(x_1-\frac{1}{2} \hat{p}_1) +\frac{1}{\sqrt{2}}\psi_\lambda(x_2+\frac{1}{2}\hat{p}_2)\psi^*_\lambda(x_2-\frac{1}{2} \hat{p}_2) \,,
 \end{equation}
 where $x_{1,2}$ and $p_{1,2}$ are the 3-dimensional position and momentum coordinates of the two particles and $f$ is a probability distribution in $R^{12}$. This is the standard EPR entanglement in this representation.  The Born projection then gives the observed correlation.
 
