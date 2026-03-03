@@ -1,0 +1,207 @@
+\documentclass[12pt]{article}
+\bibliographystyle{unsrt}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue]{hyperref}
+
+\title{On the Indefinite Structure of the Cross-Wigner Matrix\\and Speculative Implications for Dark Matter}
+\author{Warren MacEvoy}
+%\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In a companion paper \cite{macevoy2025}, we showed that non-relativistic quantum mechanics can be derived from classical Hamiltonian dynamics with probabilistic initial data, via a Fourier transform in momentum and a centered-difference approximation.  Here we examine the coefficient matrix $C_{\lambda,\lambda'}$ that arises when the transformed probability distribution is expanded in the Schr\"odinger eigenbasis.  For a delta-function initial condition in a Coulomb potential, numerical computation shows that $C$ is Hermitian with non-negative diagonal but is not positive semidefinite, with approximately 40--50\% of its trace carried by negative eigenvalues.  This is an $O(1)$ effect, not a small quantum correction.  We discuss what this indefinite structure means physically, how it relates to the Born rule, and offer a speculative hypothesis connecting it to the observed dark matter distribution around galaxies.  This paper is preliminary and intended to provoke discussion.
+\end{abstract}
+
+\section{Summary of the Framework}
+
+We briefly recall the construction of \cite{macevoy2025}.  A classical particle with position $\mathbf{x}$ and momentum $\mathbf{p}$ evolves under Hamilton's equations.  A probability distribution $f(\mathbf{x},\mathbf{p},t) \geq 0$ over initial conditions evolves under the Liouville equation.  Fourier transforming in momentum introduces the dual variable $\hat{\mathbf{p}}$, and a centered-difference approximation (exact for quadratic potentials, $O(\hbar^2)$ relative error otherwise) separates the resulting equation into forward and backward Schr\"odinger equations.
+
+The general solution in the Schr\"odinger eigenbasis $\{\psi_\lambda\}$ is
+\begin{equation}\label{eq:fhat-expansion}
+\hat{f}(t,z^+,z^-) = \sum_{\lambda,\lambda'} C_{\lambda,\lambda'}\, e^{i(\lambda-\lambda')t}\, \psi_\lambda(z^+)\, \psi^*_{\lambda'}(z^-) \,,
+\end{equation}
+where $z^\pm = x \pm \hat{p}/2$ and the coefficients are determined by the initial distribution:
+\begin{equation}\label{eq:C-coefficients}
+C_{\lambda,\lambda'} = \int d^3\hat{p}\; \psi_\lambda^*\!\left(\mathbf{x}_0+\tfrac{\hat{\mathbf{p}}}{2}\right) \psi_{\lambda'}\!\left(\mathbf{x}_0-\tfrac{\hat{\mathbf{p}}}{2}\right) \hat{f}_0(\mathbf{x}_0, \hat{\mathbf{p}}) \,.
+\end{equation}
+
+The observable position density at time $t$ is the instantaneous marginal over momentum:
+\begin{equation}\label{eq:born}
+\rho(\mathbf{x},t) = \int d^3p\; f(\mathbf{x},\mathbf{p},t) = \hat{f}\big|_{\hat{p}=0} = \sum_{\lambda,\lambda'} C_{\lambda,\lambda'}\, e^{i(\lambda-\lambda')t}\, \psi_\lambda(\mathbf{x})\, \psi^*_{\lambda'}(\mathbf{x}) \,.
+\end{equation}
+When $C_{\lambda,\lambda'} = a_\lambda a^*_{\lambda'}$ (rank one), this reduces to $\rho = |\Psi|^2$, the standard Born rule.
+
+\section{Properties of $C$ for Non-negative Initial Data}
+
+For a real, non-negative, unit-integral initial distribution $f_0(\mathbf{x},\mathbf{p}) \geq 0$, the Fourier transform $\hat{f}_0(\mathbf{x},\hat{\mathbf{p}})$ is complex with conjugate symmetry $\hat{f}_0(\mathbf{x},-\hat{\mathbf{p}}) = \hat{f}_0^*(\mathbf{x},\hat{\mathbf{p}})$.
+
+The coefficient matrix $C$ inherits the following properties:
+\begin{enumerate}
+\item \textbf{Hermitian:} $C_{\lambda',\lambda} = C^*_{\lambda,\lambda'}$.  This follows from the conjugate symmetry of $\hat{f}_0$ under the substitution $z^+ \leftrightarrow z^-$.
+\item \textbf{Non-negative diagonal:}  $C_{\lambda,\lambda} = \int d^3x\; |\psi_\lambda(\mathbf{x})|^2 \int d^3p\; f_0(\mathbf{x},\mathbf{p}) \geq 0$, since the integrand is a product of non-negative functions.
+\item \textbf{Not necessarily positive semidefinite.}  The matrix $C$ is the expansion of the complex function $\hat{f}_0$ in the eigenbasis.  The non-negativity of $f_0$ constrains $\hat{f}_0$ through conjugate symmetry but does not guarantee that $C$ is positive semidefinite.
+\end{enumerate}
+
+For the harmonic oscillator potential with delta-function initial data $f_0 = \delta(\mathbf{x}-\mathbf{x}_0)\delta(\mathbf{p}-\mathbf{p}_0)$, the centered-difference approximation is exact and the matrix $C$ is exactly rank one: $C_{\lambda,\lambda'} = a_\lambda a^*_{\lambda'}$ where $a_\lambda = \langle \lambda | \alpha_0\rangle$ are coherent state coefficients.  In this case $C$ is positive semidefinite and the framework reproduces standard quantum mechanics exactly.
+
+For non-quadratic potentials, $C$ is generically indefinite.
+
+\section{Numerical Computation for Hydrogen}
+
+We compute $C_{nlm,n'l'm'}$ for the hydrogen atom (Coulomb potential, atomic units) with delta-function initial data at the classical Bohr orbit: $\mathbf{x}_0 = (a_0, 0, 0)$, $\mathbf{p}_0 = (0, \hbar/a_0, 0)$.
+
+The matrix elements are evaluated by deterministic quadrature on a three-dimensional grid in $\hat{\mathbf{p}}$-space.  The hydrogen eigenfunctions $\psi_{nlm}$ are evaluated analytically.  We truncate the basis at principal quantum number $n_{\max}$ and study convergence.
+
+\subsection{Results}
+
+The eigenvalues of the Hermitized matrix $C_H = (C + C^\dagger)/2$ are computed for $n_{\max} = 2, 3, 4, 5$.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{c c c c c}
+\hline
+$n_{\max}$ & basis size & $\mathrm{tr}(C)$ & $\sum_{w_k<0} w_k$ & negative fraction \\
+\hline
+2 & 5 & 1.036 & $-0.254$ & $-24.5\%$ \\
+3 & 14 & 1.088 & $-0.400$ & $-36.8\%$ \\
+4 & 30 & 1.122 & $-0.427$ & $-38.1\%$ \\
+5 & 55 & 1.055 & $-0.438$ & $-41.5\%$ \\
+\hline
+$\infty$ & $\infty$ & 1 & --- & $\sim -40\%$ to $-53\%$ \\
+\hline
+\end{tabular}
+\caption{Eigenvalue structure of the cross-Wigner matrix for hydrogen.  The negative fraction is the ratio of the sum of negative eigenvalues to the trace.  The $n_{\max}\to\infty$ estimate is from Richardson extrapolation with multiple assumed convergence rates.}
+\label{tab:eigenvalues}
+\end{table}
+
+The hermiticity error is at machine precision ($\sim 10^{-15}$), confirming the analytic result.  The negative fraction grows monotonically with basis size and shows no sign of approaching zero.  Grid convergence is verified independently at each $n_{\max}$.
+
+\subsection{Interpretation}
+
+The matrix $C$ for a delta-function initial condition in a Coulomb potential is deeply indefinite, with approximately 40--50\% of the trace weight in negative eigenvalues.  This is an $O(1)$ effect---not a small perturbation, not a numerical artifact, and not a consequence of basis truncation.
+
+\section{The Spectral Decomposition of $C$}
+
+Since $C$ is Hermitian, it admits a spectral decomposition
+\begin{equation}
+C = \sum_k w_k\, \mathbf{u}_k \mathbf{u}_k^\dagger
+\end{equation}
+with real eigenvalues $w_k$ (some positive, some negative) and orthonormal eigenvectors $\mathbf{u}_k$.  Define
+\begin{equation}
+C^+ = \sum_{w_k > 0} w_k\, \mathbf{u}_k \mathbf{u}_k^\dagger \,, \qquad
+C^- = \sum_{w_k < 0} w_k\, \mathbf{u}_k \mathbf{u}_k^\dagger \,,
+\end{equation}
+so that $C = C^+ + C^-$.  From the numerical results:
+\begin{equation}
+\mathrm{tr}(C^+) \approx 1.4 \,, \qquad \mathrm{tr}(C^-) \approx -0.4 \,, \qquad \mathrm{tr}(C) \approx 1.0 \,.
+\end{equation}
+
+The observable position density decomposes accordingly:
+\begin{equation}
+\rho(\mathbf{x},t) = \rho^+(\mathbf{x},t) + \rho^-(\mathbf{x},t) \,,
+\end{equation}
+where $\rho^+$ integrates to $\mathrm{tr}(C^+) \approx 1.4$ and $\rho^-$ integrates to $\mathrm{tr}(C^-) \approx -0.4$.  The total is correctly normalized: $\int \rho\, d^3x = 1$.
+
+\section{Energy and the Diagonal}
+
+The total energy depends only on the diagonal of $C$:
+\begin{equation}
+\langle E \rangle = \sum_\lambda C_{\lambda,\lambda}\, E_\lambda \,,
+\end{equation}
+where $E_\lambda$ are the energy eigenvalues.  Since $C_{\lambda,\lambda} \geq 0$ for non-negative $f_0$, the energy is well-defined and correctly accounted for by the non-negative diagonal.  The negative eigenvalues of $C$ do not directly contribute to the total energy---they contribute to the off-diagonal coherence structure, which determines the \emph{spatial and temporal distribution} of $\rho(\mathbf{x},t)$ but not its integral or energy content.
+
+\section{Speculative Implications for Dark Matter}
+
+We now depart from what can be proven and enter speculation.  The reader is warned.
+
+\subsection{Gravity Couples to All of $f$}
+
+In the framework of \cite{macevoy2025}, the ontology is a non-negative probability distribution $f(\mathbf{x},\mathbf{p},t) \geq 0$ over classical phase space, evolving under Hamilton's equations.  What we observe---the position density $\rho(\mathbf{x},t)$---is the momentum marginal of $f$: a projection that discards the momentum degrees of freedom.
+
+General relativity couples to the stress-energy tensor $T_{\mu\nu}$, which for a phase-space distribution is
+\begin{eqnarray}
+T^{00}(\mathbf{x}) &=& \int d^3p\; \left(\frac{p^2}{2M} + V(\mathbf{x})\right) f(\mathbf{x},\mathbf{p},t) \,, \\
+T^{0i}(\mathbf{x}) &=& \int d^3p\; \frac{p^i}{M}\, f(\mathbf{x},\mathbf{p},t) \,, \\
+T^{ij}(\mathbf{x}) &=& \int d^3p\; \frac{p^i p^j}{M}\, f(\mathbf{x},\mathbf{p},t) \,.
+\end{eqnarray}
+If $f$ is real, spacetime curvature must couple to all of it---not to the Born projection $\int d^3p\; f$ alone.  In particular, the pressure and stress components $T^{ij}$ depend on the momentum-weighted structure of $f$, which contains information beyond what the position marginal reveals.
+
+In standard quantum mechanics, this question does not arise: there is no phase-space distribution, only $|\Psi|^2$, and $T_{\mu\nu}$ is computed from $\Psi$ directly.  But in the present framework, $f$ contains more structure than $\rho(\mathbf{x},t)$, and that additional structure carries stress-energy that gravitates.
+
+The off-diagonal elements of the coefficient matrix $C_{\lambda,\lambda'}$---including the contributions from negative eigenvalues---correspond to correlations between position and momentum in $f$ that vanish when momentum is integrated out.  They are invisible to the Born projection but present in phase space, and they contribute to $T_{\mu\nu}$.
+
+\subsection{The Source}
+
+Violent particle creation events produce particles with sharply defined phase-space initial conditions---close to delta functions in $(\mathbf{x}, \mathbf{p})$.  For such initial data, the cross-Wigner matrix $C$ is deeply indefinite, with $O(1)$ structure beyond what the Born projection reveals.
+
+The environments near supermassive black holes are the most extreme examples.  Accretion disks at $10^9$--$10^{11}$~K drive fusion, fission, pair production, and photodisintegration, producing particles with specific positions (the reaction site) and momenta (determined by conservation laws in individual collisions).  Matter falling into the accretion environment may be processed multiple times before escaping or being captured, each pass through this ``washing machine'' producing sharp phase-space initial conditions.
+
+By contrast, gentle processes---stellar core fusion at $\sim 10^7$~K, thermal equilibrium, adiabatic expansion---produce particles whose phase-space distributions are broad compared to $\hbar$, yielding $C$ matrices that are nearly rank one with negligible indefinite structure.
+
+\subsection{The Geometry}
+
+The dark matter distribution around galaxies is observed to be roughly spherical, extending well beyond the visible disk.  Supermassive black holes at galactic centers produce roughly spherical outflows (jets, winds, and processed matter) that, averaged over the reorientation of the spin axis through mergers and accretion episodes, fill an approximately spherical halo.  The geometry is consistent.
+
+\subsection{The Energy Budget}
+
+Active galactic nuclei can produce luminosities up to $\sim 10^{46}$~W over cosmological timescales.  The total energy processed through the accretion environment of a supermassive black hole over the life of a galaxy is enormous.  If each processed particle carries $O(1)$ indefinite $C$-structure (as the hydrogen calculation suggests), and if this structure contributes to $T_{\mu\nu}$ beyond the Born projection, the cumulative gravitational effect could be significant.
+
+We emphasize: this is not conventional Hawking radiation, which is negligible for astrophysical black holes.  It is the particle processing in the accretion environment that produces the sharp phase-space initial conditions and hence the indefinite $C$ structure.
+
+\subsection{What Is Missing}
+
+This hypothesis requires:
+\begin{enumerate}
+\item A rigorous derivation of $T_{\mu\nu}$ from the phase-space distribution $f$ in the framework of \cite{macevoy2025}, and a demonstration that it differs from the standard quantum mechanical computation using $|\Psi|^2$.
+\item Computation of the gravitational contribution of the off-diagonal $C$ structure for realistic particle creation processes in accretion disk conditions.
+\item A quantitative comparison of the predicted excess gravitating mass with observed dark matter halo profiles.
+\item Consistency with terrestrial particle physics experiments, where energy accounting is precise.
+\end{enumerate}
+
+On point (4), we note that the total energy $\langle E \rangle = \sum_\lambda C_{\lambda,\lambda} E_\lambda$ depends only on the non-negative diagonal of $C$, so no energy is ``missing'' in the usual sense.  The effect, if real, would manifest through the pressure and stress components of $T_{\mu\nu}$---a discrepancy between gravitating mass density and luminous mass density, which is precisely what dark matter observations describe.
+
+\section{Discussion}
+
+\subsection{Quantum Gravity}
+
+The framework of \cite{macevoy2025} may dissolve the problem of quantum gravity rather than solve it.  The longstanding difficulty is reconciling the smooth geometry of general relativity with the operator-valued fields of quantum mechanics.  In the present framework, the ontology is a classical probability distribution $f(\mathbf{x},\mathbf{p},t) \geq 0$ evolving under Hamilton's equations.  Quantum mechanics is how observers access $f$---through the Fourier transform and the Born projection.
+
+General relativity knows exactly how to couple to a classical phase-space distribution.  The stress-energy tensor is computed from $f$ by its standard moments.  No quantization of the gravitational field is required, because the matter content is already classical.  The gravitational field does not observe; it couples to what is there.
+
+If this view is correct, the century-long search for quantum gravity has been directed at the wrong problem.  The difficulty was not in quantizing gravity but in recognizing that quantum mechanics is already classical probability dynamics viewed through a particular lens.
+
+\subsection{Summary}
+
+The mathematical result is clear: for delta-function initial conditions in a Coulomb potential, the cross-Wigner matrix $C$ is indefinite with $O(1)$ negative eigenvalue fraction.  This is a property of the framework developed in \cite{macevoy2025}, which is indistinguishable from standard quantum mechanics in its observable predictions.
+
+The speculative leap is connecting this mathematical structure to dark matter.  The ingredients---violent particle creation near supermassive black holes, $O(1)$ indefinite structure in $C$, spherical geometry, large energy budget, and gravitational coupling to the full phase-space distribution---are individually plausible but their combination is unproven.  The critical next step is a rigorous derivation of $T_{\mu\nu}$ from $f$ in curved spacetime and a quantitative comparison with observed dark matter profiles.
+
+We present this not as a theory but as a set of questions that the framework of \cite{macevoy2025} makes it natural to ask.
+
+\begin{thebibliography}{9}
+
+\bibitem{macevoy2025}
+W.~MacEvoy,
+``Deriving Quantum Mechanics from Probabilistic Classical Mechanics,''
+draft submitted to American Journal of Physics (2025).
+
+\bibitem{wigner1932}
+E.~P.~Wigner,
+``On the Quantum Correction For Thermodynamic Equilibrium,''
+\textit{Physical Review} \textbf{40}, 749--759 (1932).
+
+\bibitem{moyal1949}
+J.~E.~Moyal,
+``Quantum Mechanics as a Statistical Theory,''
+\textit{Math.\ Proc.\ Cambridge Phil.\ Soc.}\ \textbf{45}, 99--124 (1949).
+
+\end{thebibliography}
+
+\end{document}

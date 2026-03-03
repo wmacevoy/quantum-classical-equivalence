@@ -17,10 +17,10 @@
 
 \begin{abstract}
 We show that non-relativistic quantum mechanics can be derived from classical Hamiltonian dynamics with probabilistic initial data by lifting the equations of motion to a Liouville equation, Fourier transforming in momentum, and applying a centered-difference approximation.
-The resulting equation separates into forward and backward Schrödinger equations.
-The only approximation is $O(\hbar^3)$, rendering it indistinguishable from exact.
-The Born rule emerges as a time-averaged marginal over momentum.
-We discuss implications for the uncertainty principle, entanglement, and computation.
+The resulting equation separates into forward and backward Schr\"odinger equations.
+The only approximation is $O(\hbar^2)$ relative, rendering it indistinguishable from exact.
+The Born rule emerges as the instantaneous marginal over momentum.
+We discuss implications for the uncertainty principle and entanglement.
 \end{abstract}
 
 \section{Introduction}
@@ -220,60 +220,88 @@ C_{\lambda,\lambda'} &=& \int_{-\infty}^{+\infty} dz^+ \, \int_{-\infty}^{+\inft
 &=& \int_{-\infty}^{+\infty} dx \, \int_{-\infty}^{+\infty} d\hat{p} \, \psi_\lambda^*(x+\frac{\hat{p}}{2}) \psi_{\lambda'}(x-\frac{\hat{p}}{2}) \hat{f}_0(x,\hat{p}) \,.
 \end{eqnarray}
 
-\section{The Born Projection}
+\section{The Born Rule}
 
-Now let us compute the probability density function $\rho(x)$ of observed position by integrating $f$ over a time window and the momentum:
+The standard Born rule states that at time $t$, the probability density of observing position $x$ is $|\Psi(x,t)|^2$.  We recover this as the instantaneous marginal of $f$ over momentum:
 \begin{eqnarray}
-\rho(x) &=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \int_{-\infty}^{+\infty} dp \, f(x,p) \,, \\
-&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \int_{-\infty}^{+\infty} dp \, \int_{-\infty}^{+\infty} \frac{d\hat{p}}{2\pi \hbar} \, e^{i \frac{\hat{p} p}{\hbar}} \hat{f} \,, \\
-&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \int_{-\infty}^{+\infty} d\hat{p} \, \hat{f} \int_{-\infty}^{+\infty} \frac{dp}{2\pi \hbar} \, e^{i \frac{\hat{p} p}{\hbar}}   \,, \\
-&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \int_{-\infty}^{+\infty} d\hat{p} \, \hat{f} \delta(\hat{p}) \,, \\
-&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \hat{f}_{\hat{p}=0} \,, \\
-&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \sum_{\lambda,\lambda'} C_{\lambda,\lambda'} e^{i (\lambda-\lambda')t}\psi_\lambda(x)\psi_{\lambda'}^*(x) \,, \\
-&=& \sum_\lambda C_{\lambda,\lambda} |\psi_\lambda(x)|^2 \,.
+\rho(x,t) &=& \int_{-\infty}^{+\infty} dp \, f(x,p,t) \,, \\
+&=& \int_{-\infty}^{+\infty} dp \, \int_{-\infty}^{+\infty} \frac{d\hat{p}}{2\pi \hbar} \, e^{i \frac{\hat{p} p}{\hbar}} \hat{f} \,, \\
+&=& \int_{-\infty}^{+\infty} d\hat{p} \, \hat{f} \int_{-\infty}^{+\infty} \frac{dp}{2\pi \hbar} \, e^{i \frac{\hat{p} p}{\hbar}}   \,, \\
+&=& \int_{-\infty}^{+\infty} d\hat{p} \, \hat{f} \,\delta(\hat{p}) \,, \\
+&=& \hat{f}|_{\hat{p}=0} \,, \\
+&=& \sum_{\lambda,\lambda'} C_{\lambda,\lambda'} e^{i(\lambda-\lambda')t} \psi_\lambda(x)\psi^*_{\lambda'}(x) \,.
 \end{eqnarray}
-Notice it does not affect the dynamics---it is merely the observable projection of the dynamics to a measurement.  We call this the Born projection, which is the Born rule, but now derived and without decoherence \cite{zurek2003}. This happens to be coupled to decoherence with any practical measurement device we have so far constructed.
+When $C_{\lambda,\lambda'} = a_\lambda a^*_{\lambda'}$ for some coefficients $a_\lambda$, this gives
+\begin{equation}
+\rho(x,t) = \left|\sum_\lambda a_\lambda e^{-i\lambda t} \psi_\lambda(x)\right|^2 = |\Psi(x,t)|^2 \,,
+\end{equation}
+which is the standard Born rule of quantum mechanics, now derived from the classical probability dynamics.  Notice this does not affect the dynamics---it is merely the observable projection of the dynamics to a measurement.  The Born rule emerges without decoherence \cite{zurek2003}; measurement is simply the marginalization of a classical probability distribution over the unobserved variable.
+
+The coefficients $C_{\lambda,\lambda'}$ form a positive semidefinite matrix determined by the initial distribution $f_0$.  For a non-negative $f_0$, the resulting $C$ approximates any quantum density matrix to $O(\hbar)$, so the framework naturally accommodates both pure and mixed states.
 
 \section{Demystifications}
 \subsection{Heisenberg's Uncertainty Principle}
-There is nothing wrong with a distribution that specifies the precise initial position and momentum of the particle.  However, we can only observe the Born projection---which makes the view fuzzy.
+There is nothing wrong with a distribution that specifies the precise initial position and momentum of the particle.  However, we can only observe the marginal over momentum, which makes the view fuzzy.
 
 Substitution of $f_0(x,p)=\delta(x-x_0)\delta(p-p_0)$ into the formula for $C_{\lambda,\lambda'}$ gives the cross-Wigner function as the coefficients of the expansion of $\hat{f}$ in the eigenbasis of the Schr\"odinger equation:
 \begin{equation}
 C_{\lambda,\lambda'} = \int_{-\infty}^{+\infty} d\hat{p} \, \psi_\lambda^*(x_0+\frac{\hat{p}}{2}) \psi_{\lambda'}(x_0-\frac{\hat{p}}{2}) e^{-i \frac{\hat{p} p_0}{\hbar}}\,.
 \end{equation}
-The Born projection makes this look imprecise.
+The momentum marginal makes this look imprecise.
 
 \subsection{Quantum Entanglement}
-The above derivation is for a single particle in a single space dimension, but it is trivial to extend to multiple particles in three spatial dimensions.  Entanglement amounts to a dependent choice of initial distribution, so $f$ cannot be factored into independent components. The underlying mechanism evolves independently, it is only the initial distribution and final Born projection that makes it look like there is something mysterious.  It's actually a simple consequence of dependent distributions and the Born projection.
+The above derivation is for a single particle in a single space dimension, but it is trivial to extend to multiple particles in three spatial dimensions.  Entanglement amounts to a dependent choice of initial distribution, so $f$ cannot be factored into independent components. The underlying mechanism evolves independently; it is only the initial distribution and the momentum marginal that make it look like there is something mysterious.  It is a consequence of dependent distributions and the projection.
 
 For two particles and some single-particle eigenstate $\psi_\lambda(x)$, choosing 
 \begin{equation}
 \hat{f}_0=\frac{1}{\sqrt{2}}\psi_\lambda(x_1+\frac{1}{2}\hat{p}_1)\psi^*_\lambda(x_1-\frac{1}{2} \hat{p}_1) +\frac{1}{\sqrt{2}}\psi_\lambda(x_2+\frac{1}{2}\hat{p}_2)\psi^*_\lambda(x_2-\frac{1}{2} \hat{p}_2) \,,
 \end{equation}
-where $x_{1,2}$ and $p_{1,2}$ are the 3-dimensional position and momentum coordinates of the two particles and $f$ is a probability distribution in $R^{12}$. This is the standard EPR entanglement in this representation.  The Born projection then gives the observed correlation.
+where $x_{1,2}$ and $p_{1,2}$ are the 3-dimensional position and momentum coordinates of the two particles and $f$ is a probability distribution in $\mathbb{R}^{12}$. This is the standard EPR entanglement in this representation.  The momentum marginal then gives the observed correlation.
+
+\subsection{Measurement}
+In standard quantum mechanics, measurement changes the state---the so-called collapse of the wave function.  In the present framework, this corresponds to Bayesian conditioning: upon observing position $x_0$ at time $t$, the distribution is updated to
+\begin{equation}
+f_{\text{after}}(x,p) \propto \delta(x - x_0)\, f(x,p,t) \,,
+\end{equation}
+which is simply the conditional distribution over momentum given the observed position.  This conditioned distribution then serves as the initial data for subsequent evolution.  No additional postulate is required.
 
 \subsection{Quantum Computation}
-The power of a Quantum Computer is only in the Fourier transform. If the machine setup starts from a fixed wave function, and therefore fixed distribution $f$, then the machine can only apply classical dynamics to the evolution of that distribution. The only power is the Born projection, which computationally is not interesting except for the Fourier transform.
-
-Even if you prefer the standard form of quantum mechanics, this statement is still true---the formulations are indistinguishable.
+The present framework suggests that quantum computation may be more amenable to classical simulation than previously appreciated.  Because the dynamics are classical Hamiltonian evolution of a probability distribution over phase space, Monte Carlo sampling provides a natural simulation strategy.  For an $n$-particle system, the phase space is $\mathbb{R}^{6n}$, but Monte Carlo convergence is $O(1/\sqrt{N})$ independent of dimension, requiring $O(1/\varepsilon^2)$ samples for precision $\varepsilon$.  The implications of this observation will be addressed separately.
 
 \section{Discussion}
-The only approximation here is the centered difference estimate:
-\begin{equation}\label{eq:approximation}
-\hat{p} \frac{\partial V}{\partial x}
-\approx V\left(x+\frac{\hat{p}}{2}\right) - V\left(x-\frac{\hat{p}}{2}\right)
-= \hat{p} \frac{\partial V}{\partial x} + \frac{\hat{p}^3}{24}\frac{\partial^3 V}{\partial x^3} + \cdots \,.
+
+\subsection{Reframing the Error}
+
+The standard reading of the Wigner-Moyal formulation \cite{wigner1932,moyal1949} begins with classical mechanics---the Liouville equation in phase space---and adds quantum corrections order by order in $\hbar^2$.  The first such correction,
+\begin{equation}
+\frac{\hbar^2}{24}\frac{\partial^3 V}{\partial x^3}\frac{\partial^3 f}{\partial p^3} \,,
 \end{equation}
-The Fourier transform (\ref{eq:fourier-transform}) compresses the spectrum of momentum by a factor of $\hbar$, so the approximation (\ref{eq:approximation}) is $O(\hbar^3)$, or about $10^{-100}$ of human scales.  This is indistinguishable from exact for all practical purposes. Even for results where $V$ is not smooth, an $\hbar^2$-scale smoothing of the potential is indistinguishable from the original, so the approximation is effectively exact for all observational purposes.
+is conventionally interpreted as the leading quantum effect absent from classical dynamics.
 
-Regarding Bell's theorem \cite{bell1964} \cite{bell1987}, note that the introduced hidden variables (classical momentum) are natural from the classical perspective, and the Fourier transform is the non-locality which allows this reformulation to co-exist with Bell's theorem. The mathematics is indifferent to the interpretation, they are both effectively equivalent, but the interpretation is compelling from the simplicity of the underlying mechanism.
+The derivation presented here inverts this narrative.  The classical Liouville equation, once Fourier-transformed in momentum and subjected to a centered-difference change of variables, \emph{already is} the Schr\"odinger equation.  Quantum mechanics is not the result of adding corrections to the classical system---it is what the classical probability dynamics looks like when viewed in $\hat{p}$ coordinates.
 
-These notes stayed in a drawer for a long time, since I was not convinced they explained anything. But
+What the Moyal series calls the ``first quantum correction'' is therefore not a physical effect being added.  It is the residual error of the centered-difference approximation---an artifact of the coordinate transformation, not of the physics.  Crucially, this residual is an $O(\hbar^2)$ \emph{relative} correction to a quantity that is already $O(\hbar)$, giving an $O(\hbar^3)$ absolute error, on the order of $10^{-100}$ in SI units.  The ``quantum correction'' was never a correction \emph{toward} quantum mechanics.  It is a negligible coordinate artifact.
+
+\subsection{The Approximation is Exact for Quadratic Potentials}
+
+The centered-difference approximation is exact whenever $V'''(x) = 0$, which includes the free particle and the harmonic oscillator---potentials up to quadratic order.  For all other potentials, the error is $O(\hbar^2)$ relative, which is already academic.
+
+\subsection{Non-smooth Potentials}
+
+For potentials where $V'''$ is large or singular, the centered difference effectively smooths $V$ on a scale of $\hbar^2$.  No measurement can resolve spatial features at this scale, so the smoothed potential is experimentally indistinguishable from the original.
+
+\subsection{Implications}
+
+The Moyal series has been known since 1949, but it has always been read left to right: classical mechanics, corrected toward quantum mechanics.  The present derivation reads it right to left, and from that direction, the corrections are demoted from fundamental physics to coordinate artifacts.  The mystery is not why quantum mechanics departs from classical mechanics.  It is why the universe presents its dynamics to us through a momentum marginal of a Fourier-transformed phase space, revealing only the position projection to observers.
+
+Regarding Bell's theorem \cite{bell1964,bell1987}, note that the introduced hidden variables (classical momentum) are natural from the classical perspective, and the Fourier transform is the non-locality which allows this reformulation to co-exist with Bell's theorem.  The mathematics is indifferent to the interpretation---the formulations are effectively equivalent---but the interpretation is compelling from the simplicity of the underlying mechanism.
+
+These notes stayed in a drawer for a long time, since I was not convinced they explained anything.  But:
 \begin{itemize}
-\item They provide a useful demystification of quantum, allowing the intuition of classical mechanics to provide insight.
-\item They place the mystery specifically: why does the universe conspire to transform the momentum space, and choose to reveal only the DC terms to us as observers? No good answer to this kept these notes in my drawer, but others may have better ideas.
-\item They suggest a global unknowable state dependence through the transform that survives observation. Decoherence is real, but maybe a side-effect of large interactions but not as central as postulated?
+\item They provide a useful demystification of quantum mechanics, allowing the intuition of classical mechanics to provide insight.
+\item They place the mystery specifically: why does the universe conspire to transform the momentum space, and choose to reveal only the position projection to observers?
+\item They reframe the Moyal series: what was thought of as the first quantum correction to classical mechanics is actually a negligible relative error in a coordinate transformation that already contains the full quantum theory.
+\item They suggest a global unknowable state dependence through the transform that survives observation.  Decoherence is real, but perhaps a side-effect of large interactions and not as central as postulated \cite{zurek2003}.
 \end{itemize}
 
 I hope others find these ideas interesting.

@@ -1,0 +1,368 @@
+\documentclass[prb,preprint]{revtex4-1}
+% AJP uses the same style as Phys. Rev. B (prb).
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\begin{document}
+
+\title{Deriving quantum mechanics from probabilistic classical mechanics}
+
+% Anonymous for review submission:
+%\author{Warren MacEvoy}
+%\affiliation{Department of Electrical and Computer Engineering, Colorado Mesa University, Grand Junction, CO 81501}
+
+\date{\today}
+
+\begin{abstract}
+We show that non-relativistic quantum mechanics can be derived from classical
+Hamiltonian dynamics with probabilistic initial data by lifting the equations of motion
+to a Liouville equation, Fourier transforming in momentum, and applying a centered-difference
+approximation.  The resulting equation separates into forward and backward
+Schr\"odinger equations.  The only approximation is $O(\hbar^3)$, rendering it
+indistinguishable from exact.  The Born rule emerges as a time-averaged marginal
+over momentum.  We discuss implications for the uncertainty principle, entanglement,
+and computation.
+\end{abstract}
+
+\maketitle
+
+
+\section{Introduction}
+
+The goal of these notes is to show non-relativistic quantum mechanics can be closely
+approximated by classical dynamics with probabilistic initial data, along with an interesting
+transformation of coordinates.  The approximation may be so close as to be indistinguishable.
+We give the notes in terms of one spatial dimension, but it is trivial to extend to higher
+dimensions and multiple particles.
+
+
+\section{Quantum Perspective}
+
+Consider a tiny one-dimensional non-relativistic particle of mass $M$ in a tiny potential $V(x)$.
+Here the accepted model is the Schr\"odinger equation, where $|\Psi(x,t)|^2$ gives the probability
+of observing the particle at location $x$ at time $t$.  The wave function $\Psi(x,t)$
+evolves according to the partial differential equation
+\begin{equation}\label{eq:schrodinger}
+i\hbar \Psi_t = -\frac{\hbar^2}{2M}\Psi_{xx} + V(x)\Psi \,,
+\end{equation}
+where $\hbar \approx 1.05 \times 10^{-34}$~joule-seconds.
+
+
+\section{Classical Perspective}
+
+Consider a regular one-dimensional non-relativistic particle of mass $M$ in a regular potential $V(x)$.
+The position of the particle $x(t)$ and momentum of the particle $p(t)$ evolve according
+to the ordinary differential equation
+\begin{eqnarray}
+M \frac{dx}{dt} & = & p \,, \label{eq:hamilton-x}\\
+\frac{dp}{dt} & = & -\frac{\partial V}{\partial x} \,. \label{eq:hamilton-p}
+\end{eqnarray}
+
+
+\section{Classical from Quantum Perspective}
+
+There should be a way to see classical mechanics arrive as an approximation of quantum
+mechanics.  This should not be surprising, and is included here for completeness.\cite{landau1977}
+
+Approximate
+\begin{equation}
+\Psi \approx A \exp\left(\frac{iS}{\hbar}\right) \,,
+\end{equation}
+and, keeping the highest order terms:
+\begin{equation}
+-S_t = \frac{1}{2M}\left(S_x\right)^2 + V \,.
+\end{equation}
+Differentiate with respect to $x$:
+\begin{equation}
+-S_{xt} = \frac{1}{M}S_x S_{xx} + \frac{\partial V}{\partial x} \,.
+\end{equation}
+Now define $P = S_x$
+\begin{equation}
+-P_t = \frac{1}{M}P P_x + \frac{\partial V}{\partial x} \,.
+\end{equation}
+This is a first order hyperbolic differential equation and is solvable by the method of
+characteristics.  Using $p(t) = P(x(t),t)$:
+\begin{equation}
+\frac{dp}{dt} = \frac{\partial P}{\partial x}\frac{dx}{dt} + \frac{\partial P}{\partial t}
+= \frac{\partial P}{\partial x}\frac{dx}{dt} - \frac{1}{M}P P_x - \frac{\partial V}{\partial x} \,.
+\end{equation}
+Choosing
+\begin{eqnarray}
+\frac{dx}{dt} &=& \frac{1}{M}p \,, \\
+\frac{dp}{dt} &=& -\frac{\partial V}{\partial x}
+\end{eqnarray}
+reduces the equation.
+
+So, to leading order, the Schr\"odinger equation carries phase-gradient
+information along characteristics defined by the equations of motion for classical mechanics.
+Note that characteristics will inevitably be singular.
+
+
+\section{Three concepts to get quantum mechanics from classical mechanics}
+
+So what has to be added to classical mechanics to get quantum mechanics?  This seems more
+interesting.  You could reverse the WKB approximation above, but that is not particularly
+enlightening.  We instead combine the following concepts.
+
+\subsection{An ordinary differential equation can be lifted to a linear partial differential equation}
+
+Think of an ordinary differential equation initial value problem as evolving a
+partial differential equation which describes the evolution of the probability
+distribution of the initial values.\cite{goldstein2002}
+
+ODE:
+\begin{eqnarray}
+\frac{dx_1}{dt} &=& v_1 \,, \\
+\frac{dx_2}{dt} &=& v_2 \,, \\
+&\vdots& \nonumber \\
+\frac{dx_n}{dt} &=& v_n \,.
+\end{eqnarray}
+
+PDE:
+\begin{equation}\label{eq:liouville}
+\frac{\partial f}{\partial t}
++ \frac{\partial (v_1 f)}{\partial x_1}
++ \frac{\partial (v_2 f)}{\partial x_2}
++ \cdots
++ \frac{\partial (v_n f)}{\partial x_n}
+= 0 \,.
+\end{equation}
+
+Using the Dirac delta function for the initial value, the PDE recovers the ODE initial value
+problem: $f(x,0) = f_0(x) = \delta(x-x_0)$.
+
+\subsection{The Fourier transform}
+
+\begin{equation}\label{eq:fourier-forward}
+\hat{\Psi}(\hat{p}) = \int_{-\infty}^{+\infty} dp \, e^{-i\hat{p}p/\hbar}\,\Psi(p) \,,
+\end{equation}
+\begin{equation}\label{eq:fourier-inverse}
+\Psi(p) = \int_{-\infty}^{+\infty} \frac{d\hat{p}}{2\pi \hbar} \, e^{+i\hat{p}p/\hbar}\,\hat{\Psi}(\hat{p}) \,,
+\end{equation}
+\begin{equation}
+\partial_p \Psi \rightarrow i \frac{\hat{p}}{\hbar} \hat{\Psi} \,,
+\end{equation}
+\begin{equation}
+p\Psi \rightarrow i \hbar \partial_{\hat{p}} \hat{\Psi} \,.
+\end{equation}
+\begin{equation}\label{eq:delta}
+\delta(\hat{p})= \int_{-\infty}^{+\infty} \frac{dp}{2\pi \hbar} \, e^{i\hat{p}p/\hbar} \,.
+\end{equation}
+The use of $\hat{p} = \hbar \omega$ compared to the typical spectral parameter $\omega$ greatly
+compresses the spectrum.
+
+\subsection{An approximation of $V'$ by a centered difference}
+
+\begin{equation}\label{eq:centered-diff}
+\frac{\partial V(x)}{\partial x} \approx \frac{V(x+\varepsilon/2) - V(x-\varepsilon/2)}{\varepsilon}
++ O(\varepsilon^2)  \,.
+\end{equation}
+We actually approximate $\varepsilon V'$, so with first error term:
+\begin{equation}\label{eq:centered-diff-error}
+\varepsilon \frac{\partial V(x)}{\partial x} \approx V(x+\varepsilon/2) - V(x-\varepsilon/2)
++ \frac{\varepsilon^3}{24} \frac{\partial^3 V(x)}{\partial x^3} + O(\varepsilon^5)  \,.
+\end{equation}
+
+
+\section{Quantum from probabilistic classical mechanics}
+
+We note the structure here is related to the Wigner-Moyal formulation,\cite{wigner1932,moyal1949,hillery1984}
+arrived at here from the classical rather than quantum direction.
+
+Using the ODE $\Rightarrow$ PDE concept for the classical Hamiltonian system, the ODE is
+\begin{eqnarray}
+\frac{dx}{dt} &=& \frac{1}{M}p \,, \\
+\frac{dp}{dt} &=& -\frac{\partial V}{\partial x} \,.
+\end{eqnarray}
+
+This corresponds to the PDE describing the evolution of the probability density:
+\begin{equation}
+\frac{\partial f}{\partial t}
++ \frac{\partial}{\partial x}\left(\frac{1}{M}pf\right)
++ \frac{\partial}{\partial p}\left(-\frac{\partial V}{\partial x}f\right)
+= 0 \,,
+\end{equation}
+or
+\begin{equation}\label{eq:liouville-hamiltonian}
+f_t + \frac{p}{M} f_x - \frac{\partial V}{\partial x} f_p = 0 \,.
+\end{equation}
+
+Now Fourier transform only with respect to the momentum $p$.  This results in
+\begin{equation}\label{eq:fourier-liouville}
+i\hbar \hat{f}_t - \frac{\hbar^2}{M} \hat{f}_{x\hat{p}} + \hat{p} \frac{\partial V}{\partial x} \hat{f} = 0 \,.
+\end{equation}
+
+We now change variables and use the only approximation.  Define
+\begin{equation}
+z^{\pm} = x \pm \frac{\hat{p}}{2} \,,
+\end{equation}
+so
+\begin{eqnarray}
+\frac{\partial}{\partial x} & = & \frac{\partial}{\partial z^+} + \frac{\partial}{\partial z^-}\,,\\
+\frac{\partial}{\partial \hat{p}} &=& \frac{1}{2}\frac{\partial}{\partial z^+}
+- \frac{1}{2}\frac{\partial}{\partial z^-}
+\end{eqnarray}
+and use the approximation~(\ref{eq:centered-diff}) with $\varepsilon = \hat{p}$:
+\begin{equation}\label{eq:approx-V}
+\frac{\partial V}{\partial x}
+\approx \frac{V(x+\hat{p}/2) - V(x-\hat{p}/2)}{\hat{p}} \,.
+\end{equation}
+
+This transforms Eq.~(\ref{eq:fourier-liouville}) into
+\begin{equation}\label{eq:f-hat-pde}
+i\hbar \hat{f}_t - \frac{\hbar^2}{2M}
+\left[\left(\frac{\partial}{\partial z^{+}}\right)^2 - \left(\frac{\partial}{\partial z^{-}}\right)^2\right]\hat{f}
++ [V(z^+) - V(z^-)]\hat{f} = 0 \,.
+\end{equation}
+While this does not yet look like Schr\"odinger's equation, this is a linear differential
+equation, and we can look at separation of variables to construct a general solution
+to Eq.~(\ref{eq:f-hat-pde}).
+Suppose $\hat{f} = \sum \psi^+(z^+)\psi^-(z^-)$ where each of these terms satisfy the above; we have
+\begin{equation}\label{eq:separated}
+\pm i\hbar \psi_t^{\pm} = -\frac{\hbar^2}{2M}\psi^{\pm}_{zz} + V\psi^{\pm} \,.
+\end{equation}
+Here $z$ takes the respective roles of $z^+$ and $z^-$.  For real potential $V$, we can have
+$\psi^+ = e^{i\lambda t} \psi_\lambda$ and $\psi^- = e^{-i\lambda t}\psi_\lambda^*$ where the $\psi_\lambda$ are eigenvectors
+of the original Schr\"odinger equation~(\ref{eq:schrodinger}).  These form a complete basis for the
+solution of PDE for $\hat{f}$:
+\begin{equation}\label{eq:f-hat-expansion}
+\hat{f}(t,z_+,z_-)=\sum_{\lambda,\lambda'} C_{\lambda,\lambda'} e^{i(\lambda-\lambda')t} \psi_{\lambda}(z_+) \psi^*_{\lambda'}(z_-) \,,
+\end{equation}
+where the $C_{\lambda,\lambda'}$ are determined by the initial distribution $f_0$.
+Assuming $\psi_\lambda$ are normalized by $\int_{-\infty}^{+\infty} dz \, |\psi_\lambda(z)|^2 = 1$, we have:
+\begin{eqnarray}
+C_{\lambda,\lambda'} &=& \int_{-\infty}^{+\infty} dz^+ \int_{-\infty}^{+\infty} dz^- \, \psi_\lambda^*(z^+) \psi_{\lambda'}(z^-) \hat{f}_0(z^+,z^-) \,, \label{eq:C-z}\\
+&=& \int_{-\infty}^{+\infty} dx \int_{-\infty}^{+\infty} d\hat{p} \, \psi_\lambda^*\!\left(x+\frac{\hat{p}}{2}\right) \psi_{\lambda'}\!\left(x-\frac{\hat{p}}{2}\right) \hat{f}_0(x,\hat{p}) \,. \label{eq:C-xp}
+\end{eqnarray}
+
+
+\section{The Born projection}
+
+Now let us compute the probability density function $\rho(x)$ of observed position by integrating $f$ over a time window and the momentum:
+\begin{eqnarray}
+\rho(x) &=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \int_{-\infty}^{+\infty} dp \, f(x,p) \,, \label{eq:born-1}\\
+&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \int_{-\infty}^{+\infty} dp \int_{-\infty}^{+\infty} \frac{d\hat{p}}{2\pi \hbar} \, e^{i\hat{p}p/\hbar} \hat{f} \,, \label{eq:born-2}\\
+&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \int_{-\infty}^{+\infty} d\hat{p} \, \hat{f} \int_{-\infty}^{+\infty} \frac{dp}{2\pi \hbar} \, e^{i\hat{p}p/\hbar} \,, \label{eq:born-3}\\
+&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \int_{-\infty}^{+\infty} d\hat{p} \, \hat{f}\,\delta(\hat{p}) \,, \label{eq:born-4}\\
+&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \, \hat{f}_{\hat{p}=0} \,, \label{eq:born-5}\\
+&=& \lim_{T\to\infty} \frac{1}{T} \int_0^T dt \sum_{\lambda,\lambda'} C_{\lambda,\lambda'} e^{i (\lambda-\lambda')t}\psi_\lambda(x)\psi_{\lambda'}^*(x) \,, \label{eq:born-6}\\
+&=& \sum_\lambda C_{\lambda,\lambda} |\psi_\lambda(x)|^2 \,. \label{eq:born-rule}
+\end{eqnarray}
+Notice it does not affect the dynamics---it is merely the observable projection of the dynamics
+to a measurement.  We call this the Born projection, which is the Born rule, but now derived
+and without decoherence.\cite{zurek2003}  This happens to be coupled to decoherence with any practical
+measurement device we have so far constructed.
+
+
+\section{Demystifications}
+
+\subsection{Heisenberg's uncertainty principle}
+
+There is nothing wrong with a distribution that specifies the precise initial position and
+momentum of the particle.  However, we can only observe the Born projection---which makes
+the view fuzzy.
+
+Substitution of $f_0(x,p)=\delta(x-x_0)\delta(p-p_0)$ into the formula for $C_{\lambda,\lambda'}$
+gives the cross-Wigner function as the coefficients of the expansion of $\hat{f}$ in the
+eigenbasis of the Schr\"odinger equation:
+\begin{equation}\label{eq:cross-wigner}
+C_{\lambda,\lambda'} = \int_{-\infty}^{+\infty} d\hat{p} \, \psi_\lambda^*\!\left(x_0+\frac{\hat{p}}{2}\right) \psi_{\lambda'}\!\left(x_0-\frac{\hat{p}}{2}\right) e^{-i\hat{p}p_0/\hbar}\,.
+\end{equation}
+The Born projection makes this look imprecise.
+
+\subsection{Quantum entanglement}
+
+The above derivation is for a single particle in a single space dimension, but it is trivial
+to extend to multiple particles in three spatial dimensions.  Entanglement amounts to a
+dependent choice of initial distribution, so $f$ cannot be factored into independent components.
+The underlying mechanism evolves independently; it is only the initial distribution and final
+Born projection that makes it look like there is something mysterious.  It is actually a simple
+consequence of dependent distributions and the Born projection.
+
+For two particles and some single-particle eigenstate $\psi_\lambda(x)$, choosing
+\begin{equation}\label{eq:entanglement}
+\hat{f}_0=\frac{1}{\sqrt{2}}\psi_\lambda\!\left(x_1+\tfrac{1}{2}\hat{p}_1\right)\psi^*_\lambda\!\left(x_1-\tfrac{1}{2} \hat{p}_1\right) +\frac{1}{\sqrt{2}}\psi_\lambda\!\left(x_2+\tfrac{1}{2}\hat{p}_2\right)\psi^*_\lambda\!\left(x_2-\tfrac{1}{2} \hat{p}_2\right) \,,
+\end{equation}
+where $x_{1,2}$ and $p_{1,2}$ are the 3-dimensional position and momentum coordinates of the two
+particles and $f$ is a probability distribution in $\mathbb{R}^{12}$.  This is the standard EPR entanglement
+in this representation.  The Born projection then gives the observed correlation.
+
+\subsection{Quantum computation}
+
+The power of a quantum computer is only in the Fourier transform.  If the machine setup
+starts from a fixed wave function, and therefore fixed distribution $f$, then the machine can
+only apply classical dynamics to the evolution of that distribution.  The only power is the
+Born projection, which computationally is not interesting except for the Fourier transform.
+
+Even if you prefer the standard form of quantum mechanics, this statement is still true---the
+formulations are indistinguishable.
+
+
+\section{Discussion}
+
+The only approximation here is the centered difference estimate:
+\begin{equation}\label{eq:approximation}
+\hat{p} \frac{\partial V}{\partial x}
+\approx V\!\left(x+\frac{\hat{p}}{2}\right) - V\!\left(x-\frac{\hat{p}}{2}\right)
+= \hat{p} \frac{\partial V}{\partial x} + \frac{\hat{p}^3}{24}\frac{\partial^3 V}{\partial x^3} + \cdots \,.
+\end{equation}
+The Fourier transform~(\ref{eq:fourier-forward}) compresses the spectrum of momentum by a factor
+of $\hbar$, so the approximation~(\ref{eq:approximation}) is $O(\hbar^3)$, or about $10^{-100}$ of
+human scales.  This is indistinguishable from exact for all practical purposes.  Even for
+results where $V$ is not smooth, an $\hbar^2$-scale smoothing of the potential is indistinguishable
+from the original, so the approximation is effectively exact for all observational purposes.
+
+Regarding Bell's theorem,\cite{bell1964,bell1987} note that the introduced hidden variables (classical
+momentum) are natural from the classical perspective, and the Fourier transform is the
+non-locality which allows this reformulation to co-exist with Bell's theorem.  The mathematics
+is indifferent to the interpretation; they are both effectively equivalent, but the interpretation
+is compelling from the simplicity of the underlying mechanism.
+
+These notes stayed in a drawer for a long time, since I was not convinced they explained
+anything.  But they provide a useful demystification of quantum mechanics, allowing the intuition
+of classical mechanics to provide insight.  They place the mystery specifically: why does the
+universe conspire to transform the momentum space, and choose to reveal only the DC terms to
+us as observers?  No good answer to this kept these notes in my drawer, but others may have
+better ideas.  They also suggest a global unknowable state dependence through the transform
+that survives observation.  Decoherence is real, but maybe a side-effect of large interactions
+but not as central as postulated.
+
+I hope others find these ideas interesting.
+
+
+\begin{acknowledgments}
+The author has no conflicts to disclose.
+\end{acknowledgments}
+
+
+\begin{thebibliography}{9}
+
+\bibitem{landau1977} L. D. Landau and E. M. Lifshitz, \textit{Quantum Mechanics:
+Non-Relativistic Theory}, 3rd edition (Pergamon Press, Oxford, 1977).
+
+\bibitem{goldstein2002} Herbert Goldstein, Charles Poole, and John Safko,
+\textit{Classical Mechanics}, 3rd edition (Addison-Wesley, San Francisco, 2002).
+
+\bibitem{wigner1932} E. P. Wigner, ``On the quantum correction for thermodynamic
+equilibrium,'' Phys. Rev. \textbf{40}, 749--759 (1932).
+
+\bibitem{moyal1949} J. E. Moyal, ``Quantum mechanics as a statistical theory,''
+Math. Proc. Cambridge Philos. Soc. \textbf{45}, 99--124 (1949).
+
+\bibitem{hillery1984} M. Hillery, R. F. O'Connell, M. O. Scully, and E. P. Wigner,
+``Distribution functions in physics: Fundamentals,''
+Phys. Rep. \textbf{106} (3), 121--167 (1984).
+
+\bibitem{zurek2003} W. H. Zurek, ``Decoherence, einselection, and the quantum
+origins of the classical,'' Rev. Mod. Phys. \textbf{75} (3), 715--775 (2003).
+
+\bibitem{bell1964} J. S. Bell, ``On the Einstein Podolsky Rosen paradox,''
+Physics \textbf{1} (3), 195--200 (1964).
+
+\bibitem{bell1987} J. S. Bell, \textit{Speakable and Unspeakable in Quantum Mechanics}
+(Cambridge University Press, Cambridge, 1987).
+
+\end{thebibliography}
+
+\end{document}
