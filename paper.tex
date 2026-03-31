@@ -11,16 +11,18 @@
 \author{Warren MacEvoy}
 %\date{}
 
+\usepackage{amsmath}
+\DeclareMathOperator\born{born}
+
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-We show that non-relativistic quantum mechanics can be derived from classical Hamiltonian dynamics with probabilistic initial data by lifting the equations of motion to a Liouville equation, Fourier transforming in momentum, and applying a centered-difference approximation.
+We show that non-relativistic quantum mechanics can be derived from classical Hamiltonian dynamics with probabilistic initial data. The conservation of probabillity equation is Fourier transformed in momentum, and an $O(\hbar^2)$ relative error centered-difference approximation is applied.
 The resulting equation separates into forward and backward Schr\"odinger equations.
-The only approximation is $O(\hbar^2)$ relative, rendering it indistinguishable from exact.
 The Born rule emerges as the instantaneous marginal over momentum.
-We discuss implications for the uncertainty principle and entanglement.
+We discuss implications for the uncertainty principle, entanglement, and the extension to general relativity via the equivalence principle.
 \end{abstract}
 
 \section{Introduction}
@@ -51,75 +53,35 @@ M \frac{dx}{dt} & = & p \,, \\
 \frac{dp}{dt} & = & -\frac{\partial V}{\partial x} \,.
 \end{eqnarray}
 
-\section{Classical From Quantum Perspective}
-
-There should be a way to see classical mechanics arrive as an approximation of quantum
-mechanics. This should not be surprising, and is included here for completeness \cite{landau1977}.
-
-Approximate
-\begin{equation}
-\Psi \approx A \exp\left(\frac{iS}{\hbar}\right) \,,
-\end{equation}
-and, keeping the highest order terms:
-\begin{equation}
--S_t = \frac{1}{2M}\left(S_x\right)^2 + V \,.
-\end{equation}
-Differentiate with respect to $x$:
-\begin{equation}
--S_{xt} = \frac{1}{M}S_x S_{xx} + \frac{\partial V}{\partial x} \,.
-\end{equation}
-Now define $P = S_x$
-\begin{equation}
--P_t = \frac{1}{M}P P_x + \frac{\partial V}{\partial x} \,.
-\end{equation}
-This is a first order hyperbolic differential equation and is solvable by the method of
-characteristics. Using $p(t) = P(x(t),t)$:
-\begin{equation}
-\frac{dp}{dt} = \frac{\partial P}{\partial x}\frac{dx}{dt} + \frac{\partial P}{\partial t}
-= \frac{\partial P}{\partial x}\frac{dx}{dt} - \frac{1}{M}P P_x - \frac{\partial V}{\partial x} \,.
-\end{equation}
-Choosing
-\begin{eqnarray}
-\frac{dx}{dt} &=& \frac{1}{M}p \,, \\
-\frac{dp}{dt} &=& -\frac{\partial V}{\partial x}
-\end{eqnarray}
-reduces the equation.
-
-So, to leading order, the Schr\"odinger equation carries phase-gradient
-information along characteristics defined by the equations of motion for classical mechanics.
-Note that characteristics will inevitably be singular.
-
 \section{Three Concepts to Get Quantum Mechanics from Classical Mechanics}
 
-So what has to be added to classical mechanics to get quantum mechanics? This seems more
-interesting. You could reverse the WKB approximation above, but that is not particularly
-enlightening. We instead combine the following concepts.
+What must be added to classical mechanics to get quantum mechanics? We combine the following concepts.
 
 \subsection{An ordinary differential equation can be lifted to a linear partial differential equation}
 
 Think of an ordinary differential equation initial value problem as evolving a
-partial differential equation which describes the evolution of the probability distribution of the initial values \cite{goldstein2002}.
+partial differential equation which describes the evolution of the probability distribution of the initial values \cite{fohn1982}.
 
 ODE:
 \begin{eqnarray}
-\frac{dx_1}{dt} &=& v_1 \,, \\
-\frac{dx_2}{dt} &=& v_2 \,, \\
+\frac{du_1}{dt} &=& v_1 \,, \\
+\frac{du_2}{dt} &=& v_2 \,, \\
 &\vdots& \\
-\frac{dx_n}{dt} &=& v_n \,.
+\frac{du_n}{dt} &=& v_n \,.
 \end{eqnarray}
 
 PDE:
 \begin{equation}
-\frac{\partial f}{\partial t}
-+ \frac{\partial (v_1 f)}{\partial x_1}
-+ \frac{\partial (v_2 f)}{\partial x_2}
+\frac{\partial w}{\partial t}
++ \frac{\partial (v_1 w)}{\partial u_1}
++ \frac{\partial (v_2 w)}{\partial u_2}
 + \cdots
-+ \frac{\partial (v_n f)}{\partial x_n}
++ \frac{\partial (v_n w)}{\partial u_n}
 = 0 \,.
 \end{equation}
 
 Using the Dirac delta function for the initial value, the PDE recovers the ODE initial value
-problem: $f(x,0) = f_0(x) = \delta(x-x_0)$.
+problem: $w(u,0) = w_0(u) = \delta(u-u_0)$.
 
 \subsection{The Fourier transform}
 
@@ -153,29 +115,27 @@ We actually approximate $\varepsilon V'$, so with first error term:
 \end{equation}
 
 \section{Quantum from Probabilistic Classical Mechanics}
-We note the structure here is related to the Wigner-Moyal formulation \cite{wigner1932} \cite{moyal1949} \cite{hillery1984}, arrived at here from the classical rather than quantum direction.
-
-Using the ODE $\Rightarrow$ PDE concept for the classical Hamiltonian system, the ODE is
+We start with the classical Hamitonian ODE:
 \begin{eqnarray}
 \frac{dx}{dt} &=& \frac{1}{M}p \,, \\
 \frac{dp}{dt} &=& -\frac{\partial V}{\partial x} \,.
 \end{eqnarray}
 
-This corresponds to the PDE describing the evolution of the probability density:
+Using the conservation of probability, this corresponds to the following PDE describing the evolution of the probability density:
 \begin{equation}
-\frac{\partial f}{\partial t}
-+ \frac{\partial}{\partial x}\left(\frac{1}{M}pf\right)
-+ \frac{\partial}{\partial p}\left(-\frac{\partial V}{\partial x}f\right)
+\frac{\partial w}{\partial t}
++ \frac{\partial}{\partial x}\left(\frac{1}{M}pw\right)
++ \frac{\partial}{\partial p}\left(-\frac{\partial V}{\partial x}w\right)
 = 0 \,,
 \end{equation}
 or
 \begin{equation}
-f_t + \frac{p}{M} f_x - \frac{\partial V}{\partial x} f_p = 0 \,.
+w_t + \frac{p}{M} w_x - \frac{\partial V}{\partial x} w_p = 0 \,.
 \end{equation}
 
 Now Fourier transform only with respect to the momentum $p$. This results in
 \begin{equation}\label{eq:fourier}
-i\hbar \hat{f}_t - \frac{\hbar^2}{M} \hat{f}_{x\hat{p}} + \hat{p} \frac{\partial V}{\partial x} \hat{f} = 0 \,.
+i\hbar \hat{w}_t - \frac{\hbar^2}{M} \hat{w}_{x\hat{p}} + \hat{p} \frac{\partial V}{\partial x} \hat{w} = 0 \,.
 \end{equation}
 
 We now change variables and use the only approximation. Define
@@ -196,89 +156,110 @@ And use the approximation (\ref{eq:approximation-derivative}) with $\varepsilon 
 \end{equation}
 
 This transforms (\ref{eq:fourier}) into
-\begin{equation}\label{eq:f-hat-pde}
-i\hbar \hat{f}_t - \frac{\hbar^2}{2M}
-\left[\left(\frac{\partial}{\partial z^{+}}\right)^2 - \left(\frac{\partial}{\partial z^{-}}\right)^2\right]\hat{f}
-+ [V(z^+) - V(z^-)]\hat{f} = 0
+\begin{equation}\label{eq:w-hat-pde}
+i\hbar \hat{w}_t - \frac{\hbar^2}{2M}
+\left[\left(\frac{\partial}{\partial z^{+}}\right)^2 - \left(\frac{\partial}{\partial z^{-}}\right)^2\right]\hat{w}
++ [V(z^+) - V(z^-)]\hat{w} = 0
 \end{equation}
 While this does not yet look like Schr\"odinger's equation, this is a linear differential
-equation, and we can look at separation of variables to construct a general solution to (\ref{eq:f-hat-pde}).
-Suppose $\hat{f} = \sum \psi^+(z^+)\psi^-(z^-)$ where each of these terms satisfy the above, we have
+equation, and we can look at separation of variables to construct a general solution to (\ref{eq:w-hat-pde}).
+Suppose $\hat{w} = \sum \psi^+(z^+)\psi^-(z^-)$ where each of these terms satisfy the above, we have
 \begin{equation}
-\pm i\hbar \psi_t^{\pm} = -\frac{\hbar^2}{2M}\psi^{\pm}_{zz} + V\psi^{\pm} \,.
+\mp i\hbar \psi_t^{\pm} = -\frac{\hbar^2}{2M}\psi^{\pm}_{zz} + V\psi^{\pm} \,.
 \end{equation}
 Here $z$ takes the respective roles of $z^+$ and $z^-$. For real potential $V$, we can have
 $\psi^+ = e^{i\lambda t} \psi_\lambda$ and $\psi^- = e^{-i\lambda t}\psi_\lambda^*$ where the $\psi_\lambda$ are eigenvectors
 of the original Schr\"odinger's equation (\ref{eq:schrodinger}). These form a complete basis for the
-solution of PDE for $\hat{f}$:
+solution of PDE for $\hat{w}$:
 \begin{equation}
-\hat{f}(t,z_+,z_-)=\sum_{\lambda,\lambda'} C_{\lambda,\lambda'} e^{i(\lambda-\lambda')t} \psi_{\lambda}(z_+) \psi^*_{\lambda'}(z_-) \,.
+\hat{w}(t,z_+,z_-)=\sum_{\lambda,\lambda'} C_{\lambda,\lambda'} e^{i(\lambda-\lambda')t} \psi_{\lambda}(z_+) \psi^*_{\lambda'}(z_-) \,.
 \end{equation}
-where the $C_{\lambda,\lambda'}$ are determined by the initial distribution $f_0$.  Assuming $\psi_\lambda$ are normalized by $\int_{-\infty}^{+\infty} dz \, |\psi_\lambda(z)|^2 = 1$, we have:
+where the $C_{\lambda,\lambda'}$ are determined by the initial distribution $w_0$.  Assuming $\psi_\lambda$ are normalized by $\int_{-\infty}^{+\infty} dz \, |\psi_\lambda(z)|^2 = 1$, we have:
 \begin{eqnarray}
-C_{\lambda,\lambda'} &=& \int_{-\infty}^{+\infty} dz^+ \, \int_{-\infty}^{+\infty} dz^- \, \psi_\lambda^*(z^+) \psi_{\lambda'}(z_-) \hat{f}_0(z^+,z^-) \,, \\
-&=& \int_{-\infty}^{+\infty} dx \, \int_{-\infty}^{+\infty} d\hat{p} \, \psi_\lambda^*(x+\frac{\hat{p}}{2}) \psi_{\lambda'}(x-\frac{\hat{p}}{2}) \hat{f}_0(x,\hat{p}) \,.
+C_{\lambda,\lambda'} &=& \int_{-\infty}^{+\infty} dz^+ \, \int_{-\infty}^{+\infty} dz^- \, \psi_\lambda^*(z^+) \psi_{\lambda'}(z_-) \hat{w}_0(z^+,z^-) \,, \\
+&=& \int_{-\infty}^{+\infty} dx \, \int_{-\infty}^{+\infty} d\hat{p} \, \psi_\lambda^*(x+\frac{\hat{p}}{2}) \psi_{\lambda'}(x-\frac{\hat{p}}{2}) \hat{w}_0(x,\hat{p}) \,.
+\end{eqnarray}
+Note $C$ is Hermitian and $w$ is a probability distribution.  This implies $C=\sum_k c_k a_k a_k^\dagger$ for real eigenvalues $c_k$, unit eigenvectors $a_k$, and $\sum_k c_k = 1$.
+
+\section{Error Estimate}
+There centered difference approximation is exact for linear and quadratic potentials. For others potentials, the leading error term is
+\begin{equation}
+\hat{p} \frac{\partial V}{\partial x}  \approx V(x+\frac{\hat{p}}{2})-V(x-\frac{\hat{p}}{2})+\left[ \frac{\hat{p}^3}{24} \frac{\partial^3 V(x)}{\partial x^3}\right] \,.
+\end{equation}
+For the approximation to be closer to exact, then the PDE would have to be modified to
+\begin{equation}
+w_t + \frac{p}{M} w_x - \frac{\partial V}{\partial x} w_p = \left[ \hbar^2 \frac{\partial^3 V}{\partial x^3} w_{ppp} \right] \,.
+\end{equation}
+This is typically considered the first quantum correction to classical mechanics, but is actually the first correction to an excellent approximation viewed through the $\hat{p}$ coordinate transformation.
+
+\section{The Born Projection}
+
+The standard Born rule states that at time $t$, the probability density of observing position $x$ is $|\Psi(x,t)|^2$.  We recover this as the instantaneous marginal of $w$ over momentum, which we call the Born projection:
+\begin{eqnarray}
+\born w &=& \int_{-\infty}^{+\infty} dp \, w(x,p,t) \,, \\
+&=& \int_{-\infty}^{+\infty} dp \, \int_{-\infty}^{+\infty} \frac{d\hat{p}}{2\pi \hbar} \, e^{i \frac{\hat{p} p}{\hbar}} \hat{w} \,, \\
+&=& \int_{-\infty}^{+\infty} d\hat{p} \, \hat{w} \int_{-\infty}^{+\infty} \frac{dp}{2\pi \hbar} \, e^{i \frac{\hat{p} p}{\hbar}}   \,, \\
+&=& \int_{-\infty}^{+\infty} d\hat{p} \, \hat{w} \,\delta(\hat{p}) \,, \\
+&=& \hat{w}|_{\hat{p}=0} \,, \\
+&=& \sum_{\lambda,\lambda'} C_{\lambda,\lambda'} e^{i(\lambda-\lambda')t} \psi_\lambda(x)\psi^*_{\lambda'}(x) \,, \\
+&=& \sum_k c_k \sum_{\lambda,\lambda'} (a_k)_{\lambda} (a_k)_{\lambda'}^* e^{i(\lambda-\lambda')t} \psi_\lambda(x)\psi^*_{\lambda'}(x) \,, \\
+&=& \sum_k c_k \left| \sum_{\lambda} (a_k)_{\lambda} e^{i\lambda t} \psi_\lambda(x) \right|^2 \,.
 \end{eqnarray}
 
-\section{The Born Rule}
-
-The standard Born rule states that at time $t$, the probability density of observing position $x$ is $|\Psi(x,t)|^2$.  We recover this as the instantaneous marginal of $f$ over momentum:
-\begin{eqnarray}
-\rho(x,t) &=& \int_{-\infty}^{+\infty} dp \, f(x,p,t) \,, \\
-&=& \int_{-\infty}^{+\infty} dp \, \int_{-\infty}^{+\infty} \frac{d\hat{p}}{2\pi \hbar} \, e^{i \frac{\hat{p} p}{\hbar}} \hat{f} \,, \\
-&=& \int_{-\infty}^{+\infty} d\hat{p} \, \hat{f} \int_{-\infty}^{+\infty} \frac{dp}{2\pi \hbar} \, e^{i \frac{\hat{p} p}{\hbar}}   \,, \\
-&=& \int_{-\infty}^{+\infty} d\hat{p} \, \hat{f} \,\delta(\hat{p}) \,, \\
-&=& \hat{f}|_{\hat{p}=0} \,, \\
-&=& \sum_{\lambda,\lambda'} C_{\lambda,\lambda'} e^{i(\lambda-\lambda')t} \psi_\lambda(x)\psi^*_{\lambda'}(x) \,.
-\end{eqnarray}
-When $C_{\lambda,\lambda'} = a_\lambda a^*_{\lambda'}$ for some coefficients $a_\lambda$, this gives
-\begin{equation}
-\rho(x,t) = \left|\sum_\lambda a_\lambda e^{-i\lambda t} \psi_\lambda(x)\right|^2 = |\Psi(x,t)|^2 \,,
-\end{equation}
-which is the standard Born rule of quantum mechanics, now derived from the classical probability dynamics.  Notice this does not affect the dynamics---it is merely the observable projection of the dynamics to a measurement.  The Born rule emerges without decoherence \cite{zurek2003}; measurement is simply the marginalization of a classical probability distribution over the unobserved variable.
-
-The coefficients $C_{\lambda,\lambda'}$ form a positive semidefinite matrix determined by the initial distribution $f_0$.  For a non-negative $f_0$, the resulting $C$ approximates any quantum density matrix to $O(\hbar)$, so the framework naturally accommodates both pure and mixed states.
+This is the standard Born rule of quantum mechanics, now derived from the classical probability dynamics.  Notice this does not affect the dynamics---it is merely the observable projection of the dynamics to a measurement.  The Born rule emerges without decoherence \cite{zurek2003}; measurement is simply the marginalization of a classical probability distribution over the unobserved variable.
 
 \section{Demystifications}
 \subsection{Heisenberg's Uncertainty Principle}
 There is nothing wrong with a distribution that specifies the precise initial position and momentum of the particle.  However, we can only observe the marginal over momentum, which makes the view fuzzy.
 
-Substitution of $f_0(x,p)=\delta(x-x_0)\delta(p-p_0)$ into the formula for $C_{\lambda,\lambda'}$ gives the cross-Wigner function as the coefficients of the expansion of $\hat{f}$ in the eigenbasis of the Schr\"odinger equation:
+Substitution of $w_0(x,p)=\delta(x-x_0)\delta(p-p_0)$ into the formula for $C_{\lambda,\lambda'}$ gives the cross-Wigner function as the coefficients of the expansion of $\hat{w}$ in the eigenbasis of the Schr\"odinger equation:
 \begin{equation}
-C_{\lambda,\lambda'} = \int_{-\infty}^{+\infty} d\hat{p} \, \psi_\lambda^*(x_0+\frac{\hat{p}}{2}) \psi_{\lambda'}(x_0-\frac{\hat{p}}{2}) e^{-i \frac{\hat{p} p_0}{\hbar}}\,.
+C_{\lambda,\lambda'}[\delta(x-x_0)\delta(p-p_0)]  = \int_{-\infty}^{+\infty} d\hat{p} \, \psi_\lambda^*(x_0+\frac{\hat{p}}{2}) \psi_{\lambda'}(x_0-\frac{\hat{p}}{2}) e^{-i \frac{\hat{p} p_0}{\hbar}}\,.
 \end{equation}
-The momentum marginal makes this look imprecise.
+
+For a symmetric potential $V$, the eigenfunctions $\psi_\lambda$ are either symmetric or antisymmetric, $\psi_\lambda(-x)=\sigma_\lambda \psi_\lambda(x)$, where $\sigma_\lambda = \pm 1$. We can use this to compute $C_{\lambda,\lambda'}$ for the $x_0=0$, $p_0=0$ case:
+\begin{eqnarray}
+  C_{\lambda,\lambda'}[\delta(x)\delta(p)] &=& \int_{-\infty}^{+\infty} d\hat{p} \, \psi_\lambda^*(+\frac{\hat{p}}{2}) \psi_{\lambda'}(-\frac{\hat{p}}{2}) \,, \\
+  &=& \sigma_{\lambda'} \int_{-\infty}^{+\infty} d\hat{p} \, \psi_\lambda^*(\frac{\hat{p}}{2}) \psi_{\lambda'}(\frac{\hat{p}}{2}) \,, \\
+  &=& 2 \sigma_{\lambda'} \int_{-\infty}^{+\infty} d u \, \psi_\lambda^*(u) \psi_{\lambda'}(u) \,,\\
+  &=& 2 \sigma_\lambda \delta_{\lambda,\lambda'} \,.
+\end{eqnarray}
+
+The Born projection yields
+\begin{equation}
+  \born \delta(x) \delta (p) = 2 \sum_{\lambda} \sigma_{\lambda} |\psi_{\lambda}(x)|^2 \,.
+\end{equation}
+This is the expansion of $\delta(x)$ as a distribution---what we would expect for a particle at the bottom of the well with no momentum.
 
 \subsection{Quantum Entanglement}
-The above derivation is for a single particle in a single space dimension, but it is trivial to extend to multiple particles in three spatial dimensions.  Entanglement amounts to a dependent choice of initial distribution, so $f$ cannot be factored into independent components. The underlying mechanism evolves independently; it is only the initial distribution and the momentum marginal that make it look like there is something mysterious.  It is a consequence of dependent distributions and the projection.
+The above derivation is for a single particle in a single space dimension, but it is trivial to extend to multiple particles in three spatial dimensions.  Entanglement amounts to a dependent choice of initial distribution, so $\hat{w}$ cannot be factored into independent components for each particle. The underlying mechanism evolves independently; it is only the initial distribution and the momentum marginal that make it look like there is something mysterious.  It is a consequence of dependent distributions and the projection.
 
-For two particles and some single-particle eigenstate $\psi_\lambda(x)$, choosing 
-\begin{equation}
-\hat{f}_0=\frac{1}{\sqrt{2}}\psi_\lambda(x_1+\frac{1}{2}\hat{p}_1)\psi^*_\lambda(x_1-\frac{1}{2} \hat{p}_1) +\frac{1}{\sqrt{2}}\psi_\lambda(x_2+\frac{1}{2}\hat{p}_2)\psi^*_\lambda(x_2-\frac{1}{2} \hat{p}_2) \,,
-\end{equation}
-where $x_{1,2}$ and $p_{1,2}$ are the 3-dimensional position and momentum coordinates of the two particles and $f$ is a probability distribution in $\mathbb{R}^{12}$. This is the standard EPR entanglement in this representation.  The momentum marginal then gives the observed correlation.
+For two particles with single-particle eigenstates $\hat{\alpha}=\psi_{\lambda}$ and $\hat{\beta}=\psi_\mu$, the coefficient matrix $C$ extends to the two-particle eigenbasis $\{|\alpha\alpha\rangle, |\alpha\beta\rangle, |\beta\alpha\rangle, |\beta\beta\rangle\}$.  The four maximally entangled Bell states are pure states $C = a\,a^\dagger$ with
+\begin{eqnarray}
+a_{\Phi^{\pm}} &=& \tfrac{1}{\sqrt{2}}(|\alpha\alpha\rangle \pm |\beta\beta\rangle) \,,\\
+a_{\Psi^{\pm}} &=& \tfrac{1}{\sqrt{2}}(|\alpha\beta\rangle \pm |\beta\alpha\rangle) \,.
+\end{eqnarray}
+None of these factor as $|s_1\rangle \otimes |s_2\rangle$; entanglement is precisely this non-factorizability of $a$.  The outer product $a\,a^\dagger$ generates off-diagonal coherence terms in $\hat{w}$ that distinguish entangled states from classical mixtures, which would have $C$ diagonal.
 
-\subsection{Measurement}
-In standard quantum mechanics, measurement changes the state---the so-called collapse of the wave function.  In the present framework, this corresponds to Bayesian conditioning: upon observing position $x_0$ at time $t$, the distribution is updated to
-\begin{equation}
-f_{\text{after}}(x,p) \propto \delta(x - x_0)\, f(x,p,t) \,,
-\end{equation}
-which is simply the conditional distribution over momentum given the observed position.  This conditioned distribution then serves as the initial data for subsequent evolution.  No additional postulate is required.
+\subsection{Many Worlds}
 
-\subsection{Quantum Computation}
-The present framework suggests that quantum computation may be more amenable to classical simulation than previously appreciated.  Because the dynamics are classical Hamiltonian evolution of a probability distribution over phase space, Monte Carlo sampling provides a natural simulation strategy.  For an $n$-particle system, the phase space is $\mathbb{R}^{6n}$, but Monte Carlo convergence is $O(1/\sqrt{N})$ independent of dimension, requiring $O(1/\varepsilon^2)$ samples for precision $\varepsilon$.  The implications of this observation will be addressed separately.
+The many-worlds interpretation \cite{everett1973} posits a proliferation of branching universes to avoid the measurement problem.  In the present framework, there is no measurement problem to solve.  The underlying dynamics are deterministic classical Hamiltonian evolution of a probability distribution over phase space.  The apparent indeterminacy of quantum mechanics arises entirely from the Born projection---the momentum marginal---which discards information the observer cannot access.  This is ordinary classical probability: a single world with uncertain initial conditions, viewed through an isolating projection.  There is no need for many worlds when one world with indeterminacy suffices.
+
+\subsection{General Relativity}
+
+The equivalence principle guarantees that spacetime is locally flat: in any sufficiently small region, a freely falling observer experiences ordinary non-relativistic mechanics.  In such a local frame, classical Hamiltonian dynamics applies, and the derivation above produces the Schr\"odinger equation with an $O(\hbar^2)$ relative error.  Gravitational effects enter as smooth potentials in the local frame, for which the centered-difference approximation introduces errors on the order of $\hbar^2 \approx 10^{-68}$ in SI units.  The Born rule remains the momentum marginal.  Non-relativistic quantum mechanics therefore emerges naturally in any locally flat patch of spacetime, inheriting its domain of validity from the local flatness of the geometry, without additional postulates.
 
 \section{Discussion}
 
 \subsection{Reframing the Error}
 
-The standard reading of the Wigner-Moyal formulation \cite{wigner1932,moyal1949} begins with classical mechanics---the Liouville equation in phase space---and adds quantum corrections order by order in $\hbar^2$.  The first such correction,
+The standard reading of the Wigner-Moyal formulation \cite{wigner1932,moyal1949} begins with classical mechanics, and adds quantum corrections order by order in $\hbar^2$.  The first such correction,
 \begin{equation}
-\frac{\hbar^2}{24}\frac{\partial^3 V}{\partial x^3}\frac{\partial^3 f}{\partial p^3} \,,
+\frac{\hbar^2}{24}\frac{\partial^3 V}{\partial x^3}\frac{\partial^3 w}{\partial p^3} \,,
 \end{equation}
 is conventionally interpreted as the leading quantum effect absent from classical dynamics.
 
-The derivation presented here inverts this narrative.  The classical Liouville equation, once Fourier-transformed in momentum and subjected to a centered-difference change of variables, \emph{already is} the Schr\"odinger equation.  Quantum mechanics is not the result of adding corrections to the classical system---it is what the classical probability dynamics looks like when viewed in $\hat{p}$ coordinates.
+The derivation presented here demonstrates the leading quantum effects are already present in the classical system.  Quantum mechanics is not the result of adding corrections to the classical system---it is what the classical probability dynamics looks like when viewed in $\hat{p}$ coordinates.
 
 What the Moyal series calls the ``first quantum correction'' is therefore not a physical effect being added.  It is the residual error of the centered-difference approximation---an artifact of the coordinate transformation, not of the physics.  Crucially, this residual is an $O(\hbar^2)$ \emph{relative} correction to a quantity that is already $O(\hbar)$, giving an $O(\hbar^3)$ absolute error, on the order of $10^{-100}$ in SI units.  The ``quantum correction'' was never a correction \emph{toward} quantum mechanics.  It is a negligible coordinate artifact.
 

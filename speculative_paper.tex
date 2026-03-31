@@ -21,37 +21,33 @@ In a companion paper \cite{macevoy2025}, we showed that non-relativistic quantum
 
 \section{Summary of the Framework}
 
-We briefly recall the construction of \cite{macevoy2025}.  A classical particle with position $\mathbf{x}$ and momentum $\mathbf{p}$ evolves under Hamilton's equations.  A probability distribution $f(\mathbf{x},\mathbf{p},t) \geq 0$ over initial conditions evolves under the Liouville equation.  Fourier transforming in momentum introduces the dual variable $\hat{\mathbf{p}}$, and a centered-difference approximation (exact for quadratic potentials, $O(\hbar^2)$ relative error otherwise) separates the resulting equation into forward and backward Schr\"odinger equations.
+We briefly recall the construction of \cite{macevoy2025}.  A classical particle with position $\mathbf{x}$ and momentum $\mathbf{p}$ evolves under Hamilton's equations.  A probability distribution $w(\mathbf{x},\mathbf{p},t) \geq 0$ over initial conditions evolves under the Liouville equation.  Fourier transforming in momentum introduces the dual variable $\hat{\mathbf{p}}$, and a centered-difference approximation (exact for quadratic potentials, $O(\hbar^2)$ relative error otherwise) separates the resulting equation into forward and backward Schr\"odinger equations.
 
 The general solution in the Schr\"odinger eigenbasis $\{\psi_\lambda\}$ is
-\begin{equation}\label{eq:fhat-expansion}
-\hat{f}(t,z^+,z^-) = \sum_{\lambda,\lambda'} C_{\lambda,\lambda'}\, e^{i(\lambda-\lambda')t}\, \psi_\lambda(z^+)\, \psi^*_{\lambda'}(z^-) \,,
+\begin{equation}\label{eq:w-hat-expansion}
+\hat{w}(t,z^+,z^-) = \sum_{\lambda,\lambda'} C_{\lambda,\lambda'}\, e^{i(\lambda-\lambda')t}\, \psi_\lambda(z^+)\, \psi^*_{\lambda'}(z^-) \,,
 \end{equation}
 where $z^\pm = x \pm \hat{p}/2$ and the coefficients are determined by the initial distribution:
 \begin{equation}\label{eq:C-coefficients}
-C_{\lambda,\lambda'} = \int d^3\hat{p}\; \psi_\lambda^*\!\left(\mathbf{x}_0+\tfrac{\hat{\mathbf{p}}}{2}\right) \psi_{\lambda'}\!\left(\mathbf{x}_0-\tfrac{\hat{\mathbf{p}}}{2}\right) \hat{f}_0(\mathbf{x}_0, \hat{\mathbf{p}}) \,.
+C_{\lambda,\lambda'} = \int d^3\hat{p}\; \psi_\lambda^*\!\left(\mathbf{x}_0+\tfrac{\hat{\mathbf{p}}}{2}\right) \psi_{\lambda'}\!\left(\mathbf{x}_0-\tfrac{\hat{\mathbf{p}}}{2}\right) \hat{w}_0(\mathbf{x}_0, \hat{\mathbf{p}}) \,.
 \end{equation}
 
 The observable position density at time $t$ is the instantaneous marginal over momentum:
 \begin{equation}\label{eq:born}
-\rho(\mathbf{x},t) = \int d^3p\; f(\mathbf{x},\mathbf{p},t) = \hat{f}\big|_{\hat{p}=0} = \sum_{\lambda,\lambda'} C_{\lambda,\lambda'}\, e^{i(\lambda-\lambda')t}\, \psi_\lambda(\mathbf{x})\, \psi^*_{\lambda'}(\mathbf{x}) \,.
+\rho(\mathbf{x},t) = \int d^3p\; w(\mathbf{x},\mathbf{p},t) = \hat{w}\big|_{\hat{p}=0} = \sum_{\lambda,\lambda'} C_{\lambda,\lambda'}\, e^{i(\lambda-\lambda')t}\, \psi_\lambda(\mathbf{x})\, \psi^*_{\lambda'}(\mathbf{x}) \,.
 \end{equation}
 When $C_{\lambda,\lambda'} = a_\lambda a^*_{\lambda'}$ (rank one), this reduces to $\rho = |\Psi|^2$, the standard Born rule.
 
 \section{Properties of $C$ for Non-negative Initial Data}
 
-For a real, non-negative, unit-integral initial distribution $f_0(\mathbf{x},\mathbf{p}) \geq 0$, the Fourier transform $\hat{f}_0(\mathbf{x},\hat{\mathbf{p}})$ is complex with conjugate symmetry $\hat{f}_0(\mathbf{x},-\hat{\mathbf{p}}) = \hat{f}_0^*(\mathbf{x},\hat{\mathbf{p}})$.
+For a real, non-negative, unit-integral initial distribution $w_0(\mathbf{x},\mathbf{p}) \geq 0$, the Fourier transform $\hat{w}_0(\mathbf{x},\hat{\mathbf{p}})$ is complex with conjugate symmetry $\hat{w}_0(\mathbf{x},-\hat{\mathbf{p}}) = \hat{w}_0^*(\mathbf{x},\hat{\mathbf{p}})$.
 
 The coefficient matrix $C$ inherits the following properties:
 \begin{enumerate}
-\item \textbf{Hermitian:} $C_{\lambda',\lambda} = C^*_{\lambda,\lambda'}$.  This follows from the conjugate symmetry of $\hat{f}_0$ under the substitution $z^+ \leftrightarrow z^-$.
-\item \textbf{Non-negative diagonal:}  $C_{\lambda,\lambda} = \int d^3x\; |\psi_\lambda(\mathbf{x})|^2 \int d^3p\; f_0(\mathbf{x},\mathbf{p}) \geq 0$, since the integrand is a product of non-negative functions.
-\item \textbf{Not necessarily positive semidefinite.}  The matrix $C$ is the expansion of the complex function $\hat{f}_0$ in the eigenbasis.  The non-negativity of $f_0$ constrains $\hat{f}_0$ through conjugate symmetry but does not guarantee that $C$ is positive semidefinite.
+\item \textbf{Hermitian:} $C_{\lambda',\lambda} = C^*_{\lambda,\lambda'}$.  This follows from the conjugate symmetry of $\hat{w}_0$ under the substitution $z^+ \leftrightarrow z^-$.
+\item \textbf{Non-negative diagonal:}  $C_{\lambda,\lambda} = \int d^3x\; |\psi_\lambda(\mathbf{x})|^2 \int d^3p\; w_0(\mathbf{x},\mathbf{p}) \geq 0$, since the integrand is a product of non-negative functions.
+\item \textbf{Not necessarily positive semidefinite.}  The matrix $C$ is the expansion of the complex function $\hat{w}_0$ in the eigenbasis.  The non-negativity of $w_0$ constrains $\hat{w}_0$ through conjugate symmetry but does not guarantee that $C$ is positive semidefinite.
 \end{enumerate}
-
-For the harmonic oscillator potential with delta-function initial data $f_0 = \delta(\mathbf{x}-\mathbf{x}_0)\delta(\mathbf{p}-\mathbf{p}_0)$, the centered-difference approximation is exact and the matrix $C$ is exactly rank one: $C_{\lambda,\lambda'} = a_\lambda a^*_{\lambda'}$ where $a_\lambda = \langle \lambda | \alpha_0\rangle$ are coherent state coefficients.  In this case $C$ is positive semidefinite and the framework reproduces standard quantum mechanics exactly.
-
-For non-quadratic potentials, $C$ is generically indefinite.
 
 \section{Numerical Computation for Hydrogen}
 
@@ -67,7 +63,7 @@ The eigenvalues of the Hermitized matrix $C_H = (C + C^\dagger)/2$ are computed 
 \centering
 \begin{tabular}{c c c c c}
 \hline
-$n_{\max}$ & basis size & $\mathrm{tr}(C)$ & $\sum_{w_k<0} w_k$ & negative fraction \\
+$n_{\max}$ & basis size & $\mathrm{tr}(C)$ & $\sum_{c_k<0} c_k$ & negative fraction \\
 \hline
 2 & 5 & 1.036 & $-0.254$ & $-24.5\%$ \\
 3 & 14 & 1.088 & $-0.400$ & $-36.8\%$ \\
@@ -91,12 +87,12 @@ The matrix $C$ for a delta-function initial condition in a Coulomb potential is 
 
 Since $C$ is Hermitian, it admits a spectral decomposition
 \begin{equation}
-C = \sum_k w_k\, \mathbf{u}_k \mathbf{u}_k^\dagger
+C = \sum_k c_k\, \mathbf{u}_k \mathbf{u}_k^\dagger
 \end{equation}
-with real eigenvalues $w_k$ (some positive, some negative) and orthonormal eigenvectors $\mathbf{u}_k$.  Define
+with real eigenvalues $c_k$ (some positive, some negative) and orthonormal eigenvectors $\mathbf{u}_k$.  Define
 \begin{equation}
-C^+ = \sum_{w_k > 0} w_k\, \mathbf{u}_k \mathbf{u}_k^\dagger \,, \qquad
-C^- = \sum_{w_k < 0} w_k\, \mathbf{u}_k \mathbf{u}_k^\dagger \,,
+C^+ = \sum_{c_k > 0} c_k\, \mathbf{u}_k \mathbf{u}_k^\dagger \,, \qquad
+C^- = \sum_{c_k < 0} c_k\, \mathbf{u}_k \mathbf{u}_k^\dagger \,,
 \end{equation}
 so that $C = C^+ + C^-$.  From the numerical results:
 \begin{equation}
@@ -115,27 +111,27 @@ The total energy depends only on the diagonal of $C$:
 \begin{equation}
 \langle E \rangle = \sum_\lambda C_{\lambda,\lambda}\, E_\lambda \,,
 \end{equation}
-where $E_\lambda$ are the energy eigenvalues.  Since $C_{\lambda,\lambda} \geq 0$ for non-negative $f_0$, the energy is well-defined and correctly accounted for by the non-negative diagonal.  The negative eigenvalues of $C$ do not directly contribute to the total energy---they contribute to the off-diagonal coherence structure, which determines the \emph{spatial and temporal distribution} of $\rho(\mathbf{x},t)$ but not its integral or energy content.
+where $E_\lambda$ are the energy eigenvalues.  Since $C_{\lambda,\lambda} \geq 0$ for non-negative $w_0$, the energy is well-defined and correctly accounted for by the non-negative diagonal.  The negative eigenvalues of $C$ do not directly contribute to the total energy---they contribute to the off-diagonal coherence structure, which determines the \emph{spatial and temporal distribution} of $\rho(\mathbf{x},t)$ but not its integral or energy content.
 
 \section{Speculative Implications for Dark Matter}
 
 We now depart from what can be proven and enter speculation.  The reader is warned.
 
-\subsection{Gravity Couples to All of $f$}
+\subsection{Gravity Couples to All of $w$}
 
-In the framework of \cite{macevoy2025}, the ontology is a non-negative probability distribution $f(\mathbf{x},\mathbf{p},t) \geq 0$ over classical phase space, evolving under Hamilton's equations.  What we observe---the position density $\rho(\mathbf{x},t)$---is the momentum marginal of $f$: a projection that discards the momentum degrees of freedom.
+In the framework of \cite{macevoy2025}, the ontology is a non-negative probability distribution $w(\mathbf{x},\mathbf{p},t) \geq 0$ over classical phase space, evolving under Hamilton's equations.  What we observe---the position density $\rho(\mathbf{x},t)$---is the momentum marginal of $w$: a projection that discards the momentum degrees of freedom.
 
 General relativity couples to the stress-energy tensor $T_{\mu\nu}$, which for a phase-space distribution is
 \begin{eqnarray}
-T^{00}(\mathbf{x}) &=& \int d^3p\; \left(\frac{p^2}{2M} + V(\mathbf{x})\right) f(\mathbf{x},\mathbf{p},t) \,, \\
-T^{0i}(\mathbf{x}) &=& \int d^3p\; \frac{p^i}{M}\, f(\mathbf{x},\mathbf{p},t) \,, \\
-T^{ij}(\mathbf{x}) &=& \int d^3p\; \frac{p^i p^j}{M}\, f(\mathbf{x},\mathbf{p},t) \,.
+T^{00}(\mathbf{x}) &=& \int d^3p\; \left(\frac{p^2}{2M} + V(\mathbf{x})\right) w(\mathbf{x},\mathbf{p},t) \,, \\
+T^{0i}(\mathbf{x}) &=& \int d^3p\; \frac{p^i}{M}\, w(\mathbf{x},\mathbf{p},t) \,, \\
+T^{ij}(\mathbf{x}) &=& \int d^3p\; \frac{p^i p^j}{M}\, w(\mathbf{x},\mathbf{p},t) \,.
 \end{eqnarray}
-If $f$ is real, spacetime curvature must couple to all of it---not to the Born projection $\int d^3p\; f$ alone.  In particular, the pressure and stress components $T^{ij}$ depend on the momentum-weighted structure of $f$, which contains information beyond what the position marginal reveals.
+If $w$ is real, spacetime curvature must couple to all of it---not to the Born projection $\int d^3p\; w$ alone.  In particular, the pressure and stress components $T^{ij}$ depend on the momentum-weighted structure of $w$, which contains information beyond what the position marginal reveals.
 
-In standard quantum mechanics, this question does not arise: there is no phase-space distribution, only $|\Psi|^2$, and $T_{\mu\nu}$ is computed from $\Psi$ directly.  But in the present framework, $f$ contains more structure than $\rho(\mathbf{x},t)$, and that additional structure carries stress-energy that gravitates.
+In standard quantum mechanics, this question does not arise: there is no phase-space distribution, only $|\Psi|^2$, and $T_{\mu\nu}$ is computed from $\Psi$ directly.  But in the present framework, $w$ contains more structure than $\rho(\mathbf{x},t)$, and that additional structure carries stress-energy that gravitates.
 
-The off-diagonal elements of the coefficient matrix $C_{\lambda,\lambda'}$---including the contributions from negative eigenvalues---correspond to correlations between position and momentum in $f$ that vanish when momentum is integrated out.  They are invisible to the Born projection but present in phase space, and they contribute to $T_{\mu\nu}$.
+The off-diagonal elements of the coefficient matrix $C_{\lambda,\lambda'}$---including the contributions from negative eigenvalues---correspond to correlations between position and momentum in $w$ that vanish when momentum is integrated out.  They are invisible to the Born projection but present in phase space, and they contribute to $T_{\mu\nu}$.
 
 \subsection{The Source}
 
@@ -159,7 +155,7 @@ We emphasize: this is not conventional Hawking radiation, which is negligible fo
 
 This hypothesis requires:
 \begin{enumerate}
-\item A rigorous derivation of $T_{\mu\nu}$ from the phase-space distribution $f$ in the framework of \cite{macevoy2025}, and a demonstration that it differs from the standard quantum mechanical computation using $|\Psi|^2$.
+\item A rigorous derivation of $T_{\mu\nu}$ from the phase-space distribution $w$ in the framework of \cite{macevoy2025}, and a demonstration that it differs from the standard quantum mechanical computation using $|\Psi|^2$.
 \item Computation of the gravitational contribution of the off-diagonal $C$ structure for realistic particle creation processes in accretion disk conditions.
 \item A quantitative comparison of the predicted excess gravitating mass with observed dark matter halo profiles.
 \item Consistency with terrestrial particle physics experiments, where energy accounting is precise.
@@ -171,9 +167,9 @@ On point (4), we note that the total energy $\langle E \rangle = \sum_\lambda C_
 
 \subsection{Quantum Gravity}
 
-The framework of \cite{macevoy2025} may dissolve the problem of quantum gravity rather than solve it.  The longstanding difficulty is reconciling the smooth geometry of general relativity with the operator-valued fields of quantum mechanics.  In the present framework, the ontology is a classical probability distribution $f(\mathbf{x},\mathbf{p},t) \geq 0$ evolving under Hamilton's equations.  Quantum mechanics is how observers access $f$---through the Fourier transform and the Born projection.
+The framework of \cite{macevoy2025} may dissolve the problem of quantum gravity rather than solve it.  The longstanding difficulty is reconciling the smooth geometry of general relativity with the operator-valued fields of quantum mechanics.  In the present framework, the ontology is a classical probability distribution $w(\mathbf{x},\mathbf{p},t) \geq 0$ evolving under Hamilton's equations.  Quantum mechanics is how observers access $w$---through the Fourier transform and the Born projection.
 
-General relativity knows exactly how to couple to a classical phase-space distribution.  The stress-energy tensor is computed from $f$ by its standard moments.  No quantization of the gravitational field is required, because the matter content is already classical.  The gravitational field does not observe; it couples to what is there.
+General relativity knows exactly how to couple to a classical phase-space distribution.  The stress-energy tensor is computed from $w$ by its standard moments.  No quantization of the gravitational field is required, because the matter content is already classical.  The gravitational field does not observe; it couples to what is there.
 
 If this view is correct, the century-long search for quantum gravity has been directed at the wrong problem.  The difficulty was not in quantizing gravity but in recognizing that quantum mechanics is already classical probability dynamics viewed through a particular lens.
 
@@ -181,7 +177,7 @@ If this view is correct, the century-long search for quantum gravity has been di
 
 The mathematical result is clear: for delta-function initial conditions in a Coulomb potential, the cross-Wigner matrix $C$ is indefinite with $O(1)$ negative eigenvalue fraction.  This is a property of the framework developed in \cite{macevoy2025}, which is indistinguishable from standard quantum mechanics in its observable predictions.
 
-The speculative leap is connecting this mathematical structure to dark matter.  The ingredients---violent particle creation near supermassive black holes, $O(1)$ indefinite structure in $C$, spherical geometry, large energy budget, and gravitational coupling to the full phase-space distribution---are individually plausible but their combination is unproven.  The critical next step is a rigorous derivation of $T_{\mu\nu}$ from $f$ in curved spacetime and a quantitative comparison with observed dark matter profiles.
+The speculative leap is connecting this mathematical structure to dark matter.  The ingredients---violent particle creation near supermassive black holes, $O(1)$ indefinite structure in $C$, spherical geometry, large energy budget, and gravitational coupling to the full phase-space distribution---are individually plausible but their combination is unproven.  The critical next step is a rigorous derivation of $T_{\mu\nu}$ from $w$ in curved spacetime and a quantitative comparison with observed dark matter profiles.
 
 We present this not as a theory but as a set of questions that the framework of \cite{macevoy2025} makes it natural to ask.
 
