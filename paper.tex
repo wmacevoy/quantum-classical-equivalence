@@ -4,10 +4,11 @@
 \usepackage{geometry}
 \geometry{margin=1in}
 \usepackage{setspace}
+\usepackage{graphicx}
 \onehalfspacing
 \usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black]{hyperref}
 
-\title{The Looking-Glass Transform: Deriving Quantum Mechanics from Probabilistic Classical Mechanics}
+\title{The Looking-Glass Transform: The Schr\"odinger Equation as a Centered-Difference Approximation of the Classical Liouville Equation}
 \author{Warren MacEvoy}
 %\date{}
 
@@ -19,12 +20,13 @@
 \maketitle
 
 \begin{abstract}
-We derive non-relativistic quantum mechanics from classical Hamiltonian dynamics via three elementary steps: lifting the equations of motion to a conservation law for the phase-space distribution, Fourier transforming in momentum, and applying a centered-difference approximation to the potential gradient.
-The resulting equation separates into coupled Schr\"odinger equations.
-The classical phase-space distribution is identified with the Wigner quasi-probability function: it satisfies a local conservation law but need not be pointwise non-negative.
-The Born rule emerges as the momentum marginal.
-The approximation is exact for quadratic potentials; for anharmonic potentials it differs from the full Wigner--Moyal equation by terms of order $\hbar^2 \partial^3 V/\partial x^3$, while retaining tunneling and interference.
-We discuss implications for the uncertainty principle and entanglement.
+The Schr\"odinger equation lies a single approximation step from the classical Liouville equation.
+Lifting classical Hamiltonian dynamics to a conservation law for the phase-space distribution, Fourier transforming in momentum, and applying a centered-difference approximation to the potential gradient yields an equation that separates into coupled Schr\"odinger equations; the phase-space distribution is the Wigner quasi-probability function, and the Born position density is its momentum marginal.
+The ingredients of this route are classical results of the phase-space formulation of quantum mechanics, and closely related Liouville-to-Schr\"odinger constructions exist.
+The contribution here is the framing and its consequences: the centered difference is kept finite rather than taken as a limit, so quantum dynamics appears as a controlled discretization of classical dynamics---exact for quadratic potentials, with explicit leading error $(\hbar^2/24)\, \partial^3 V/\partial x^3 \, \partial^3 w/\partial p^3$, the Moyal correction read in reverse.
+Two observations follow from this viewpoint: Wigner negativity admits a classical reading as fluctuation below a uniform background, since $w \rightarrow w + c$ is invisible to the Liouville flux; and the transformed dynamics is well posed on a state space strictly larger than the quantum one, which contains the classical point preparations excluded by the uncertainty principle.
+We are explicit about what the framing does not do: where the approximation error accumulates---anharmonic potentials at long times---experiment follows the quantum dynamics, not the classical one.
+The value of the transform is structural and pedagogical: it locates exactly what must be added to probabilistic classical mechanics to obtain quantum mechanics, in the language of Fourier transforms and finite differences.
 \end{abstract}
 
 \section{Introduction}
@@ -33,14 +35,33 @@ Quantum mechanics works extraordinarily well, yet its interpretation remains con
 Why does the wavefunction give only probabilities?
 What happens during measurement?
 Does the universe branch into many worlds to account for each outcome \cite{everett1973}?
-These questions persist because the standard formulation takes the Schr\"odinger equation and the Born rule as postulates, offering no deeper mechanism.
+These questions persist in part because the standard formulation takes the Schr\"odinger equation and the Born rule as postulates.
 
-We argue the mechanism is already present in classical Hamiltonian mechanics with probabilistic initial data.
-The arrow runs from classical to quantum, not the other way: non-relativistic quantum mechanics is revealed \emph{inside} classical phase-space dynamics by a three-step coordinate transformation we call the looking-glass transform.
-The price of this view is that the phase-space distribution $w(x,p,t)$ is not a classical probability but the Wigner quasi-probability \cite{wigner1932}---a signed measure satisfying a local conservation law whose marginals are genuine probabilities.
-The Born rule is not a postulate; it is the momentum marginal of $w$.
-Measurement is not a collapse; it is a projection onto the observable subspace.
-There is no measurement problem to solve.
+The phase-space formulation of quantum mechanics \cite{wigner1932,groenewold1946,moyal1949,hillery1984} makes the kinship with classical mechanics most visible: the quantum evolution of the Wigner function differs from the classical Liouville flow only by terms of order $\hbar^2$, and is identical to it for quadratic potentials \cite{case2008}.
+That correspondence is usually read from quantum to classical: start with a wavefunction, construct the Wigner function, and recover classical mechanics as $\hbar \rightarrow 0$.
+
+This paper reads it in the other direction.
+We start from classical Hamiltonian mechanics with probabilistic initial data and apply three elementary steps: lift the equations of motion to a conservation law for the phase-space distribution, Fourier transform in momentum, and apply a centered-difference approximation to the potential gradient.
+The result separates into coupled Schr\"odinger equations.
+We call the composite the looking-glass transform.
+
+The reverse direction has been explored before.
+Carnovali and Fran\c{c}a \cite{carnovali2005} derive a Schr\"odinger-type equation from the Liouville equation by an equivalent route, taking the mean-value-theorem limit in which the difference step becomes exact.
+Bondar et al.\ \cite{bondar2012} obtain both quantum and classical (Koopman--von Neumann \cite{koopman1931}) dynamics from operational axioms, with the Wigner function itself serving as the wave function.
+Hall, Deckert, and Wiseman \cite{hall2014} build quantum behavior from many interacting classical worlds by entirely different machinery.
+The present treatment differs in keeping the difference step finite and explicit: quantum dynamics appears as a controlled discretization of classical dynamics, exact for quadratic potentials, with the leading error term stated and retained rather than removed by a limit.
+
+We are explicit about what is and is not new here.
+The transform itself is not: the route from the Liouville equation through a momentum Fourier transform and shifted variables to coupled Schr\"odinger equations was published by Carnovali and Fran\c{c}a \cite{carnovali2005}, and the underlying correspondence is the classical Wigner--Moyal one \cite{case2008,hillery1984}.
+What we offer is a particular reading of that route and three observations that follow from it.
+The first is organizational rather than novel: the entire difference between the dynamics of probabilistic classical mechanics and quantum mechanics is one explicit term---the Moyal correction read in reverse---retained here as a finite error rather than removed by the limit taken in \cite{carnovali2005}.
+The second is an interpretation of Wigner negativity that, after a targeted search of the negativity literature, we have not found stated elsewhere: a uniform background $w \rightarrow w + c$ is invisible to the Liouville flux, so negative values can be read as fluctuations below a reference level rather than as negative probabilities.
+This reading is heterodox---the orthodox position is that negativity makes $w$ impossible to read as any probability \cite{kenfack2004}---and it comes with an honest caveat developed in Section~\ref{sec:positivity}: the constant offset is not normalizable over infinite phase space, so the decomposition is formal rather than a globally valid probability split.
+The third is structural: the transformed dynamics is well posed on a state space larger than the quantum one---large enough to contain the classical point preparations the uncertainty principle excludes---within which the quantum states, those with positive-semidefinite $C$, form an invariant subset.
+The constituent facts here are known (the bounds on valid Wigner distributions are classical \cite{narcowich1986}); what we add is only the reading of the larger set as a dynamical arena.
+
+The price of the view is stated up front: the phase-space distribution $w(x,p,t)$ is the Wigner quasi-probability \cite{wigner1932}---a signed measure satisfying a local conservation law whose marginals are genuine probabilities---and where the approximation error accumulates, experiment follows the quantum dynamics, not the classical one (Section~\ref{sec:error}).
+Within this representation the Born position density is not an additional postulate but the momentum marginal of $w$; what this does and does not explain about measurement is taken up in Section~\ref{sec:born}.
 
 We work in one spatial dimension for clarity; the extension to higher dimensions and multiple particles is straightforward.
 
@@ -129,7 +150,7 @@ We actually approximate $\varepsilon \cdot \frac{\partial V}{\partial x}$, so wi
 \end{equation}
 
 \section{Quantum from Probabilistic Classical Mechanics: The Looking-Glass Transform}
-We call this the looking-glass transform.  It reveals Quantum Mechanics \textit{inside} classical mechanics to a possibly immeasurably good approximation.
+We now compose the three concepts.  The result reveals the Schr\"odinger structure \textit{inside} classical mechanics, with the quality of the approximation controlled by the explicit error term of Section~\ref{sec:error}.
 
 We start with the classical Hamiltonian ordinary differential equation:
 \begin{eqnarray}
@@ -210,14 +231,14 @@ C_{\lambda,\lambda'} &=& \int_{-\infty}^{+\infty} dz_+ \, \int_{-\infty}^{+\inft
 \end{eqnarray}
 Note $C$ is Hermitian and $w$ is normalized.  This implies $C=\sum_k c_k a_k^\dagger a_k$ for real eigenvalues $c_k$, unit left eigenvectors $a_k$ (so $a_k C = c_k a_k$), and $\sum_k c_k = 1$.
 
-The quantity $w(x,p,t)$ is precisely the Wigner quasi-probability distribution \cite{wigner1932}, and $\hat{w}$ is its Fourier transform in $p$.  The looking-glass transform has run the standard arrow in reverse: rather than starting from a wavefunction and constructing $w$, we started from the classical Liouville equation and found that $w$ already encodes a Schr\"odinger wavefunction.  Quantum mechanics was present in classical probabilistic mechanics all along; the transform makes it visible.
+The quantity $w(x,p,t)$ is precisely the Wigner quasi-probability distribution \cite{wigner1932}, and $\hat{w}$ is its Fourier transform in $p$.  In the quantum-to-classical direction, the exact evolution generated by $V(z_+,t)-V(z_-,t)$ and its expansion into the classical force term plus $O(\hbar^2)$ corrections are standard results \cite{case2008,hillery1984}.  The looking-glass transform runs that arrow in reverse: rather than starting from a wavefunction and constructing $w$, we started from the classical Liouville equation and found that a single centered difference converts its dynamics into Schr\"odinger dynamics.  The mathematics of the correspondence is the classical Wigner--Moyal one; the contribution of this paper is the direction in which it is read, and what that reading buys.
 
-Intuition. Quantum mechanics viewed through the lens of the Schr\"odinger equation carries essentially no classical intuition.  Here is a bijection between the two worlds.  First, any classical distribution can, to $O(\hbar^2)$, be transformed to a quantum equivalent structure. The reverse takes one additional mental leap: a uniform background probability. $w \rightarrow w + c$ for some constant $c$ solves the local probability flux equation (\ref{eq:classical-pde}) just fine. This is the nod to quasi-probability. For many interesting Quantum configurations, the corresponding real quasi-probability,
+Intuition. Quantum mechanics viewed through the lens of the Schr\"odinger equation carries essentially no classical intuition.  Here is a partial dictionary between the two worlds.  Any classical distribution evolves, to $O(\hbar^2)$, like a quantum-mechanical structure---though not every classical distribution is a quantum state; Section~\ref{sec:uncertainty} returns to this.  The reverse direction takes one additional mental leap: a uniform background probability. $w \rightarrow w + c$ for some constant $c$ solves the local probability flux equation (\ref{eq:classical-pde}) just fine. This is the nod to quasi-probability. For many interesting Quantum configurations, the corresponding real quasi-probability,
 \begin{equation}
 w(x,p,t) = \int_{-\infty}^{+\infty} \frac{d\hat{p}}{2\pi \hbar} \, e^{+i \frac{\hat{p} p}{\hbar}} \, \Psi^*(x+\frac{\hat{p}}{2},t) \Psi(x-\frac{\hat{p}}{2},t)
 \end{equation}
 is real-valued, integrates to $1$, but not necessarily non-negative everywhere. If you view this as a shift from a uniform unknowing: a constant probability background $c$, then the intuition carries. If you prefer no background, then negative $w$ is evidence against that configuration. This might be a way for classical intuition to carry over to the quantum domain.
-\section{Error Estimate}
+\section{Error Estimate}\label{sec:error}
 The centered-difference approximation (\ref{eq:approximation-derivative}) is exact for linear and quadratic potentials. For other potentials, the leading error term is
 \begin{equation}
 \hat{p} \frac{\partial V}{\partial x}  \approx V(x+\frac{\hat{p}}{2})-V(x-\frac{\hat{p}}{2})+\left[ -\frac{\hat{p}^3}{24} \frac{\partial^3 V(x)}{\partial x^3}\right] \,.
@@ -227,9 +248,13 @@ For the approximation to be closer to exact, then the PDE (\ref{eq:classical-pde
 \begin{equation}
 w_t + \frac{p}{M} w_x - \frac{\partial V}{\partial x} w_p = \left[ -\frac{\hbar^2}{24} \frac{\partial^3 V}{\partial x^3} w_{ppp} \right] \,.
 \end{equation}
-This may look like the first quantum correction to classical mechanics, but is actually the first correction to an excellent approximation viewed through the $\hat{p}$ coordinate transformation.
+Read from the classical side, this is the correction that would make the centered-difference approximation exact; read from the quantum side, it is the leading Moyal correction \cite{moyal1949,zurek2003,case2008} that separates Liouville from von Neumann dynamics.
+We note that the reading of this $\hbar^2$ term as the small parameter of a classical limit is not universally accepted: it has been argued that the correction series carries no explicit $\hbar$ and that the classical--quantum transition is set by spatial scale rather than by $\hbar \rightarrow 0$ \cite{perepelkin2023}.
+The structural statement below does not depend on which reading one adopts.
 
-\section{The Born Projection}
+The error term is locally of order $\hbar^2$, but its effects are secular: in anharmonic potentials the classical and quantum evolutions diverge over long times---classically by filamentation of the phase-space distribution, quantum mechanically by interference, recurrences, and wave-packet revivals.  Where the two dynamics part company, experiment follows the quantum side.  The looking-glass transform therefore cannot support the claim that classical mechanics is fundamental and quantum mechanics merely its approximation.  What it supports is the sharper structural statement that the \emph{entire} difference between the dynamics of the two theories is the single term above.
+
+\section{The Born Projection}\label{sec:born}
 
 The standard Born rule states that at time $t$, the probability density of observing position $x$ is $|\Psi(x,t)|^2$.  We recover this as the instantaneous marginal of $w$ over momentum, which we call the Born projection:
 \begin{eqnarray}
@@ -243,11 +268,13 @@ The standard Born rule states that at time $t$, the probability density of obser
 &=& \sum_k c_k \left| \sum_{\lambda} (a_k)_{\lambda} e^{-i\lambda t} \psi_\lambda(x) \right|^2 \,.
 \end{eqnarray}
 
-This is the standard Born rule of quantum mechanics, derived here as the momentum marginal of the phase-space distribution.  The dynamics are unaffected---measurement is the projection of $w$ onto the observable subspace, not a physical collapse.  The Born rule emerges without decoherence \cite{zurek2003} and without additional postulates; it is the momentum marginal of the Wigner quasi-probability.
+This is the standard Born position density, obtained here as the momentum marginal of the phase-space distribution.  Marginal-based presentations of the Born densities are standard in the phase-space formulation \cite{case2008,hirshfeld2002}, and the claim that they are thereby \emph{derived} appears in \cite{carnovali2005}.  Within this representation the Born rule for position is not an additional postulate: it is ordinary marginalization, and no collapse dynamics or decoherence mechanism \cite{zurek2003} is invoked to obtain the statistics.
 
-\section{Demystifications}
-\subsection{Heisenberg's Uncertainty Principle}
-There is nothing wrong with a distribution that specifies the precise initial position and momentum of the particle.  However, we can only observe the marginal over momentum, which makes the view fuzzy.
+We are explicit about the limits of this deflation.  It reproduces the statistics of position (and, by the symmetric argument, momentum) measurements.  It does not by itself explain definite individual outcomes or the statistics of observables that are not phase-space marginals---those require overlaps $\int w\, W_A$ with Wigner symbols $W_A$ that themselves take negative values.  The update of $w$ conditioned on an observed result, for measurements that are marginals, is treated in Section~\ref{sec:collapse}.  The remaining gaps are collected in Section~\ref{sec:further}.
+
+\section{Interpretive Remarks}
+\subsection{Heisenberg's Uncertainty Principle}\label{sec:uncertainty}
+Within the looking-glass dynamics there is nothing inconsistent about a distribution that specifies the precise initial position and momentum of the particle; the equations evolve it without complaint.  However, we can only observe the marginal over momentum, which makes the view fuzzy.
 
 Substitution of $w_0(x,p)=\delta(x-x_0)\delta(p-p_0)$ into the formula for $C_{\lambda,\lambda'}$ gives the cross-Wigner function as the coefficients of the expansion of $\hat{w}$ in the eigenbasis of the Schr\"odinger equation:
 \begin{equation}
@@ -268,6 +295,8 @@ The Born projection yields
 \end{equation}
 This is the expansion of $\delta(x)$ as a distribution---what we would expect for a particle at the bottom of the well with no momentum.
 
+Two caveats sharpen this picture.  First, the coefficient matrix $C$ of the point preparation is Hermitian with unit trace but \emph{not} positive semidefinite: the eigenvalues $c_k = 2\sigma_\lambda$ alternate in sign.  A point in phase space is therefore not a quantum state---necessary and sufficient conditions for a phase-space function to be a Wigner distribution are known \cite{narcowich1986}---and the uncertainty principle reappears in this representation as the positivity condition on $C$, not merely as fuzziness of the marginals.  Second, the looking-glass dynamics is nevertheless well posed on the larger set of Hermitian unit-trace $C$, and positivity is preserved by the evolution, so the quantum states form an invariant subset.  Classical point preparations live in the complement: they evolve consistently and project to sensible signed densities, as above, but no quantum preparation reaches them.  What principle selects the positive subset is an open question we return to in Section~\ref{sec:further}.
+
 \subsection{Quantum Entanglement}
 The above derivation is for a single particle in a single space dimension, but it is trivial to extend to multiple particles in three spatial dimensions.  Entanglement amounts to a dependent choice of initial distribution, so $\hat{w}$ cannot be factored into independent components for each particle. The underlying mechanism evolves independently; it is only the initial distribution and the momentum marginal that make it look like there is something mysterious.  It is a consequence of dependent distributions and the projection.
 
@@ -278,13 +307,137 @@ a_{\Psi^{\pm}} &=& \tfrac{1}{\sqrt{2}}(|\alpha\beta\rangle \pm |\beta\alpha\rang
 \end{eqnarray}
 None of these factor as $|s_1\rangle \otimes |s_2\rangle$; entanglement is precisely this non-factorizability of $a$.  The outer product $a\,a^\dagger$ generates off-diagonal coherence terms in $\hat{w}$ that distinguish entangled states from classical mixtures, which would have $C$ diagonal.
 
-\subsection{The Wigner Quasi-Probability and Positivity}
+This demystification of entanglement---as non-factorizable statistical dependence in the joint initial data---is not new in spirit: related readings appear in Wetterich's derivation of entanglement from classical statistics \cite{wetterich2008} and in Ozorio de Almeida's representation of an entangled state as a non-factorizable Lagrangian surface in phase space \cite{ozorio2006}.  It also has a sharp limit that must be stated.  A Bell-type entangled state admits \emph{no} non-negative joint phase-space distribution reproducing all of its measurement statistics; this is a finite, explicit no-go \cite{blass2020,bell1964}.  The dependent object here is therefore necessarily the \emph{signed} quasi-distribution of Section~\ref{sec:positivity}, not an ordinary classical probability: entanglement reduces to statistical dependence of initial data only at the price of signedness, the same quasi-probability feature met above.  The obstruction is moreover observable-dependent---a positive-Wigner Gaussian state still violates a Bell inequality when displaced-parity observables are measured \cite{banaszek1998}, precisely because those observables are not phase-space marginals.  The remark above thus demystifies the \emph{kinematics} of entanglement (non-factorizable $C$), at the cost of signedness, and does not by itself reproduce the full phenomenology of Bell tests.
+
+\subsection{Collapse of a Separated Entangled Pair}\label{sec:collapse}
+
+The kinematic reading above leaves the sharpest question open: what happens to $A$ when a distant $B$ is measured?
+We model measurement in the von Neumann manner \cite{vonneumann1932}, as interaction with an apparatus, and take the interaction to involve $B$ alone.
+For this question no relativity is needed, and the particles may be free.
+
+\paragraph{Every step is exact.}
+The error term of Section~\ref{sec:error} involves $\partial^3 V/\partial x^3$, and more generally the Moyal correction vanishes for any Hamiltonian at most quadratic in the phase-space variables.
+For two free particles the looking-glass dynamics is therefore exactly the classical free streaming of the joint distribution,
+\begin{equation}
+w(x_A,p_A,x_B,p_B,t) = w_0\!\left(x_A - \frac{p_A t}{M},\, p_A,\; x_B - \frac{p_B t}{M},\, p_B\right) \,,
+\end{equation}
+and nothing quantum happens dynamically: everything quantum about the pair resides in $w_0$, in its correlations and its sign.
+Couple $B$ to a pointer with position $X$ and momentum $P$ by an impulsive interaction $H_{\rm int} = g(t)\, x_B P$ of integrated strength $g$.
+It is bilinear, so the centered difference remains exact, and Hamilton's equations give
+\begin{equation}
+X \rightarrow X + g\, x_B \,, \qquad p_B \rightarrow p_B - g P \,:
+\end{equation}
+the pointer records $B$'s position, and $B$ receives a momentum kick.
+Liouville flow carries the joint distribution to
+\begin{equation}
+w_{\rm after} = w_{AB}(x_A, p_A, x_B, p_B + gP)\; w_{\rm ptr}(X - g x_B, P) \,.
+\end{equation}
+The interaction involves only $B$ and its apparatus; integrating out $B$ and the pointer leaves $A$'s marginal unchanged.
+The flow is local.
+
+\paragraph{Collapse is conditioning.}
+Reading the pointer is taking its $X$-marginal, the same operation as the Born projection.
+Conditioning on the reading $X = X_0$ and integrating out $P$ and $p_B$---which removes the kick---gives
+\begin{equation}\label{eq:conditional}
+w_A(x_A, p_A \,|\, X_0) \;\propto\; \int dx_B\; \rho_{\rm ptr}(X_0 - g x_B) \int dp_B\; w_{AB}(x_A, p_A, x_B, p_B) \,,
+\end{equation}
+where $\rho_{\rm ptr}$ is the pointer's initial position density.
+This is exactly the Wigner function of $A$'s quantum state after an unsharp position measurement on $B$; in the sharp-pointer limit it reduces to the standard identity that the Wigner function of $\langle x_B|\hat\rho|x_B\rangle$ is the joint $w$ marginalized over $p_B$ and evaluated at $x_B$.
+Averaging (\ref{eq:conditional}) over readings returns $A$'s original marginal: nothing done at $B$ signals to $A$.
+The instantaneous change in $A$'s description is a change of conditioning, not a change of dynamics.
+Within this representation, the ``collapse'' of a separated entangled pair is conditioning of a joint distribution on the marginal of a pointer that interacted only with $B$.
+
+\paragraph{Where the quantum ingredient lives.}
+If $w_{AB} \geq 0$, (\ref{eq:conditional}) is ordinary classical conditioning; Bell made exactly this point for the original EPR state, whose Wigner function is non-negative and is itself a local hidden-variable model \cite{bell1987}.
+If $w_{AB}$ is signed, (\ref{eq:conditional}) is formally identical but is Bayes' rule with signed weights.
+Different measurement choices---measuring $x_B$ at time $t$ is measuring the quadrature $x_B - p_B t/M$ at time $0$---are different marginals of the same signed $w$, and no single non-negative distribution reproduces them all; non-Gaussian states violate Bell inequalities with such quadrature measurements alone \cite{nha2004,garciapatron2004}.
+Signed conditioning also strains the uniform-background reading of Section~\ref{sec:positivity}: conditioning is a ratio, and a constant offset does not cancel in a ratio.
+
+\paragraph{The size of the apparatus.}
+An apparatus of $N$ pointer modes, each coupled as $g\, x_B P_k$ with initial width $\sigma$, reduces exactly to one collective pointer: $\bar X = N^{-1}\sum_k X_k$ and $P_{\rm tot} = \sum_k P_k$ are conjugate, the coupling involves only $P_{\rm tot}$, and the $N-1$ relative modes decouple.
+The collective pointer is a minimum-uncertainty Gaussian of width $\sigma/\sqrt{N}$, so a large apparatus is one whose collective reading is sharp even when no single mode can resolve $B$.
+The price is the uncertainty principle as back-action: the kick $g P_{\rm tot}$ has variance $N g^2 \hbar^2/4\sigma^2$.
+In the momentum distribution this kick is a convolution, and an $A$--$B$ interference term oscillating in $p_B$ at the conjugate separation $\Delta x_B$ is suppressed by
+\begin{equation}\label{eq:decoherence}
+\exp\!\left(-\frac{N g^2 \Delta x_B^2}{8\sigma^2}\right) \,.
+\end{equation}
+In the larger state space of Section~\ref{sec:uncertainty}, a point pointer $\delta(X)\delta(P)$ would measure $B$ perfectly without disturbing it; the positivity condition on the pointer is what forces the back-action.
+
+\paragraph{Numerical illustration.}
+We take $\hbar = M = 1$, Gaussian packets $\phi_c(x)$ of position width $0.5$ centered at $c$, and the entangled state
+\begin{equation}
+\Psi_{AB} = \alpha\, |{\rm cat}_+\rangle_A |L\rangle_B + \beta\, |{\rm cat}_-\rangle_A |R\rangle_B \,, \qquad |\alpha|^2 = 0.7 \,,
+\end{equation}
+with ${\rm cat}_\pm \propto \phi_{-2} \pm \phi_{+2}$ and $L, R = \phi_{\mp 2}$.
+The apparatus couples only to $B$ with $g = 1$; a single pointer of width $\sigma = 6$ cannot resolve $B$'s branches, which are $\Delta x_B = 4$ apart.
+The classical calculation never uses a wavefunction after constructing $w_0$: it pushes signed phase-space weights through the Hamiltonian flow above, reads the collective pointer, and conditions on the sign of the reading $r$.
+An independent quantum calculation evolves $\Psi(x_A, x_B, X)$ on a grid with $\exp(-i g\, x_B \hat P/\hbar)$ and projects.
+The code and the environment that runs it accompany the paper.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{collapse_sim_out/conditional_wigner.png}
+\caption{$A$'s phase-space distribution for $N = 64$ pointers coupled only to $B$.
+Top row: classical Liouville flow of the signed $w_{AB}$ followed by conditioning on the pointer reading.
+Middle row: independent quantum calculation.
+Bottom row: cuts at $x_A = 0$ (line: quantum; dots: classical).
+Conditioning on $r<0$ or $r>0$ selects ${\rm cat}_+$ or ${\rm cat}_-$, with $w_A(0,0) = \pm 1/\pi\hbar$, the bound of Section~\ref{sec:positivity}.}
+\label{fig:conditional}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{collapse_sim_out/vs_N.png}
+\caption{Dependence on apparatus size $N$.
+Left: probability of the reading $r > 0$, approaching the Born weight $|\beta|^2 = 0.3$.
+Center: $A$--$B$ coherence, measured by the interference fringe of the joint momentum distribution, against (\ref{eq:decoherence}).
+Right: minimum of $A$'s conditional distribution.
+Line: quantum; dots: classical.}
+\label{fig:vsN}
+\end{figure}
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{rcccccc}
+\hline
+$N$ & \multicolumn{2}{c}{$P(r>0)$} & \multicolumn{2}{c}{$A$--$B$ coherence} & \multicolumn{2}{c}{$\min w_A(\cdot\,|\,r>0)$} \\
+ & classical & quantum & classical & quantum & classical & quantum \\
+\hline
+1   & 0.448 & 0.446 & 0.96 & 0.95 & $-0.040$ & $-0.036$ \\
+4   & 0.403 & 0.400 & 0.81 & 0.80 & $-0.035$ & $-0.036$ \\
+16  & 0.342 & 0.340 & 0.41 & 0.41 & $-0.185$ & $-0.185$ \\
+64  & 0.306 & 0.305 & 0.03 & 0.03 & $-0.300$ & $-0.299$ \\
+256 & 0.300 & 0.300 & 0.02 & 0.00 & $-0.318$ & $-0.317$ \\
+\hline
+\end{tabular}
+\caption{Classical (signed Liouville flow plus conditioning) against quantum results.
+The coherence column for (\ref{eq:decoherence}) reads $0.95$, $0.80$, $0.41$, $0.03$, $0.00$; the classical floor near $0.02$ is Monte Carlo noise from the signed weights.}
+\label{tab:collapse}
+\end{table}
+
+Figures~\ref{fig:conditional} and \ref{fig:vsN} and Table~\ref{tab:collapse} show five features.
+The probability of each reading approaches the Born weight as the apparatus grows.
+$A$'s unconditional distribution is unchanged by the measurement, and the probability-weighted average of the two conditionals reproduces it to machine precision.
+Conditioning selects $A$'s branch: given $r<0$, $A$ is ${\rm cat}_+$, and given $r>0$, it is ${\rm cat}_-$.
+The apparatus destroys the $A$--$B$ coherence at the rate (\ref{eq:decoherence}), after which the joint momentum distribution is indistinguishable from a classical mixture of the branches.
+And conditioning \emph{creates} negativity: $A$'s minimum falls from $-0.09$ unconditionally to $-1/\pi\hbar \approx -0.318$ given the reading, which conditioning with non-negative weights could never do.
+
+Three limits should be stated.
+First, because every Hamiltonian here is quadratic, agreement between the classical and quantum calculations is guaranteed; it verifies the construction and the code, not a prediction that could have failed.
+The content is the reading---local flow, collapse as conditioning, Born weights from a pointer marginal---not the agreement.
+Second, ``large'' enters only through the sharpness of the collective reading; the record here is reversible in principle, and amplification into an irreversible record is not modeled.
+Third, the argument covers measurements that are phase-space marginals; observables that are not (Section~\ref{sec:further}) are outside it.
+
+\subsection{The Wigner Quasi-Probability and Positivity}\label{sec:positivity}
 
 A useful classical intuition dispels the apparent strangeness of a signed distribution.
 The Liouville equation (\ref{eq:classical-pde}) is a statement about \emph{flux}, not about absolute values.
 If $w$ satisfies it, so does $w + c$ for any constant $c$: a spatially and temporally uniform background has zero gradient and contributes nothing to the flux.
 Classical Hamiltonian dynamics is entirely insensitive to a constant offset in the phase-space distribution.
 Quantum mechanics, in this view, describes the evolution of probability \emph{fluctuations} above a locally uniform background; the regions where $w$ dips below zero are simply where the fluctuation is negative relative to the normalization reference level, not where probability is physically absent.
+We have not found this reading in the negativity literature, where the standard positions are instead that negativity is an irreducibly quantum feature \cite{kenfack2004} or is tamed only by smoothing into the non-negative Husimi function.
+We state its limit plainly: the offset $c$ that would render $w + c \geq 0$ is a uniform constant, which is not integrable over an infinite phase space.
+The decomposition $w = \rho - c$ with $\rho \geq 0$ is therefore a local and formal intuition, not a globally normalizable probability split; it is offered as a bridge for classical intuition, not as a claim that $w$ is secretly a probability.
 
 The phase-space distribution $w(x,p,t)$ satisfies a local conservation law and has genuine probability densities as its marginals, but it need not be pointwise non-negative.
 For any normalized pure state $\psi$, the Wigner function satisfies the strict bound
@@ -292,7 +445,7 @@ For any normalized pure state $\psi$, the Wigner function satisfies the strict b
 -\frac{1}{\pi\hbar} \leq w(x,p,t) \leq \frac{1}{\pi\hbar} \,,
 \end{equation}
 and negativity in specific phase-space regions has been measured directly via quantum state tomography \cite{leibfried1996}.
-Hudson's theorem states that $w \geq 0$ everywhere if and only if the state is Gaussian; negativity is precisely the signature of non-classical states such as Fock states or superpositions.
+Hudson's theorem \cite{hudson1974} states that $w \geq 0$ everywhere if and only if the state is Gaussian; negativity is precisely the signature of non-classical states such as Fock states or superpositions.
 
 This does not undermine the framework.
 The Born projection $\born w = \int dp\, w = |\Psi(x,t)|^2 \geq 0$ is a genuine probability density regardless of the sign of $w$, as is the momentum marginal $\int dx\, w = |\tilde{\Psi}(p,t)|^2 \geq 0$.
@@ -302,14 +455,29 @@ Tunneling and interference are not lost: they are carried by the retained Schr\"
 \subsection{Many Worlds}
 
 The many-worlds interpretation \cite{everett1973} posits branching universes to resolve the measurement problem: if the wavefunction never collapses, what selects the observed outcome?
-In the present framework this question does not arise.
-The dynamics are deterministic classical Hamiltonian evolution of the phase-space distribution $w$.
-The apparent indeterminacy of quantum mechanics arises entirely from the Born projection---the momentum marginal---which discards momentum information that is inaccessible to a position measurement.
-This is ordinary marginalization of a phase-space distribution, identical in form to how a classical observer recovers a position probability from an $(x,p)$ distribution.
-One world, definite but partially observable, suffices; the measurement problem is a projection, not a paradox.
+The present framework removes one motivation for branching: the Born statistics arise by marginalization, with no collapse event anywhere in the dynamics.
+The apparent indeterminacy of quantum mechanics enters through the Born projection---the momentum marginal---which discards momentum information that is inaccessible to a position measurement, identical in form to how a classical observer recovers a position probability from an $(x,p)$ distribution.
+This does not by itself resolve the measurement problem---Section~\ref{sec:born} lists what marginalization leaves unexplained---but it relocates the apparent indeterminacy from the dynamics to the projection, where classical intuition can engage it.
 
 
-\section{Further Directions}
-...
+\section{Further Directions}\label{sec:further}
+
+The framing leaves honest gaps, each a direction for further work.
+
+\subsection{Spin and statistics}
+The construction covers spinless particles.  Antisymmetric $a$ vanishes for coincident single-particle states, so Pauli exclusion is representable, but nothing in the transform explains why identical particles should carry symmetric or antisymmetric $C$; spin and the spin-statistics connection are absent.
+
+\subsection{General observables}
+The Born densities for position and momentum are marginals of $w$.  A general observable $A$ requires the overlap $\int dx\, dp\, w\, W_A$, where the Wigner symbol $W_A$ itself takes negative values, and the clean reading of measurement as marginalization is then lost.  Whether the looking-glass framing offers any purchase on general measurements is open.
+
+\subsection{The larger state space}
+The dynamics is well posed for every Hermitian, unit-trace $C$; positivity is preserved by the evolution; and the quantum states form an invariant subset whose complement contains all classical point preparations.  Three questions follow.  What physical principle selects the positive subset?  Do non-positive $C$---classically preparable in this representation---have any operational meaning, or are they strictly bookkeeping?  And does the boundary of the quantum subset, where some $c_k = 0$, play a distinguished dynamical role?  The conditions of \cite{narcowich1986} give the technical footing for these questions.
+
+\subsection{The uniform background}
+The decomposition $w = \rho - c$ with $\rho \geq 0$ exists for every pure state with $c = 1/(\pi\hbar)$, by the standard bound on Wigner functions.  The background $c$ is not normalizable over infinite phase space, so the decomposition is suggestive rather than operational; whether it can be made exact in a finite box, or connected to regularization ideas in field theory, is unexplored.
+
+\subsection{Pedagogy}
+The route from Liouville to Schr\"odinger requires only Fourier transforms and centered differences---tools familiar to any student of numerical methods.  A classroom treatment with numerical experiments (exactness for the harmonic oscillator, visible error growth for quartic potentials, revivals versus filamentation) would test whether the looking-glass framing actually transfers classical intuition to the quantum domain.
+
 \bibliography{paper}
 \end{document}

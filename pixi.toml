@@ -1,0 +1,14 @@
+[workspace]
+name = "quantum-classical-equivalence"
+description = "Simulations for the Looking-Glass Transform paper"
+channels = ["conda-forge"]
+platforms = ["osx-arm64", "osx-64", "linux-64", "linux-aarch64"]
+
+[dependencies]
+python = "3.12.*"
+numpy = ">=2.0"
+scipy = ">=1.13"
+matplotlib = ">=3.9"
+
+[tasks]
+collapse-sim = { cmd = "python entangled_collapse_sim.py", description = "Entangled-pair collapse: signed Liouville flow + conditioning vs quantum; writes collapse_sim_out/" }
