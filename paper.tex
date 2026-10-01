@@ -56,8 +56,8 @@ We are explicit about what is and is not new here.
 The transform itself is not: the route from the Liouville equation through a momentum Fourier transform and shifted variables to coupled Schr\"odinger equations was published by Carnovali and Fran\c{c}a \cite{carnovali2005}, and the underlying correspondence is the classical Wigner--Moyal one \cite{case2008,hillery1984}.
 What we offer is a particular reading of that route and four observations that follow from it.
 The first is organizational rather than novel: the entire difference between the dynamics of probabilistic classical mechanics and quantum mechanics is one explicit term---the Moyal correction read in reverse---retained here as a finite error rather than removed by the limit taken in \cite{carnovali2005}.
-The second is an interpretation of Wigner negativity that, after a targeted search of the negativity literature, we have not found stated elsewhere: a uniform background $w \rightarrow w + c$ is invisible to the Liouville flux, so negative values can be read as fluctuations below a reference level rather than as negative probabilities.
-This reading is heterodox---the orthodox position is that negativity makes $w$ impossible to read as any probability \cite{kenfack2004}---and it comes with an honest caveat developed in Section~\ref{sec:positivity}: the constant offset is not normalizable over infinite phase space, so the decomposition is formal rather than a globally valid probability split.
+The second is a reading of Wigner negativity: a uniform background $w \rightarrow w + c$ is invisible to the Liouville flux, so $w$ behaves like an acoustic pressure perturbation, and its negative values are rarefactions below an ambient level rather than negative probabilities.
+Negativity is usually treated as the irreducibly quantum feature of $w$ \cite{kenfack2004}; Section~\ref{sec:positivity} argues that for a model whose predictions---its marginals---are non-negative and correct, it does not matter.
 The third is structural: the transformed dynamics is well posed on a state space larger than the quantum one---large enough to contain the classical point preparations the uncertainty principle excludes---within which the quantum states, those with positive-semidefinite $C$, form an invariant subset.
 The constituent facts here are known (the bounds on valid Wigner distributions are classical \cite{narcowich1986}); what we add is only the reading of the larger set as a dynamical arena.
 The fourth concerns the collapse of a separated entangled pair (Section~\ref{sec:collapse}).
@@ -65,7 +65,7 @@ For free particles and a von Neumann pointer coupled only to the distant particl
 The flow is local, nothing done at the distant particle signals, and the Born weights emerge as the apparatus grows; the quantum ingredient is confined to the sign of the initial distribution, and conditioning with signed weights can create negativity that classical conditioning never could.
 The underlying identity---that conditioning the joint Wigner function reproduces the post-measurement state---is standard, and Bell made the classical-conditioning point for positive Wigner functions \cite{bell1987}; what we add is the exact, fully classical account of the measurement interaction and its numerical illustration.
 
-The price of the view is stated up front: the phase-space distribution $w(x,p,t)$ is the Wigner quasi-probability \cite{wigner1932}---a signed measure satisfying a local conservation law whose marginals are genuine probabilities---and where the approximation error accumulates, experiment follows the quantum dynamics, not the classical one (Section~\ref{sec:error}).
+Two facts frame the view: the phase-space distribution $w(x,p,t)$ is the Wigner function \cite{wigner1932}---a signed field satisfying a local conservation law whose marginals are genuine probabilities---and where the approximation error accumulates, experiment follows the quantum dynamics, not the classical one (Section~\ref{sec:error}).
 Within this representation the Born position density is not an additional postulate but the momentum marginal of $w$; what this does and does not explain about measurement is taken up in Section~\ref{sec:born}.
 
 We work in one spatial dimension for clarity; the extension to higher dimensions and multiple particles is straightforward.
@@ -242,7 +242,7 @@ Intuition. Quantum mechanics viewed through the lens of the Schr\"odinger equati
 \begin{equation}
 w(x,p,t) = \int_{-\infty}^{+\infty} \frac{d\hat{p}}{2\pi \hbar} \, e^{+i \frac{\hat{p} p}{\hbar}} \, \Psi^*(x+\frac{\hat{p}}{2},t) \Psi(x-\frac{\hat{p}}{2},t)
 \end{equation}
-is real-valued, integrates to $1$, but not necessarily non-negative everywhere. If you view this as a shift from a uniform unknowing: a constant probability background $c$, then the intuition carries. If you prefer no background, then negative $w$ is evidence against that configuration. This might be a way for classical intuition to carry over to the quantum domain.
+is real-valued, integrates to $1$, but not necessarily non-negative everywhere. Read it like a pressure perturbation about a uniform ambient level $c$: negative values are rarefactions, not missing probability, and classical intuition carries over (Section~\ref{sec:positivity}).
 \section{Error Estimate}\label{sec:error}
 The centered-difference approximation (\ref{eq:approximation-derivative}) is exact for linear and quadratic potentials. For other potentials, the leading error term is
 \begin{equation}
@@ -312,7 +312,7 @@ a_{\Psi^{\pm}} &=& \tfrac{1}{\sqrt{2}}(|\alpha\beta\rangle \pm |\beta\alpha\rang
 \end{eqnarray}
 None of these factor as $|s_1\rangle \otimes |s_2\rangle$; entanglement is precisely this non-factorizability of $a$.  The outer product $a\,a^\dagger$ generates off-diagonal coherence terms in $\hat{w}$ that distinguish entangled states from classical mixtures, which would have $C$ diagonal.
 
-This demystification of entanglement---as non-factorizable statistical dependence in the joint initial data---is not new in spirit: related readings appear in Wetterich's derivation of entanglement from classical statistics \cite{wetterich2008} and in Ozorio de Almeida's representation of an entangled state as a non-factorizable Lagrangian surface in phase space \cite{ozorio2006}.  It also has a sharp limit that must be stated.  A Bell-type entangled state admits \emph{no} non-negative joint phase-space distribution reproducing all of its measurement statistics; this is a finite, explicit no-go \cite{blass2020,bell1964}.  The dependent object here is therefore necessarily the \emph{signed} quasi-distribution of Section~\ref{sec:positivity}, not an ordinary classical probability: entanglement reduces to statistical dependence of initial data only at the price of signedness, the same quasi-probability feature met above.  The obstruction is moreover observable-dependent---a positive-Wigner Gaussian state still violates a Bell inequality when displaced-parity observables are measured \cite{banaszek1998}, precisely because those observables are not phase-space marginals.  The remark above thus demystifies the \emph{kinematics} of entanglement (non-factorizable $C$), at the cost of signedness, and does not by itself reproduce the full phenomenology of Bell tests.
+This demystification of entanglement---as non-factorizable statistical dependence in the joint initial data---is not new in spirit: related readings appear in Wetterich's derivation of entanglement from classical statistics \cite{wetterich2008} and in Ozorio de Almeida's representation of an entangled state as a non-factorizable Lagrangian surface in phase space \cite{ozorio2006}.  It also has a sharp limit that must be stated.  A Bell-type entangled state admits \emph{no} non-negative joint phase-space distribution reproducing all of its measurement statistics; this is a finite, explicit no-go \cite{blass2020,bell1964}.  The dependent object here is therefore the signed $w$ of Section~\ref{sec:positivity}, not an ordinary non-negative probability: entanglement is statistical dependence of initial data in that signed field.  The obstruction is moreover observable-dependent---a positive-Wigner Gaussian state still violates a Bell inequality when displaced-parity observables are measured \cite{banaszek1998}, precisely because those observables are not phase-space marginals.  The remark above thus demystifies the \emph{kinematics} of entanglement (non-factorizable $C$); measurement and conditioning are taken up next.
 
 \subsection{Collapse of a Separated Entangled Pair}\label{sec:collapse}
 
@@ -356,7 +356,7 @@ Within this representation, the ``collapse'' of a separated entangled pair is co
 If $w_{AB} \geq 0$, (\ref{eq:conditional}) is ordinary classical conditioning; Bell made exactly this point for the original EPR state, whose Wigner function is non-negative and is itself a local hidden-variable model \cite{bell1987}.
 If $w_{AB}$ is signed, (\ref{eq:conditional}) is formally identical but is Bayes' rule with signed weights.
 Different measurement choices---measuring $x_B$ at time $t$ is measuring the quadrature $x_B - p_B t/M$ at time $0$---are different marginals of the same signed $w$, and no single non-negative distribution reproduces them all; non-Gaussian states violate Bell inequalities with such quadrature measurements alone \cite{nha2004,garciapatron2004}.
-Signed conditioning also strains the uniform-background reading of Section~\ref{sec:positivity}: conditioning is a ratio, and a constant offset does not cancel in a ratio.
+The conditional is a signed field divided by a positive marginal probability, so it is an object of the same kind as $w$ itself, and its readings are again non-negative marginals.
 
 \paragraph{The size of the apparatus.}
 An apparatus of $N$ pointer modes, each coupled as $g\, x_B P_k$ with initial width $\sigma$, reduces exactly to one collective pointer: $\bar X = N^{-1}\sum_k X_k$ and $P_{\rm tot} = \sum_k P_k$ are conjugate, the coupling involves only $P_{\rm tot}$, and the $N-1$ relative modes decouple.
@@ -433,29 +433,36 @@ The content is the reading---local flow, collapse as conditioning, Born weights 
 Second, ``large'' enters only through the sharpness of the collective reading; the record here is reversible in principle, and amplification into an irreversible record is not modeled.
 Third, the argument covers measurements that are phase-space marginals; observables that are not (Section~\ref{sec:further}) are outside it.
 
-\subsection{The Wigner Quasi-Probability and Positivity}\label{sec:positivity}
+\subsection{Negative Values of $w$}\label{sec:positivity}
 
-A useful classical intuition dispels the apparent strangeness of a signed distribution.
+Every reader meeting a phase-space distribution that dips below zero asks the same question, so we answer it directly: the negative values do not matter, for two independent reasons.
+
+\paragraph{$w$ is a field, like a pressure wave.}
 The Liouville equation (\ref{eq:classical-pde}) is a statement about \emph{flux}, not about absolute values.
-If $w$ satisfies it, so does $w + c$ for any constant $c$: a spatially and temporally uniform background has zero gradient and contributes nothing to the flux.
-Classical Hamiltonian dynamics is entirely insensitive to a constant offset in the phase-space distribution.
-Quantum mechanics, in this view, describes the evolution of probability \emph{fluctuations} above a locally uniform background; the regions where $w$ dips below zero are simply where the fluctuation is negative relative to the normalization reference level, not where probability is physically absent.
-We have not found this reading in the negativity literature, where the standard positions are instead that negativity is an irreducibly quantum feature \cite{kenfack2004} or is tamed only by smoothing into the non-negative Husimi function.
-We state its limit plainly: the offset $c$ that would render $w + c \geq 0$ is a uniform constant, which is not integrable over an infinite phase space.
-The decomposition $w = \rho - c$ with $\rho \geq 0$ is therefore a local and formal intuition, not a globally normalizable probability split; it is offered as a bridge for classical intuition, not as a claim that $w$ is secretly a probability.
-
-The phase-space distribution $w(x,p,t)$ satisfies a local conservation law and has genuine probability densities as its marginals, but it need not be pointwise non-negative.
-For any normalized pure state $\psi$, the Wigner function satisfies the strict bound
+If $w$ satisfies it, so does $w + c$ for any constant $c$: a uniform background has zero gradient and carries no flux.
+An acoustic pressure wave is the familiar example.
+The pressure perturbation is negative in every rarefaction, and nobody objects, because what is physical is the total pressure, ambient level plus perturbation, and only gradients drive the flow.
+The same holds here.
+For every pure state the Wigner function obeys
 \begin{equation}
 -\frac{1}{\pi\hbar} \leq w(x,p,t) \leq \frac{1}{\pi\hbar} \,,
 \end{equation}
-and negativity in specific phase-space regions has been measured directly via quantum state tomography \cite{leibfried1996}.
-Hudson's theorem \cite{hudson1974} states that $w \geq 0$ everywhere if and only if the state is Gaussian; negativity is precisely the signature of non-classical states such as Fock states or superpositions.
+so $w = \rho - c$ with $\rho \geq 0$ and the universal ambient level $c = 1/(\pi\hbar)$, one count per quantum cell.
+The negative regions of $w$ are rarefactions below that level, not places where probability is missing.
+Like the ambient pressure of an unbounded medium, the background has no finite total, and it needs none: it carries no dynamics and enters no prediction.
+We have not found this reading in the negativity literature, where negativity is usually treated as the irreducibly quantum feature \cite{kenfack2004}.
 
-This does not undermine the framework.
-The Born projection $\born w = \int dp\, w = |\Psi(x,t)|^2 \geq 0$ is a genuine probability density regardless of the sign of $w$, as is the momentum marginal $\int dx\, w = |\tilde{\Psi}(p,t)|^2 \geq 0$.
-The dynamics are those of a signed measure conserved by Hamiltonian flow, and all observable predictions follow from its marginals.
-Tunneling and interference are not lost: they are carried by the retained Schr\"odinger terms, not by the small Moyal correction terms that are dropped for anharmonic potentials.
+\paragraph{A correct model owes us nothing more.}
+A model is judged by its predictions, and every prediction made here is non-negative.
+The Born projection $\born w = \int dp\, w = |\Psi(x,t)|^2$ and the momentum marginal $\int dx\, w = |\tilde{\Psi}(p,t)|^2$ are genuine probability densities whatever the sign of $w$, as are the pointer readings of Section~\ref{sec:collapse}.
+Intermediate quantities in a calculation need not be probabilities; Feynman made this argument for negative probabilities in general \cite{feynman1987}.
+Where the error term of Section~\ref{sec:error} is negligible, the model is correct, and that is the only test that applies to it.
+Where it is not, experiment follows the quantum dynamics; that is the real limit of the framing, and it has nothing to do with sign.
+
+\paragraph{What the negative regions mark.}
+Negative regions have been measured directly by quantum state tomography \cite{leibfried1996}.
+By Hudson's theorem \cite{hudson1974}, $w \geq 0$ everywhere exactly for Gaussian states, so the rarefactions mark the states with no Gaussian description, such as Fock states and superpositions.
+They are also where tunneling and interference show up in phase space; those effects are carried by the retained Schr\"odinger terms, not by the Moyal correction that is dropped for anharmonic potentials.
 
 \subsection{Many Worlds}
 
@@ -479,7 +486,7 @@ The Born densities for position and momentum are marginals of $w$.  A general ob
 The dynamics is well posed for every Hermitian, unit-trace $C$; positivity is preserved by the evolution; and the quantum states form an invariant subset whose complement contains all classical point preparations.  Three questions follow.  What physical principle selects the positive subset?  Do non-positive $C$---classically preparable in this representation---have any operational meaning, or are they strictly bookkeeping?  And does the boundary of the quantum subset, where some $c_k = 0$, play a distinguished dynamical role?  The conditions of \cite{narcowich1986} give the technical footing for these questions.
 
 \subsection{The uniform background}
-The decomposition $w = \rho - c$ with $\rho \geq 0$ exists for every pure state with $c = 1/(\pi\hbar)$, by the standard bound on Wigner functions.  The background $c$ is not normalizable over infinite phase space, so the decomposition is suggestive rather than operational; whether it can be made exact in a finite box, or connected to regularization ideas in field theory, is unexplored.
+The ambient level $c = 1/(\pi\hbar)$ makes $\rho = w + c \geq 0$ for every pure state.  Like the ambient pressure of an unbounded medium it carries no dynamics; whether it acquires a physical role in a finite box, or in field theory as vacuum fluctuation, is unexplored.
 
 \subsection{Pedagogy}
 The route from Liouville to Schr\"odinger requires only Fourier transforms and centered differences---tools familiar to any student of numerical methods.  A classroom treatment with numerical experiments (exactness for the harmonic oscillator, visible error growth for quartic potentials, revivals versus filamentation) would test whether the looking-glass framing actually transfers classical intuition to the quantum domain.
