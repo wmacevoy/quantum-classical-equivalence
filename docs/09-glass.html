@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Through the looking glass · The Looking-Glass Transform</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%23ff3b2f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="deck.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="deck.js"></script>
+</head>
+<body>
+<main class="stage">
+<section class="slide">
+  <p class="kicker">Separate variables</p>
+  <h2>Through the looking glass, Schr&ouml;dinger appears</h2>
+  <div class="cols wide-left">
+    <div>
+      <p>Try a product, $\hat w = \psi^+(z_+,t)\,\psi^-(z_-,t)$. Each factor obeys a Schr&ouml;dinger equation:</p>
+      <div class="eq">$$i\hbar\,\psi^-_t = H\,\psi^-, \qquad -i\hbar\,\psi^+_t = H\,\psi^+$$</div>
+      <p>So $\psi^- = \Psi$, the ordinary wavefunction, and $\psi^+ = \Psi^*$, its time-reversed mirror image:</p>
+      <div class="eq">$$\hat w(z_+, z_-, t) = \Psi^*(z_+,t)\;\Psi(z_-,t)$$</div>
+      <p class="small">In general $\hat w$ is a sum of such products, $\sum C_{\lambda\lambda'}\,e^{i(\lambda-\lambda')t}\,\psi_\lambda^*(z_+)\,\psi_{\lambda'}(z_-)$, and the coefficients $C$ form the <em>density matrix</em>.</p>
+    </div>
+    <div class="card">
+      <h3>So $w(x,p,t)$ is&hellip;</h3>
+      <p class="small">&hellip;exactly the <strong>Wigner function</strong> (Wigner, 1932): quantum mechanics in phase space.</p>
+      <h3 style="margin-top:20px">Honesty about novelty</h3>
+      <p class="small">The mathematics is classic (Wigner, Groenewold, Moyal). The Liouville &rarr; Schr&ouml;dinger route was published by Carnovali &amp; Fran&ccedil;a (2005). What's offered here is the <em>direction</em> of reading, classical &rarr; quantum, and what that reading buys.</p>
+    </div>
+  </div>
+</section>
+</main>
+<aside class="notes">
+<p>The "looking glass" is the pair of mirrored coordinates: one copy of the wavefunction runs forward in time, its conjugate runs backward.</p>
+<p>The usual textbook direction is quantum to classical: start with &Psi;, build W, take &#295; &rarr; 0. Here we start from the classical side.</p>
+</aside>
+</body>
+</html>

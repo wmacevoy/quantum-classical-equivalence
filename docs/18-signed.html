@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where the quantum lives · The Looking-Glass Transform</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%23ff3b2f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="deck.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="deck.js"></script>
+</head>
+<body>
+<main class="stage">
+<section class="slide" style="padding-top:40px">
+  <p class="kicker">The one quantum ingredient</p>
+  <h2 style="font-size:40px;margin-bottom:16px">Where the quantum ingredient lives: the sign</h2>
+  <div class="cols wide-right" style="gap:36px">
+    <div>
+      <ul class="small">
+        <li>If $w_{AB} \ge 0$, this is ordinary Bayes. Bell himself noted that the original EPR state has a positive Wigner function, which <em>is</em> a local hidden-variable model.</li>
+        <li>If $w_{AB}$ is signed, it's the same formula with signed weights. Non-Gaussian states violate Bell inequalities with exactly these position-type measurements.</li>
+        <li>So the flow is local, the weights are signed, and Bell's theorem, which assumes non-negative weights, does not apply.</li>
+        <li>Signed conditioning can <strong>create</strong> negativity: A's minimum drops from $-0.09$ to $-1/\pi \approx -0.318$. Ordinary conditioning never can.</li>
+      </ul>
+    </div>
+    <figure class="paper">
+      <img src="img/conditional_wigner.png" alt="Grid of A's phase-space distribution: unconditional, conditioned on r>0, conditioned on r<0; classical Liouville calculation (top), independent quantum calculation (middle), and cuts at x_A = 0 where they coincide (bottom)" style="max-height:440px;margin:0 auto">
+      <figcaption>A's distribution, N = 64 pointers. Top: classical Liouville flow plus conditioning. Middle: independent quantum calculation. Bottom: cuts (line quantum, dots classical).</figcaption>
+    </figure>
+  </div>
+</section>
+</main>
+<aside class="notes">
+<p>State used: &alpha;|cat<sub>+</sub>&rang;<sub>A</sub>|L&rang;<sub>B</sub> + &beta;|cat<sub>&minus;</sub>&rang;<sub>A</sub>|R&rang;<sub>B</sub>, with |&alpha;|&sup2; = 0.7. Reading r &lt; 0 selects cat<sub>+</sub> for A; r &gt; 0 selects cat<sub>&minus;</sub>.</p>
+<p>The classical calculation never uses a wavefunction after building w<sub>0</sub>. It pushes signed phase-space weights through the Hamiltonian flow and conditions.</p>
+<p>References for the Bell point: Bell, <i>Speakable and Unspeakable</i> (1987); Nha &amp; Carmichael PRL 93, 020401; Garc&iacute;a-Patr&oacute;n et al. PRL 93, 130409 (2004); Blass &amp; Gurevich (2020) for the no-go on non-negative distributions.</p>
+</aside>
+</body>
+</html>

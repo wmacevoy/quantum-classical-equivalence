@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One term · The Looking-Glass Transform</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%23ff3b2f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="deck.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="deck.js"></script>
+</head>
+<body>
+<main class="stage">
+<section class="slide">
+  <p class="kicker">Error estimate</p>
+  <h2>The entire difference is one term</h2>
+  <p>To make the centered difference exact, the classical equation would need one more term:</p>
+  <div class="eq">$$w_t + \frac{p}{M}\,w_x - \frac{\partial V}{\partial x}\,w_p \;=\; \underbrace{-\,\frac{\hbar^2}{24}\,\frac{\partial^3 V}{\partial x^3}\,\frac{\partial^3 w}{\partial p^3}}_{\text{leading Moyal correction}} \;+\;\cdots$$</div>
+  <div class="cols">
+    <ul class="small">
+      <li><strong>Exact</strong> when $V''' = 0$: free particles, uniform fields, harmonic oscillators, and any quadratic coupling. There, classical flow of $w$ <em>is</em> quantum mechanics.</li>
+      <li>Otherwise it's locally small ($\hbar^2$), but it accumulates. In anharmonic wells classical clouds filament, while quantum states interfere and revive.</li>
+    </ul>
+    <ul class="small">
+      <li>Where the two disagree, <strong>experiment follows quantum mechanics</strong>. So this is not a claim that classical mechanics is fundamental.</li>
+      <li>The claim is structural: the whole dynamical gap between probabilistic classical mechanics and quantum mechanics is this term. <span class="amber">It vanishes in the setups we'll use for entanglement.</span></li>
+    </ul>
+  </div>
+</section>
+</main>
+<aside class="notes">
+<p>Point back to the quartic cloud on slide 6: that filamentation is what the correction term fixes.</p>
+<p>Keep the last bullet in mind. For free particles and a linear coupling to a measuring device, every step is exact, so nothing on the entanglement slides is an approximation.</p>
+</aside>
+</body>
+</html>

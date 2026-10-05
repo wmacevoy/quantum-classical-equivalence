@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Composing the ideas · The Looking-Glass Transform</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%23ff3b2f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="deck.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="deck.js"></script>
+</head>
+<body>
+<main class="stage">
+<section class="slide">
+  <p class="kicker">The looking-glass transform</p>
+  <h2>Compose the three ideas</h2>
+  <div class="steps">
+    <p><span class="step">1</span>Liouville: &nbsp; $w_t + \frac{p}{M}w_x - V'(x)\,w_p = 0$</p>
+    <p><span class="step">2</span>Fourier transform in $p$, then multiply by $i\hbar$: &nbsp; $i\hbar\,\hat w_t - \frac{\hbar^2}{M}\,\hat w_{x\hat p} + \hat p\,V'(x)\,\hat w = 0$</p>
+    <p><span class="step">&#8596;</span>Change variables to $z_\pm = x \pm \hat p/2$: &nbsp; $i\hbar\,\hat w_t - \frac{\hbar^2}{2M}\big[\partial_{z_+}^2 - \partial_{z_-}^2\big]\hat w + \hat p\,V'(x)\,\hat w = 0$</p>
+    <p><span class="step">3</span>The <strong>only</strong> approximation, the centered difference with $\varepsilon = \hat p$: &nbsp; $\hat p\,V'(x) \approx V(z_+) - V(z_-)$</p>
+  </div>
+  <div class="eq" style="margin-top:6px">$$i\hbar\,\hat w_t = \big(H_{z_-} - H_{z_+}\big)\,\hat w, \qquad H_z = -\frac{\hbar^2}{2M}\frac{\partial^2}{\partial z^2} + V(z)$$</div>
+  <div class="callout amber">One Schr&ouml;dinger Hamiltonian acting on $z_-$, and its mirror image acting on $z_+$.</div>
+</section>
+</main>
+<aside class="notes">
+<p>Every step but the centered difference is exact. The two new coordinates z<sub>&plusmn;</sub> are a position shifted forward and backward by half of the Fourier variable.</p>
+<p>For anyone who knows more QM: this is the von Neumann equation for a density matrix in position representation, i&#295;&rho;&#775; = [H, &rho;].</p>
+</aside>
+</body>
+</html>

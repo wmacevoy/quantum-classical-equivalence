@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why Liouville · The Looking-Glass Transform</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%23ff3b2f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="deck.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="deck.js"></script>
+</head>
+<body>
+<main class="stage">
+<section class="slide tight">
+  <p class="kicker">Idea 1</p>
+  <h2>Any ODE lifts to a linear PDE</h2>
+  <div class="cols">
+    <div class="card">
+      <h3>Any ODE</h3>
+      <div class="eq">$$\frac{d\mathbf u}{dt} = \mathbf v(\mathbf u), \qquad \mathbf u \in \mathbb R^n$$</div>
+      <p class="small">Smear the initial condition into a density $w(\mathbf u,t)$. Probability is conserved and moves with velocity $\mathbf v$, so it obeys a continuity equation, like mass in a fluid:</p>
+      <div class="eq">$$\frac{\partial w}{\partial t} + \nabla_{\mathbf u}\cdot(\mathbf v\,w) = 0$$</div>
+      <ul class="small">
+        <li><strong>Linear</strong> in $w$, however nonlinear $\mathbf v$ is.</li>
+        <li>$w_0 = \delta(\mathbf u - \mathbf u_0)$ rides the trajectory: nothing lost.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Apply it to Hamilton</h3>
+      <p class="small">Newton is second order in $x$, so a first-order system needs <em>two</em> numbers per degree of freedom: the initial data. Hamilton's choice is $\mathbf u = (x,p)$:</p>
+      <div class="eq">$$\dot x = \frac{\partial H}{\partial p}, \qquad \dot p = -\frac{\partial H}{\partial x}$$</div>
+      <p class="small">That's why $w$ lives on phase space. The flow has zero divergence, $\partial_x(\partial_p H) + \partial_p(-\partial_x H) = 0$, so:</p>
+      <div class="eq">$$w_t + \frac{\partial H}{\partial p}\,w_x - \frac{\partial H}{\partial x}\,w_p = 0$$</div>
+      <p class="small">With $H = \frac{p^2}{2M} + V(x)$ this is the Liouville equation.</p>
+    </div>
+  </div>
+</section>
+</main>
+<aside class="notes">
+<p>The general idea: an ODE moves points; a PDE moves a density of points. Derive the continuity equation the same way as in fluids: the rate of change of probability in a fixed box equals the net flux v&middot;w through its walls. Fritz John's PDE text presents it as the equation for the distribution of initial values.</p>
+<p>Why x and p, and not x alone? Because Newton's law is second order, the state is the pair (x, p): exactly the initial data you need. That is the space the density has to live on.</p>
+<p>Why p and not velocity? With canonical momentum the flow is divergence-free (Liouville's theorem), so the cloud's phase-space volume is conserved and v&middot;&nabla;w is the whole equation. Hamilton's equations hand us exactly that.</p>
+</aside>
+</body>
+</html>

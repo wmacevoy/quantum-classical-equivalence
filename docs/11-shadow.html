@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Born rule is a shadow · The Looking-Glass Transform</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%23ff3b2f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="deck.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="deck.js"></script>
+<script defer src="demos/shadow.js"></script>
+</head>
+<body>
+<main class="stage">
+<section class="slide" style="padding-top:44px">
+  <p class="kicker">Mystery 1: probability</p>
+  <h2 style="margin-bottom:18px">The Born rule is a shadow</h2>
+  <div class="cols wide-left grow" style="gap:36px">
+    <div>
+      <div style="display:flex;gap:12px">
+        <canvas id="ps" width="440" height="440" aria-label="Phase-space heat map of w"></canvas>
+        <canvas id="wall" width="170" height="440" aria-label="Wall showing the momentum marginal and laser dots"></canvas>
+      </div>
+    </div>
+    <div>
+      <div class="eq">$$|\Psi(x,t)|^2 = \int dp\; w(x,p,t)$$</div>
+      <p class="small">The position probability is the momentum <strong>marginal</strong> of $w$: its shadow on the $x$ wall. Integrating over $p$ is the same as setting $\hat p = 0$ in $\hat w = \Psi^*(x)\,\Psi(x)$. No extra postulate is needed.</p>
+      <div class="controls" style="margin:10px 0 8px">
+        <button class="chip" data-state="coh">coherent</button>
+        <button class="chip" data-state="fock1">$n=1$</button>
+        <button class="chip" data-state="sup">$|0\rangle{+}|1\rangle$</button>
+        <button class="chip" data-state="cat">cat</button>
+      </div>
+      <div class="controls" style="margin-bottom:12px">
+        <button class="chip" id="play">Pause</button>
+        <button class="chip laser-btn" id="m1">measure</button>
+        <button class="chip laser-btn" id="m200">measure &times;300</button>
+      </div>
+      <p class="tiny">Harmonic oscillator ($\hbar=M=\omega=1$), where classical flow is exact: $w$ turns rigidly.<br>
+        <span class="amber">amber</span> $w&gt;0$ &middot; <span class="blue">blue</span> $w&lt;0$ &middot; min $w$ = <span id="wmin" class="blue">&ndash;</span> &middot; min shadow = <span id="rmin" class="amber">&ndash;</span></p>
+    </div>
+  </div>
+</section>
+</main>
+<aside class="notes">
+<p>Demo: start with "coherent". It's a Gaussian blob that orbits, and its shadow sloshes back and forth, like a laser dot. Click "measure" a few times, then &times;300; the dots fill in the shadow.</p>
+<p>Then click "cat": two blobs plus an interference stripe pattern between them. The blue stripes are <em>negative</em> values of w, yet the shadow never goes negative. Watch it as the pattern rotates: when the stripes face the wall they produce interference fringes in the shadow. That leads to the next slide.</p>
+<p>For Fock n = 1 the picture is rotationally symmetric, so nothing moves: a stationary state.</p>
+</aside>
+</body>
+</html>

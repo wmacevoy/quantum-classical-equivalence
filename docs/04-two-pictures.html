@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two pictures of one particle · The Looking-Glass Transform</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%23ff3b2f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="deck.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="deck.js"></script>
+</head>
+<body>
+<main class="stage">
+<section class="slide">
+  <p class="kicker">Starting point</p>
+  <h2>Two pictures of one particle</h2>
+  <div class="cols">
+    <div class="card">
+      <h3>Quantum</h3>
+      <div class="eq">$$i\hbar\,\Psi_t = -\frac{\hbar^2}{2M}\Psi_{xx} + V\,\Psi$$</div>
+      <ul class="small">
+        <li>A complex wave $\Psi(x,t)$, not a trajectory.</li>
+        <li>$|\Psi|^2$ is the probability density: postulated.</li>
+        <li>Very accurate, and very hard to picture.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Classical</h3>
+      <div class="eq">$$M\frac{dx}{dt} = p, \qquad \frac{dp}{dt} = -\frac{\partial V}{\partial x}$$</div>
+      <ul class="small">
+        <li>A point $(x,p)$ moving through phase space.</li>
+        <li>Definite position and momentum at every instant.</li>
+        <li>Fully intuitive.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:28px">What must be <em>added</em> to classical mechanics to get quantum mechanics? Surprisingly little: three ideas you already know from math courses.</div>
+</section>
+</main>
+<aside class="notes">
+<p>Phase space: the plane of position and momentum. A classical state is one point in it, and a classical history is a curve.</p>
+</aside>
+</body>
+</html>

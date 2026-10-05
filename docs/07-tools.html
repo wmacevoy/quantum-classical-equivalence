@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two numerical tools · The Looking-Glass Transform</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%23ff3b2f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="deck.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="deck.js"></script>
+</head>
+<body>
+<main class="stage">
+<section class="slide">
+  <p class="kicker">Ideas 2 and 3</p>
+  <h2>Two tools from numerical methods</h2>
+  <div class="cols">
+    <div class="card">
+      <h3><span class="step">2</span>Fourier transform in momentum</h3>
+      <div class="eq">$$\hat w(x,\hat p) = \int dp\; e^{-i\hat p p/\hbar}\, w(x,p)$$</div>
+      <p class="small">Derivatives become multiplication, and the reverse:</p>
+      <div class="eq">$$\partial_p \;\to\; \frac{i\hat p}{\hbar}, \qquad p \;\to\; i\hbar\,\partial_{\hat p}$$</div>
+      <p class="small">$\hat p$ has units of <em>length</em>. This is where $\hbar$ enters: it is the conversion between momentum and its conjugate length.</p>
+    </div>
+    <div class="card">
+      <h3><span class="step">3</span>Centered difference</h3>
+      <p class="small">From a Taylor expansion of $V$ about $x$:</p>
+      <div class="eq">$$\varepsilon\,\frac{\partial V}{\partial x} \approx V\!\left(x+\tfrac{\varepsilon}{2}\right) - V\!\left(x-\tfrac{\varepsilon}{2}\right) \;-\; \frac{\varepsilon^3}{24}\,\frac{\partial^3 V}{\partial x^3}$$</div>
+      <ul class="small">
+        <li>This is the first thing taught in numerical differentiation.</li>
+        <li><strong>Exact</strong> for linear and quadratic $V$, because $V''' = 0$.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+<aside class="notes">
+<p>Both tools are standard. The surprise is what happens when we combine them with idea 1.</p>
+</aside>
+</body>
+</html>

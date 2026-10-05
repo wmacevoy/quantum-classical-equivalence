@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collapse is conditioning · The Looking-Glass Transform</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%23ff3b2f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="deck.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="deck.js"></script>
+</head>
+<body>
+<main class="stage">
+<section class="slide">
+  <p class="kicker">Mystery 2: measurement</p>
+  <h2>Collapse is conditioning</h2>
+  <p>Reading the pointer means taking its $X$-marginal, the same operation as the Born shadow. Condition on the reading $X_0$:</p>
+  <div class="eq">$$w_A(x_A,p_A \mid X_0) \;\propto\; \int dx_B\;\rho_{\rm ptr}(X_0 - g\,x_B)\int dp_B\; w_{AB}(x_A,p_A,x_B,p_B)$$</div>
+  <div class="cols">
+    <ul class="small">
+      <li>This is <strong>exactly</strong> the Wigner function of A's quantum state after the measurement on B.</li>
+      <li>Average over the readings and you recover A's original distribution: <strong>nothing done at B signals to A</strong>. In the simulation they agree to $7\times 10^{-17}$.</li>
+    </ul>
+    <div class="callout amber small">The "instant change" at A is a change in <em>what we condition on</em>, not in A's dynamics. Open one of two sealed envelopes: the other envelope doesn't change, only your description of it does.</div>
+  </div>
+</section>
+</main>
+<aside class="notes">
+<p>&rho;<sub>ptr</sub> is the pointer's initial position density. In the sharp-pointer limit this reduces to the standard identity: the Wigner function of A given x<sub>B</sub> is the joint w marginalized over p<sub>B</sub> and evaluated at x<sub>B</sub>.</p>
+<p>The envelope analogy is classical, with non-negative weights. The next slide is the twist: the same formula with signed weights.</p>
+</aside>
+</body>
+</html>
