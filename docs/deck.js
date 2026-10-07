@@ -18,6 +18,7 @@ const SLIDES = [
   "14-entangle.html",
   "15-bell.html",
   "16-pointer.html",
+  "16b-decohere.html",
   "17-condition.html",
   "18-signed.html",
   "19-apparatus.html",
