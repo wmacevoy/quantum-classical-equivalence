@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Van der Waals · The Looking-Glass Transform</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%23ff3b2f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="deck.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="deck.js"></script>
+</head>
+<body>
+<main class="stage">
+<section class="slide">
+  <div class="cols wide-right mid grow">
+    <figure><img src="img/lj_glass.png" alt="Lennard-Jones potential: bare, and looking-glass versions for argon and helium at k_B T = epsilon; argon's is indistinguishable from the bare curve, helium's well is shallower and pushed outward" style="width:100%"></figure>
+    <div>
+      <p class="kicker">Example 1: Van der Waals</p>
+      <h2>Lennard-Jones: argon vs helium</h2>
+      <div class="eq">$$\hat V = \frac{4\varepsilon}{\hat p}\left[\frac{\sigma^{12}}{11}\big(a^{-11}-b^{-11}\big) - \frac{\sigma^{6}}{5}\big(a^{-5}-b^{-5}\big)\right]$$</div>
+      <p class="tiny" style="margin-top:-6px">with segment ends $a, b = r \mp \hat p/2$: the powers integrate exactly.</p>
+      <ul class="small">
+        <li>Thermal coherence length at $k_BT = \varepsilon$: $\hat p \approx \hbar/\sqrt{mk_BT} = \sigma\,\Lambda^*/2\pi$, where $\Lambda^*$ is the de Boer parameter.</li>
+        <li><strong>Argon</strong> ($\Lambda^* \approx 0.19$): $\delta\hat V \approx 0.002\,\varepsilon$ at the well bottom. Classical flow is fine.</li>
+        <li><strong>Helium</strong> ($\Lambda^* \approx 2.6$): $\delta\hat V \approx 0.78\,\varepsilon$; the well rises from $-\varepsilon$ to $-0.74\,\varepsilon$ and moves out. Even the leading term ($0.42\,\varepsilon$) misses half of it.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+<aside class="notes">
+<p>Same potential shape, very different quantumness. Helium's light mass and shallow well make its coherence length a large fraction of the atom size, so it feels a softened, shallower well. That's the quantum-liquid regime; argon is a textbook classical liquid.</p>
+<p>The de Boer parameter $\Lambda^* = h/(\sigma\sqrt{m\varepsilon})$ is the standard measure; the dropped term's prefactor in reduced units is $(\Lambda^*/2\pi)^2$.</p>
+</aside>
+</body>
+</html>

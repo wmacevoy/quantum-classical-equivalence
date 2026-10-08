@@ -24,6 +24,9 @@ const SLIDES = [
   "19-apparatus.html",
   "20-limits.html",
   "21-secret.html",
+  "21b-exact.html",
+  "21c-vdw.html",
+  "21d-gate.html",
   "22-refs.html",
 ];
 

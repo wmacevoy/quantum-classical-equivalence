@@ -12,3 +12,7 @@ matplotlib = ">=3.9"
 
 [tasks]
 collapse-sim = { cmd = "python entangled_collapse_sim.py", description = "Entangled-pair collapse: signed Liouville flow + conditioning vs quantum; writes collapse_sim_out/" }
+eigenstate-drift-sim = { cmd = "python eigenstate_drift_sim.py", description = "Quantum eigenstates of x^4/4 under classical Liouville flow: size of the dropped term; writes eigenstate_drift_sim_out/" }
+scaled-state-sim = { cmd = "python scaled_state_sim.py", description = "Ground state of x^4/4 scaled x10: classical Liouville vs exact quantum evolution; writes scaled_state_sim_out/ (~9 min)" }
+hydrogen-ground-sim = { cmd = "python hydrogen_ground_sim.py", description = "Hydrogen 1s Wigner function under classical Kepler flow (exact 3D reduction to r, p_r, L); writes hydrogen_ground_sim_out/ (~3 min)" }
+glass-figs = { cmd = "python glass_potential_figs.py", description = "Looking-glass potential slide figures (Lennard-Jones, transmon) into docs/img/" }

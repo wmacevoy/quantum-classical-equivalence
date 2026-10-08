@@ -8,7 +8,7 @@
 \onehalfspacing
 \usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black]{hyperref}
 
-\title{The Looking-Glass Transform: The Schr\"odinger Equation as a Centered-Difference Approximation of the Classical Liouville Equation}
+\title{The Looking-Glass Transform: An Exact Equivalence Between the Schr\"odinger and Liouville Equations}
 \author{Warren MacEvoy}
 %\date{}
 
@@ -20,14 +20,14 @@
 \maketitle
 
 \begin{abstract}
-The Schr\"odinger equation lies a single approximation step from the classical Liouville equation.
-Lifting classical Hamiltonian dynamics to a conservation law for the phase-space distribution, Fourier transforming in momentum, and applying a centered-difference approximation to the potential gradient yields an equation that separates into coupled Schr\"odinger equations; the phase-space distribution is the Wigner quasi-probability function, and the Born position density is its momentum marginal.
+The Schr\"odinger equation is exactly equivalent to the classical Liouville equation in a modified potential.
+Lifting classical Hamiltonian dynamics to a conservation law for the phase-space distribution, Fourier transforming in momentum, and replacing the potential by its \emph{looking-glass potential}---its average over the segment between the two points $x \pm \hat{p}/2$, where $\hat{p}$ is the variable conjugate to momentum---yields, with no remainder, an equation that separates into coupled Schr\"odinger equations; the phase-space distribution is the Wigner quasi-probability function, and the Born position density is its momentum marginal.
 The ingredients of this route are classical results of the phase-space formulation of quantum mechanics, and closely related Liouville-to-Schr\"odinger constructions exist.
-The contribution here is the framing and its consequences: the centered difference is kept finite rather than taken as a limit, so quantum dynamics appears as a controlled discretization of classical dynamics---exact for quadratic potentials, with explicit leading error $(\hbar^2/24)\, \partial^3 V/\partial x^3 \, \partial^3 w/\partial p^3$, the Moyal correction read in reverse.
+The contribution here is the framing and its consequences: the segment average is a finite centered difference of the potential, kept finite rather than taken as a limit, so quantum dynamics is classical dynamics with the force averaged over the coherence length of the state.  The looking-glass potential differs from the bare potential by a series whose leading term, $(\hbar^2/24)\, \partial^3 V/\partial x^3 \, \partial^3 w/\partial p^3$ in phase space, is the Moyal correction read in reverse; the series vanishes in effect for quadratic potentials and terminates after that term for quartic ones.
 Two observations follow from this viewpoint: Wigner negativity admits a classical reading as fluctuation below a uniform background, since $w \rightarrow w + c$ is invisible to the Liouville flux; and the transformed dynamics is well posed on a state space strictly larger than the quantum one, which contains the classical point preparations excluded by the uncertainty principle.
-For a separated entangled pair measured by an apparatus that interacts only with the distant particle, every step of the transform is exact, and collapse is conditioning of the signed joint distribution on the pointer marginal: the flow is local, the Born weights emerge as the apparatus grows, and---unlike classical conditioning---conditioning can create negativity.
-We are explicit about what the framing does not do: where the approximation error accumulates---anharmonic potentials at long times---experiment follows the quantum dynamics, not the classical one.
-The value of the transform is structural and pedagogical: it locates exactly what must be added to probabilistic classical mechanics to obtain quantum mechanics, in the language of Fourier transforms and finite differences.
+For a separated entangled pair measured by an apparatus that interacts only with the distant particle, every Hamiltonian is quadratic, so classical flow in the bare potential is already exact, and collapse is conditioning of the signed joint distribution on the pointer marginal: the flow is local, the Born weights emerge as the apparatus grows, and---unlike classical conditioning---conditioning can create negativity.
+Classical flow in the bare potential is a good approximation exactly where the two potentials are close; where they differ appreciably---anharmonic potentials at long times, and states with long coherence lengths such as energy eigenstates---experiment follows flow in the looking-glass potential, as the equivalence requires.
+The value of the transform is structural and pedagogical: it locates exactly what must be added to probabilistic classical mechanics to obtain quantum mechanics---one replacement of the potential by its segment average---in the language of Fourier transforms and finite differences.
 \end{abstract}
 
 \section{Introduction}
@@ -38,34 +38,36 @@ What happens during measurement?
 Does the universe branch into many worlds to account for each outcome \cite{everett1973}?
 These questions persist in part because the standard formulation takes the Schr\"odinger equation and the Born rule as postulates.
 
-The phase-space formulation of quantum mechanics \cite{wigner1932,groenewold1946,moyal1949,hillery1984} makes the kinship with classical mechanics most visible: the quantum evolution of the Wigner function differs from the classical Liouville flow only by terms of order $\hbar^2$, and is identical to it for quadratic potentials \cite{case2008}.
+The phase-space formulation of quantum mechanics \cite{wigner1932,groenewold1946,moyal1949,hillery1984} makes the kinship with classical mechanics most visible: the quantum evolution of the Wigner function differs from the classical Liouville flow only by a series of terms beginning at order $\hbar^2$, and is identical to it for quadratic potentials \cite{case2008}.
 That correspondence is usually read from quantum to classical: start with a wavefunction, construct the Wigner function, and recover classical mechanics as $\hbar \rightarrow 0$.
 
 This paper reads it in the other direction.
-We start from classical Hamiltonian mechanics with probabilistic initial data and apply three elementary steps: lift the equations of motion to a conservation law for the phase-space distribution, Fourier transform in momentum, and apply a centered-difference approximation to the potential gradient.
-The result separates into coupled Schr\"odinger equations.
+We start from classical Hamiltonian mechanics with probabilistic initial data and apply three elementary steps: lift the equations of motion to a conservation law for the phase-space distribution, Fourier transform in momentum, and replace the potential gradient by its average over a finite segment.
+At leading order that average is a centered difference of the potential; in full it is the gradient of the \emph{looking-glass potential}, the average of $V$ over the segment, and with it the result separates exactly into coupled Schr\"odinger equations.
 We call the composite the looking-glass transform.
 
 The reverse direction has been explored before.
-Carnovali and Fran\c{c}a \cite{carnovali2005} derive a Schr\"odinger-type equation from the Liouville equation by an equivalent route, taking the mean-value-theorem limit in which the difference step becomes exact.
+Carnovali and Fran\c{c}a \cite{carnovali2005} derive a Schr\"odinger-type equation from the Liouville equation by an equivalent route: they replace the force at the midpoint of the segment by its average over the segment, which integrates to the difference of the potential at the end points (their mean-value step), and justify the replacement in the limit in which the end points coincide.
 Bondar et al.\ \cite{bondar2012} obtain both quantum and classical (Koopman--von Neumann \cite{koopman1931}) dynamics from operational axioms, with the Wigner function itself serving as the wave function.
 Hall, Deckert, and Wiseman \cite{hall2014} build quantum behavior from many interacting classical worlds by entirely different machinery.
-The present treatment differs in keeping the difference step finite and explicit: quantum dynamics appears as a controlled discretization of classical dynamics, exact for quadratic potentials, with the leading error term stated and retained rather than removed by a limit.
+The present treatment keeps the segment finite and makes the replacement exact by assigning it to the potential: quantum dynamics is classical Liouville dynamics in the looking-glass potential (Section~\ref{sec:lg-potential}).
+Its leading-order form is the centered difference of $V$, which is exact for quadratic potentials and whose first correction is the Moyal $\hbar^2$ term; the segment average generalizes the centered difference to all orders, so nothing is removed by a limit.
 
 We are explicit about what is and is not new here.
 The transform itself is not: the route from the Liouville equation through a momentum Fourier transform and shifted variables to coupled Schr\"odinger equations was published by Carnovali and Fran\c{c}a \cite{carnovali2005}, and the underlying correspondence is the classical Wigner--Moyal one \cite{case2008,hillery1984}.
 What we offer is a particular reading of that route and four observations that follow from it.
-The first is organizational rather than novel: the entire difference between the dynamics of probabilistic classical mechanics and quantum mechanics is one explicit term---the Moyal correction read in reverse---retained here as a finite error rather than removed by the limit taken in \cite{carnovali2005}.
+The first is organizational rather than novel: the entire difference between the dynamics of probabilistic classical mechanics and quantum mechanics is one explicit replacement---the potential by its average over the segment between the two branch points---whose leading-order form is the centered difference and whose expansion is the Moyal series read in reverse.
+The segment is kept finite rather than shrunk by the limit taken in \cite{carnovali2005}, which turns the replacement from an approximation into an exact equivalence, and its length---the coherence length of the state---sets how far quantum dynamics departs from classical flow in the bare potential.
 The second is a reading of Wigner negativity: a uniform background $w \rightarrow w + c$ is invisible to the Liouville flux, so $w$ behaves like an acoustic pressure perturbation, and its negative values are rarefactions below an ambient level rather than negative probabilities.
 Negativity is usually treated as the irreducibly quantum feature of $w$ \cite{kenfack2004}; Section~\ref{sec:positivity} argues that for a model whose predictions---its marginals---are non-negative and correct, it does not matter.
 The third is structural: the transformed dynamics is well posed on a state space larger than the quantum one---large enough to contain the classical point preparations the uncertainty principle excludes---within which the quantum states, those with positive-semidefinite $C$, form an invariant subset.
 The constituent facts here are known (the bounds on valid Wigner distributions are classical \cite{narcowich1986}); what we add is only the reading of the larger set as a dynamical arena.
 The fourth concerns the collapse of a separated entangled pair (Section~\ref{sec:collapse}).
-For free particles and a von Neumann pointer coupled only to the distant particle, every Hamiltonian is quadratic, so the transform is exact at every step and measurement is classical Liouville flow of a signed distribution followed by conditioning on the pointer marginal.
+For free particles and a von Neumann pointer coupled only to the distant particle, every Hamiltonian is quadratic, so the looking-glass potential exerts the same force as the bare one, and measurement is classical Liouville flow of a signed distribution followed by conditioning on the pointer marginal.
 The flow is local, nothing done at the distant particle signals, and the Born weights emerge as the apparatus grows; the quantum ingredient is confined to the sign of the initial distribution, and conditioning with signed weights can create negativity that classical conditioning never could.
 The underlying identity---that conditioning the joint Wigner function reproduces the post-measurement state---is standard, and Bell made the classical-conditioning point for positive Wigner functions \cite{bell1987}; what we add is the exact, fully classical account of the measurement interaction and its numerical illustration.
 
-Two facts frame the view: the phase-space distribution $w(x,p,t)$ is the Wigner function \cite{wigner1932}---a signed field satisfying a local conservation law whose marginals are genuine probabilities---and where the approximation error accumulates, experiment follows the quantum dynamics, not the classical one (Section~\ref{sec:error}).
+Two facts frame the view: the phase-space distribution $w(x,p,t)$ is the Wigner function \cite{wigner1932}---a signed field satisfying a local conservation law whose marginals are genuine probabilities---and where the looking-glass and bare potentials differ appreciably, experiment follows Liouville flow in the looking-glass potential---the quantum dynamics---not flow in the bare one (Section~\ref{sec:error}).
 Within this representation the Born position density is not an additional postulate but the momentum marginal of $w$; what this does and does not explain about measurement is taken up in Section~\ref{sec:born}.
 
 We work in one spatial dimension for clarity; the extension to higher dimensions and multiple particles is straightforward.
@@ -75,7 +77,7 @@ We work in one spatial dimension for clarity; the extension to higher dimensions
 Consider a tiny one-dimensional non-relativistic particle of mass $M$ in a tiny potential $V(x,t)$.
 Here the accepted model is the Schr\"odinger equation, where $|\Psi(x,t)|^2$ gives the probability
 of observing the particle at location $x$ at time $t$. The wave function $\Psi(x,t)$
-evolves according to the partial differential equation
+evolves according to the partial differential equation \cite{landau1977}
 \begin{equation}\label{eq:schrodinger}
 i\hbar \Psi_t = -\frac{\hbar^2}{2M}\Psi_{xx} + V \Psi \,,
 \end{equation}
@@ -85,7 +87,7 @@ where $\hbar \approx 1.05 \times 10^{-34}$ joule-seconds.
 
 Consider a regular one-dimensional non-relativistic particle of mass $M$ in a regular potential $V(x)$.
 The position of the particle $x(t)$ and momentum of the particle $p(t)$ evolve according to
-the ordinary differential equation
+Hamilton's equations \cite{goldstein2002}
 \begin{eqnarray}
 M \frac{dx}{dt} & = & p \,, \\
 \frac{dp}{dt} & = & -\frac{\partial V}{\partial x} \,.
@@ -98,7 +100,7 @@ What must be added to classical mechanics to get quantum mechanics? We combine t
 \subsection{An ordinary differential equation can be lifted to a linear partial differential equation}
 
 Think of an ordinary differential equation initial value problem as evolving a
-partial differential equation which describes the evolution of the probability distribution of the initial values \cite{fohn1982}.
+partial differential equation which describes the evolution of the probability distribution of the initial values \cite{john1982}.
 
 ODE:
 \begin{eqnarray}
@@ -155,7 +157,7 @@ We actually approximate $\varepsilon \cdot \frac{\partial V}{\partial x}$, so wi
 \end{equation}
 
 \section{Quantum from Probabilistic Classical Mechanics: The Looking-Glass Transform}
-We now compose the three concepts.  The result reveals the Schr\"odinger structure \textit{inside} classical mechanics, with the quality of the approximation controlled by the explicit error term of Section~\ref{sec:error}.
+We now compose the three concepts.  The result reveals the Schr\"odinger structure \textit{inside} classical mechanics.  We present the leading-order form, a centered difference of the potential, whose error term is given in Section~\ref{sec:error}; Section~\ref{sec:lg-potential} generalizes it to an exact equivalence.
 
 We start with the classical Hamiltonian ordinary differential equation:
 \begin{eqnarray}
@@ -199,7 +201,7 @@ i\hbar \hat{w}_t - \frac{\hbar^2}{2M}
 + \hat{p} \frac{\partial V}{\partial x} \hat{w} = 0
 \end{equation}
 
-Next is the only approximation. We use (\ref{eq:approximation-derivative}) with $\varepsilon = \hat{p}$:
+Next is the only approximation. (Section~\ref{sec:lg-potential} shows that it becomes exact if $V$ is replaced by its average over the segment from $z_-$ to $z_+$.) We use (\ref{eq:approximation-derivative}) with $\varepsilon = \hat{p}$:
 \begin{equation}\label{eq:w-hat-pde-approximation}
 \hat{p} \frac{\partial V}{\partial x}
 \approx V(x+\hat{p}/2,t) - V(x-\hat{p}/2,t)
@@ -257,7 +259,44 @@ Read from the classical side, this is the correction that would make the centere
 We note that the reading of this $\hbar^2$ term as the small parameter of a classical limit is not universally accepted: it has been argued that the correction series carries no explicit $\hbar$ and that the classical--quantum transition is set by spatial scale rather than by $\hbar \rightarrow 0$ \cite{perepelkin2023}.
 The structural statement below does not depend on which reading one adopts.
 
-The error term is locally of order $\hbar^2$, but its effects are secular: in anharmonic potentials the classical and quantum evolutions diverge over long times---classically by filamentation of the phase-space distribution, quantum mechanically by interference, recurrences, and wave-packet revivals.  Where the two dynamics part company, experiment follows the quantum side.  The looking-glass transform therefore cannot support the claim that classical mechanics is fundamental and quantum mechanics merely its approximation.  What it supports is the sharper structural statement that the \emph{entire} difference between the dynamics of the two theories is the single term above.
+The prefactor of this term is of order $\hbar^2$, but its size is not: it is small only for distributions with a short coherence length (Section~\ref{sec:lg-potential}), and its effects are secular: in anharmonic potentials the classical and quantum evolutions diverge over long times---classically by filamentation of the phase-space distribution, quantum mechanically by interference, recurrences, and wave-packet revivals.  Where flow in the bare potential and flow in the looking-glass potential part company, experiment follows the looking-glass flow, which is the quantum dynamics.  The structural statement is that the \emph{entire} difference between the dynamics of the two theories is the replacement of $V$ by its average over the coherence segment, made exact in Section~\ref{sec:lg-potential}; for a quartic potential that difference is the single term above.
+
+\subsection{An exact form: the looking-glass potential}\label{sec:lg-potential}
+The centered difference need not be read as an approximation.  Define the \emph{looking-glass potential} $\hat{V}$ as the average of $V$ over the segment joining the two branch points $z_\pm = x \pm \hat{p}/2$:
+\begin{equation}\label{eq:lg-potential}
+\hat{V}(x,\hat{p},t) = \frac{1}{\hat{p}}\int_{-\hat{p}/2}^{+\hat{p}/2} V(x+s,t)\,ds = \int_{-1/2}^{+1/2} V(x+\sigma\hat{p},t)\,d\sigma \,,
+\end{equation}
+with $\hat{V}(x,0,t) = V(x,t)$.  By the fundamental theorem of calculus,
+\begin{equation}\label{eq:lg-identity}
+\hat{p}\,\frac{\partial \hat{V}}{\partial x} = V(x+\hat{p}/2,t) - V(x-\hat{p}/2,t)
+\end{equation}
+holds exactly.  Replacing $V$ by $\hat{V}$ in the Fourier-transformed Liouville equation (\ref{eq:w-hat-pde-vprime}) therefore yields (\ref{eq:w-hat-pde}) with no remainder: \emph{Schr\"odinger dynamics in the potential $V$ is classical Liouville dynamics, in the $\hat{w}$ representation, in the looking-glass potential $\hat{V}$.}  Applied to the potential as well as to the distribution, the looking-glass transform is an exact equivalence.  The only change is that the force $-\partial V/\partial x$ at the point $x$ is replaced by its average over the segment from $z_-$ to $z_+$.
+
+The correction is the difference $\delta\hat{V} = \hat{V} - V$.  Expanding (\ref{eq:lg-potential}) in a Taylor series,
+\begin{equation}\label{eq:lg-series}
+\delta\hat{V} = \sum_{k \ge 1} \frac{\hat{p}^{2k}}{2^{2k}(2k+1)!}\,\frac{\partial^{2k} V}{\partial x^{2k}}
+= \frac{\hat{p}^2}{24}\frac{\partial^2 V}{\partial x^2} + \frac{\hat{p}^4}{1920}\frac{\partial^4 V}{\partial x^4} + \cdots \,,
+\end{equation}
+and translating $\hat{p} \rightarrow -i\hbar\,\partial/\partial p$ back to phase space gives the full Moyal equation,
+\begin{equation}\label{eq:moyal-full}
+w_t + \frac{p}{M} w_x - \frac{\partial V}{\partial x} w_p
+= \sum_{k \ge 1} \frac{(-1)^k \hbar^{2k}}{2^{2k}(2k+1)!}\,\frac{\partial^{2k+1} V}{\partial x^{2k+1}}\,\frac{\partial^{2k+1} w}{\partial p^{2k+1}} \,,
+\end{equation}
+whose $k=1$ term is the correction above.  For a quadratic potential $\delta\hat{V} = \hat{p}^2 V''/24$ does not depend on $x$ and exerts no force, which is why the transform is exact there.  For a quartic potential $V = x^4/4$, $\delta\hat{V} = x^2\hat{p}^2/8 + \hat{p}^4/320$ and the series terminates, so the $\hbar^2$ term is the whole difference.  In three dimensions $\hat{p}$ is a vector, $\hat{V} = \int_{-1/2}^{1/2} V(x + \sigma\hat{p})\,d\sigma$ is an average along a line segment, and $\hat{p}\cdot\nabla\hat{V} = V(x+\hat{p}/2) - V(x-\hat{p}/2)$; for the Coulomb potential the segment average softens the $1/r$ singularity to a logarithmic one.
+
+Like $\hat{w}$, the correction $\delta\hat{V}$ lives in the Fourier representation, and it must be inverse-transformed to act in phase space.  The bare potential needs no such step: it does not depend on $\hat{p}$, so $V\hat{w}$ transforms to the ordinary product $Vw$.  The $\hat{p}$-dependent correction instead becomes a convolution in $p$, with kernel
+\begin{equation}\label{eq:lg-kernel}
+\delta V(x,q,t) = \int_{-\infty}^{+\infty} \frac{d\hat{p}}{2\pi\hbar}\, e^{+i\hat{p}q/\hbar}\, \delta\hat{V}(x,\hat{p},t) \,,
+\end{equation}
+a function of position and of the momentum transfer $q$, real and even in $q$ because $\delta\hat{V}$ is real and even in $\hat{p}$.  The Schr\"odinger dynamics then takes the form of an exact conservation law in phase space,
+\begin{equation}\label{eq:lg-flux}
+w_t + \frac{\partial}{\partial x}\left(\frac{p}{M}w\right) + \frac{\partial J_p}{\partial p} = 0 \,,
+\qquad
+J_p(x,p,t) = -\frac{\partial V}{\partial x}\,w - \int_{-\infty}^{+\infty} dq\, \frac{\partial\,\delta V}{\partial x}(x,q,t)\, w(x,p-q,t) \,.
+\end{equation}
+The first term is the classical flux of (\ref{eq:classical-pde}); the second is the whole quantum correction.  For a quadratic potential $\delta V = -(\hbar^2 V''/24)\,\delta''(q)$ does not depend on $x$, so the correction vanishes.  For $V = x^4/4$, $\delta V = -(\hbar^2x^2/8)\,\delta''(q) + (\hbar^4/320)\,\delta''''(q)$, which reproduces the $\hbar^2$ term above.  The correction is local in $x$ but spread over momentum transfers $q$, so it is not an ordinary Hamiltonian function $H(x,p)$ entering through a Poisson bracket; because the dynamics keeps its flux form, a uniform background $w \rightarrow w + c$ remains invisible to it, as in Section~\ref{sec:positivity}.
+
+The size of the correction is set by the coherence length rather than by $\hbar$ alone.  The variable $\hat{p} = z_+ - z_-$ is the separation between the two branches, and the correction is negligible when $\hat{w}$ is concentrated at $|\hat{p}|$ small compared with the length over which $\partial^2 V/\partial x^2$ varies.  A smooth distribution of momentum width $\Delta p$ has $|\hat{p}| \lesssim \hbar/\Delta p$ and sees almost the bare potential.  An energy eigenstate carries coherence across its entire classical orbit, so its averaging segment is as long as the orbit and the correction is of order one at every quantum number, the semiclassical regime included.  Filamentation narrows a classical distribution in $p$ and so widens $\hat{w}$ in $\hat{p}$: the averaging segment grows with time, which is the mechanism of the secular divergence described above.  The same coefficient $1/24$ appears in the Feynman--Hibbs effective potential of quantum statistical mechanics \cite{feynman1965}, a Gaussian thermal smearing of $V$ whose leading correction is $(\hbar^2\beta/24M)\,\partial^2 V/\partial x^2$.
 
 \section{The Born Projection}\label{sec:born}
 
@@ -456,8 +495,8 @@ We have not found this reading in the negativity literature, where negativity is
 A model is judged by its predictions, and every prediction made here is non-negative.
 The Born projection $\born w = \int dp\, w = |\Psi(x,t)|^2$ and the momentum marginal $\int dx\, w = |\tilde{\Psi}(p,t)|^2$ are genuine probability densities whatever the sign of $w$, as are the pointer readings of Section~\ref{sec:collapse}.
 Intermediate quantities in a calculation need not be probabilities; Feynman made this argument for negative probabilities in general \cite{feynman1987}.
-Where the error term of Section~\ref{sec:error} is negligible, the model is correct, and that is the only test that applies to it.
-Where it is not, experiment follows the quantum dynamics; that is the real limit of the framing, and it has nothing to do with sign.
+With the looking-glass potential of Section~\ref{sec:lg-potential} the model is exact, and that is the only test that applies to it; flow in the bare potential is its approximation, accurate where the error term of Section~\ref{sec:error} is negligible.
+None of this has anything to do with sign.
 
 \paragraph{What the negative regions mark.}
 Negative regions have been measured directly by quantum state tomography \cite{leibfried1996}.
@@ -474,7 +513,7 @@ This does not by itself resolve the measurement problem---Section~\ref{sec:born}
 
 \section{Further Directions}\label{sec:further}
 
-The framing leaves honest gaps, each a direction for further work.
+Several questions remain open, each a direction for further work.
 
 \subsection{Spin and statistics}
 The construction covers spinless particles.  Antisymmetric $a$ vanishes for coincident single-particle states, so Pauli exclusion is representable, but nothing in the transform explains why identical particles should carry symmetric or antisymmetric $C$; spin and the spin-statistics connection are absent.
@@ -483,7 +522,7 @@ The construction covers spinless particles.  Antisymmetric $a$ vanishes for coin
 The Born densities for position and momentum are marginals of $w$.  A general observable $A$ requires the overlap $\int dx\, dp\, w\, W_A$, where the Wigner symbol $W_A$ itself takes negative values, and the clean reading of measurement as marginalization is then lost.  Whether the looking-glass framing offers any purchase on general measurements is open.
 
 \subsection{The larger state space}
-The dynamics is well posed for every Hermitian, unit-trace $C$; positivity is preserved by the evolution; and the quantum states form an invariant subset whose complement contains all classical point preparations.  Three questions follow.  What physical principle selects the positive subset?  Do non-positive $C$---classically preparable in this representation---have any operational meaning, or are they strictly bookkeeping?  And does the boundary of the quantum subset, where some $c_k = 0$, play a distinguished dynamical role?  The conditions of \cite{narcowich1986} give the technical footing for these questions.
+The dynamics is well posed for every Hermitian, unit-trace $C$; positivity is preserved by the evolution; and the quantum states form an invariant subset whose complement contains all classical point preparations.  Positivity, like normalization, is a property of the initial data that the evolution preserves, so which subset nature occupies is a question about preparation---a prior---rather than about dynamics.  Two questions follow.  Do non-positive $C$---classically preparable in this representation---have any operational meaning, or are they strictly bookkeeping?  And does the boundary of the quantum subset, where some $c_k = 0$, play a distinguished dynamical role?  The conditions of \cite{narcowich1986} give the technical footing for these questions.
 
 \subsection{The uniform background}
 The ambient level $c = 1/(\pi\hbar)$ makes $\rho = w + c \geq 0$ for every pure state.  Like the ambient pressure of an unbounded medium it carries no dynamics; whether it acquires a physical role in a finite box, or in field theory as vacuum fluctuation, is unexplored.

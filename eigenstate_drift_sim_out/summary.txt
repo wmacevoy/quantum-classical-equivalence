@@ -1,0 +1,43 @@
+Quantum eigenstates of V = x^4/4 under classical Liouville flow (hbar = M = 1)
+Dropped term: -(hbar^2/24) V''' w_ppp = -(1/4) x w_ppp  (exact: Moyal series ends here)
+
+ n        E_n       T_n   |err|/|p w_x|   drift/period   identity resid   |min w|/max w
+--------------------------------------------------------------------------------------
+ 0     0.4208    6.5111          0.5680         1.9891         2.08e-05        0.0080
+ 1     1.5079    4.7324          0.6229         3.2101         3.13e-05        2.0418
+ 2     2.9588    3.9985          0.6049         4.2336         4.74e-05        0.5573
+ 3     4.6211    3.5767          0.6039         5.4964         6.39e-05        1.7348
+ 4     6.4534    3.2902          0.6029         6.8203         8.20e-05        0.5855
+ 5     8.4282    3.0778          0.6024         8.1796         1.02e-04        1.7013
+ 6    10.5275    2.9113          0.6021         9.5589         1.23e-04        0.5894
+ 7    12.7378    2.7759          0.6019        10.9507         1.45e-04        1.6861
+ 8    15.0490    2.6625          0.6017        12.3507         1.69e-04        0.5911
+ 9    17.4529    2.5657          0.6016        13.7564         1.94e-04        1.6873
+10    19.9429    2.4816          0.6016        15.1662         2.19e-04        0.5958
+11    22.5133    2.4075          0.6015        16.5791         2.46e-04        1.7023
+12    25.1595    2.3415          0.6014        17.9942         2.73e-04        0.5940
+13    27.8772    2.2822          0.6014        19.4112         3.02e-04        1.7088
+14    30.6628    2.2285          0.6014        20.8296         3.31e-04        0.5966
+15    33.5133    2.1796          0.6013        22.2492         3.60e-04        1.7277
+16    36.4258    2.1346          0.6013        23.6697         3.91e-04        0.5863
+17    39.3977    2.0932          0.6013        25.0910         4.22e-04        1.6744
+18    42.4267    2.0548          0.6013        26.5129         4.54e-04        0.5881
+19    45.5108    2.0190          0.6012        27.9354         4.86e-04        1.7862
+20    48.6480    1.9857          0.6012        29.3583         5.19e-04        0.5764
+
+drift/period = ||w_t(classical)|| * T_n / ||w_n||   (quantum: 0)
+identity resid = ||(p w_x - V' w_p) - err|| / ||err||  (numerical check; should be ~0)
+
+Finite-time classical evolution (quantum answer: overlap 1, Born drift 0):
+  n = 0  (T = 6.5111; coarse-graining std = 1.139):
+    t =  0.00 T   overlap =  1.0000   Born TV = 0.0005   coarse Born TV = 0.0001
+    t =  0.50 T   overlap =  0.9758   Born TV = 0.0466   coarse Born TV = 0.0008
+    t =  1.00 T   overlap =  0.9682   Born TV = 0.0625   coarse Born TV = 0.0061
+    t =  3.00 T   overlap =  0.9681   Born TV = 0.0625   coarse Born TV = 0.0059
+    t =  6.00 T   overlap =  0.9681   Born TV = 0.0633   coarse Born TV = 0.0059
+  n = 12  (T = 2.3415; coarse-graining std = 0.244):
+    t =  0.00 T   overlap =  1.0000   Born TV = 0.0009   coarse Born TV = 0.0000
+    t =  0.50 T   overlap =  0.3644   Born TV = 0.2211   coarse Born TV = 0.0116
+    t =  1.00 T   overlap =  0.3880   Born TV = 0.2344   coarse Born TV = 0.0471
+    t =  3.00 T   overlap =  0.3406   Born TV = 0.4153   coarse Born TV = 0.3766
+    t =  6.00 T   overlap =  0.4190   Born TV = 0.1936   coarse Born TV = 0.0220
