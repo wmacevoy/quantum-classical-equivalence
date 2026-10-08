@@ -270,7 +270,7 @@ with $\hat{V}(x,0,t) = V(x,t)$.  By the fundamental theorem of calculus,
 \begin{equation}\label{eq:lg-identity}
 \hat{p}\,\frac{\partial \hat{V}}{\partial x} = V(x+\hat{p}/2,t) - V(x-\hat{p}/2,t)
 \end{equation}
-holds exactly.  Replacing $V$ by $\hat{V}$ in the Fourier-transformed Liouville equation (\ref{eq:w-hat-pde-vprime}) therefore yields (\ref{eq:w-hat-pde}) with no remainder: \emph{Schr\"odinger dynamics in the potential $V$ is classical Liouville dynamics, in the $\hat{w}$ representation, in the looking-glass potential $\hat{V}$.}  Applied to the potential as well as to the distribution, the looking-glass transform is an exact equivalence.  The only change is that the force $-\partial V/\partial x$ at the point $x$ is replaced by its average over the segment from $z_-$ to $z_+$.
+holds exactly.  Replacing $V$ by $\hat{V}$ in the force term of the Fourier-transformed Liouville equation (\ref{eq:w-hat-pde-vprime}) therefore yields (\ref{eq:w-hat-pde}) with no remainder.  The only change is that the force $-\partial V/\partial x$ at the point $x$ is replaced by its average over the segment from $z_-$ to $z_+$.  Because $\hat{V}$ depends on $\hat{p}$, this is not Liouville flow in a modified potential: back in phase space the averaged force acts by convolution in $p$ (below), and Section~\ref{sec:jumps} reads the result as classical trajectories with signed momentum jumps.
 
 The correction is the difference $\delta\hat{V} = \hat{V} - V$.  Expanding (\ref{eq:lg-potential}) in a Taylor series,
 \begin{equation}\label{eq:lg-series}
@@ -297,6 +297,70 @@ J_p(x,p,t) = -\frac{\partial V}{\partial x}\,w - \int_{-\infty}^{+\infty} dq\, \
 The first term is the classical flux of (\ref{eq:classical-pde}); the second is the whole quantum correction.  For a quadratic potential $\delta V = -(\hbar^2 V''/24)\,\delta''(q)$ does not depend on $x$, so the correction vanishes.  For $V = x^4/4$, $\delta V = -(\hbar^2x^2/8)\,\delta''(q) + (\hbar^4/320)\,\delta''''(q)$, which reproduces the $\hbar^2$ term above.  The correction is local in $x$ but spread over momentum transfers $q$, so it is not an ordinary Hamiltonian function $H(x,p)$ entering through a Poisson bracket; because the dynamics keeps its flux form, a uniform background $w \rightarrow w + c$ remains invisible to it, as in Section~\ref{sec:positivity}.
 
 The size of the correction is set by the coherence length rather than by $\hbar$ alone.  The variable $\hat{p} = z_+ - z_-$ is the separation between the two branches, and the correction is negligible when $\hat{w}$ is concentrated at $|\hat{p}|$ small compared with the length over which $\partial^2 V/\partial x^2$ varies.  A smooth distribution of momentum width $\Delta p$ has $|\hat{p}| \lesssim \hbar/\Delta p$ and sees almost the bare potential.  An energy eigenstate carries coherence across its entire classical orbit, so its averaging segment is as long as the orbit and the correction is of order one at every quantum number, the semiclassical regime included.  Filamentation narrows a classical distribution in $p$ and so widens $\hat{w}$ in $\hat{p}$: the averaging segment grows with time, which is the mechanism of the secular divergence described above.  The same coefficient $1/24$ appears in the Feynman--Hibbs effective potential of quantum statistical mechanics \cite{feynman1965}, a Gaussian thermal smearing of $V$ whose leading correction is $(\hbar^2\beta/24M)\,\partial^2 V/\partial x^2$.
+
+\subsection{Classical trajectories with signed momentum jumps}\label{sec:jumps}
+Section~\ref{sec:lg-potential} kept the classical force and added a correction.  Returning the \emph{whole} force term of (\ref{eq:w-hat-pde}) to phase space gives a simpler picture: particles fly freely between events, and the force acts by moving signed weight across finite momentum transfers.  In (\ref{eq:w-hat-pde}) the force enters as the multiplier $\hat{w}_t = (i/\hbar)[V(z_+,t)-V(z_-,t)]\,\hat{w} + \cdots$.  A product in $\hat{p}$ is a convolution in $p$, so, with nothing dropped,
+\begin{equation}\label{eq:jump-equation}
+w_t + \frac{p}{M}\,w_x = \int_{-\infty}^{+\infty} dq\; \Theta(x,q,t)\, w(x,p-q,t) \,,
+\end{equation}
+\begin{equation}\label{eq:jump-kernel}
+\Theta(x,q,t) = \int_{-\infty}^{+\infty} \frac{d\hat{p}}{2\pi\hbar}\, e^{+i\hat{p}q/\hbar}\, \frac{i}{\hbar}\left[V(x+\hat{p}/2,t) - V(x-\hat{p}/2,t)\right] \,.
+\end{equation}
+This is the integral form of the Wigner equation \cite{wigner1932,hillery1984}.  The bracket is real and odd in $\hat{p}$, so $\Theta$ is real and odd in $q$.  The left side of (\ref{eq:jump-equation}) is classical free flight; the right side replaces the classical force term $(\partial V/\partial x)\, w_p$, which corresponds to the kernel $(\partial V/\partial x)\,\delta'(q)$.  The difference between the two kernels, $\partial^2 \delta V/\partial q\,\partial x$, is the correction flux of (\ref{eq:lg-flux}).
+
+Read (\ref{eq:jump-equation}) as a rule for particles.  Because $\Theta$ is odd, its effect comes in pairs: in a time $dt$, a particle at $(x,p)$ produces a copy of weight $+\Theta(x,q)\,dq\,dt$ at $p+q$ and a copy of the opposite weight at $p-q$, for each $q > 0$.  The moments of the kernel say what these pairs do:
+\begin{equation}\label{eq:jump-moments}
+\int \Theta\, dq = 0 \,, \qquad
+\int q\,\Theta\, dq = -\frac{\partial V}{\partial x} \,, \qquad
+\int q^2\,\Theta\, dq = 0 \,, \qquad
+\int q^3\,\Theta\, dq = \frac{\hbar^2}{4}\frac{\partial^3 V}{\partial x^3} \,.
+\end{equation}
+The pairs create no probability.  On average they deliver exactly the classical force, and at each $x$ they change the first two momentum moments of $w$ exactly as the classical force does.  They first differ from the classical force at the third moment; expanding $w(x,p-q)$ in powers of $q$ recovers the Moyal series (\ref{eq:moyal-full}) term by term.  The motion between events is classical and the average push is classical; what is not classical is that weight branches into signed pairs, so this is not a Liouville flow along a Hamiltonian vector field.
+
+\textit{A lattice: discrete jumps.}  For a single Fourier mode the kernel is a pair of delta functions.  For $V = -V_0 \cos kx$,
+\begin{equation}\label{eq:jump-lattice}
+w_t + \frac{p}{M}\,w_x = \frac{V_0 \sin kx}{\hbar}\left[ w\!\left(x,p+\tfrac{\hbar k}{2},t\right) - w\!\left(x,p-\tfrac{\hbar k}{2},t\right) \right] \,.
+\end{equation}
+The force term is a centered difference in momentum with step $\hbar k$, the counterpart of the centered difference in position (\ref{eq:approximation-derivative}) on which the looking-glass transform is built, and it becomes $(\partial V/\partial x)\,w_p$ as $\hbar k \rightarrow 0$.  Every jump is exactly $\pm\hbar k/2$, and a general potential contributes such a pair of jumps for each of its Fourier components.  The half-step is a feature of $w$, not of measured momenta: $w$ places interference terms midway between momentum components, and these integrate to zero over $x$.
+
+\textit{Polynomial potentials: Airy jumps.}  For a polynomial potential $\Theta$ is a finite sum of derivatives of $\delta(q)$, and (\ref{eq:jump-equation}) is the terminating Moyal equation.  The jumps then appear over a finite time step $\Delta t$.  For $V = x^4/4$, the classical kick plus the residual multiplier $\exp(i\,\Delta t\, x\hat{p}^3/4\hbar)$ is exact, and the residual's kernel is an Airy function,
+\begin{equation}\label{eq:jump-airy}
+K_{\Delta t}(x,q) = \frac{1}{|c|}\,\mathrm{Ai}\!\left(\frac{q}{c}\right) \,, \qquad c = \left(\frac{3\hbar^2 x\, \Delta t}{4}\right)^{1/3} \,.
+\end{equation}
+Its width grows as $(\hbar^2\Delta t)^{1/3}$: the redistribution is neither a drift nor a diffusion.
+
+\textit{Numerical check.}  We tested (\ref{eq:jump-equation}) against exact quantum evolution in an eigenbasis ($\hbar = M = 1$), applying the jump kernel deterministically to $w$ on a phase-space grid.  The classical baseline evolves the same initial $w$ without jumps.  In the quartic well $V = x^4/4$, over six classical periods $T_0$, we evolved the ground state and a Gaussian of width $0.6$ displaced to $x = 1.5$.  In the lattice $V = -20\cos 2\pi x$, we evolved a Gaussian of width $1.5$ sites at rest on a well, in a periodic box of 64 sites; there the classical baseline is $4\times10^5$ sampled trajectories, because classical filaments outrun any fixed momentum grid.  Table~\ref{tab:jumps} reports the total-variation distance between the Born densities $\int w\,dp$ and the exact $|\Psi|^2$.  Figure~\ref{fig:jumps} shows the quartic case.  In the lattice, 97\% of the classical particles start below the barrier and stay trapped in their wells; with the jumps the packet spreads through the lattice by tunnelling, and its width follows the exact quantum width (Figure~\ref{fig:lattice}).  Since (\ref{eq:jump-equation}) is an identity, agreement is guaranteed up to discretization.  The tests check the decomposition, and they measure how much of the dynamics the jumps carry: all of the difference between classical and quantum evolution.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{lcc}
+\hline
+Born-density distance from exact quantum & classical flow & trajectories $+$ jumps \\
+\hline
+Quartic ground state, $t \le 6T_0$ & $0.063$ & $< 10^{-5}$ \\
+Quartic displaced Gaussian, $t \le 6T_0$ & $0.31$--$0.50$ & $\le 1.6\times 10^{-3}$ \\
+Lattice Gaussian, $0.3 \le t \le 3$ & $0.17$--$0.34$ & $\le 3.4\times 10^{-4}$ \\
+\hline
+\end{tabular}
+\caption{Total-variation distance $\frac{1}{2}\int|\rho - |\Psi|^2|\,dx$ between the Born density of the evolved $w$ and exact quantum evolution.  Classical flow drops the jumps of (\ref{eq:jump-equation}); trajectories $+$ jumps keep them.}
+\label{tab:jumps}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{signed_particle_sim_out/born.png}
+\caption{Born densities in $V = x^4/4$ ($\hbar = M = 1$) at $t = T_0$, $3T_0$ and $6T_0$.  Top: the ground state, which is stationary.  Bottom: a displaced Gaussian.  Exact quantum evolution (black), classical flow (dashed), and classical trajectories with the signed jumps of (\ref{eq:jump-equation}) (orange).  Classical flow filaments; the jumps restore the interference pattern.}
+\label{fig:jumps}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{lattice_jump_sim_out/spread.png}
+\caption{Root-mean-square width of a Gaussian packet in the lattice $V = -20\cos 2\pi x$ ($\hbar = M = 1$, width in lattice sites).  Classical trajectories stay mostly trapped in their wells; classical trajectories with the jumps of (\ref{eq:jump-lattice}), each exactly $\pm\hbar k/2$, spread by tunnelling and track exact quantum evolution.}
+\label{fig:lattice}
+\end{figure}
+
+\textit{Particles and the sign problem.}  This reading is the basis of signed-particle Monte Carlo methods for Wigner transport in semiconductor devices \cite{nedjalkov2004}, where particles follow classical trajectories and the kernel $\Theta$ (there called the Wigner potential) creates $\pm$ particle pairs.  Sellier promoted that method to a formulation of non-relativistic quantum mechanics in its own right: quantum systems as ensembles of field-less classical particles that carry a sign and interact with the potential only through creation and annihilation events \cite{sellier2015}.  Here the same picture arises from the classical side, as the phase-space form of the looking-glass potential, and (\ref{eq:jump-lattice}) shows its simplest case: in a lattice the creation events are a centered difference.  Sampled one particle at a time, the pairs carry a cost: each pair leaves $\int w$ unchanged but adds $2|\Theta|\,dq\,dt$ to $\int |w|$, so the total absolute weight grows exponentially unless positive and negative copies are allowed to annihilate.  In our quartic test, stochastic pairs drove the total absolute weight from $1.2$ to $5$ within 50 time steps and to $5\times 10^5$ within 200.  Applied deterministically, as above, the same kernel has no such growth.  The exact dynamics is therefore classical in its trajectories and in its mean force, with the quantum content carried by signed branching of the weight.
 
 \section{The Born Projection}\label{sec:born}
 

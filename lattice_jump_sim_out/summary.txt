@@ -1,0 +1,17 @@
+Lattice V = -V0 cos(kx), quantum force as jumps of +/- hbar k/2 (hbar = M = 1)
+k = 2 pi, V0 = 20.0, box 64 sites, grid 2048 x 2048, dp = hbar k / 128, dt = T_osc/200, T_osc = 0.2236
+initial Gaussian width 1.5 sites at rest; plane-wave basis captures 1.00000000
+classical: 400000 particles, fraction above the barrier (untrapped) = 0.0267
+
+     t      rms x: quantum  classical  jumps      Born TV: classical  jumps
+   0.00         1.0607     1.0587  1.0607            0.00697  1.02e-15
+   0.30         1.2951     1.1164  1.2952            0.33961  2.20e-05
+   0.60         1.4857     1.1578  1.4857            0.16981  2.12e-05
+   0.90         1.7998     1.2104  1.7999            0.21369  2.41e-05
+   1.20         2.2152     1.2765  2.2153            0.32224  2.91e-05
+   1.50         2.5546     1.3617  2.5547            0.19576  2.50e-05
+   1.80         2.9922     1.4566  2.9923            0.25702  3.93e-05
+   2.10         3.4367     1.5613  3.4369            0.22752  4.24e-05
+   2.40         3.8440     1.6748  3.8441            0.19550  1.46e-04
+   2.70         4.2832     1.7947  4.2834            0.26468  3.39e-04
+   3.00         4.6794     1.9192  4.6796            0.20373  2.21e-04

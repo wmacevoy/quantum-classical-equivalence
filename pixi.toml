@@ -17,3 +17,4 @@ scaled-state-sim = { cmd = "python scaled_state_sim.py", description = "Ground s
 hydrogen-ground-sim = { cmd = "python hydrogen_ground_sim.py", description = "Hydrogen 1s Wigner function under classical Kepler flow (exact 3D reduction to r, p_r, L); writes hydrogen_ground_sim_out/ (~3 min)" }
 glass-figs = { cmd = "python glass_potential_figs.py", description = "Looking-glass potential slide figures (Lennard-Jones, transmon) into docs/img/" }
 signed-particle-sim = { cmd = "python signed_particle_sim.py", description = "Classical trajectories + signed momentum jumps vs exact quantum in x^4/4; writes signed_particle_sim_out/ (~3 min)" }
+lattice-jump-sim = { cmd = "python lattice_jump_sim.py", description = "Lattice -V0 cos kx: classical flight + discrete jumps of +/- hbar k/2 vs exact quantum; writes lattice_jump_sim_out/ (~12 min)" }

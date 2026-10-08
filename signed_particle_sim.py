@@ -16,7 +16,8 @@ because V(x+p-hat/2) - V(x-p-hat/2) = p-hat x^3 + x p-hat^3/4 for the quartic we
 Without the jump factor the scheme is classical Liouville flow; with it, it is
 quantum dynamics.  In p the jump factor is a real, signed kernel K(q): the
 correction does not move phase-space points but redistributes signed weight
-across momentum transfers q.
+across momentum transfers q.  Over a step dt the kernel is exactly an Airy
+function, K(q) = Ai(q/c)/c with c = (3 x dt / 4)^(1/3).
 
 Why deterministic.  The jump kernel can be sampled as a signed-particle Monte
 Carlo (Nedjalkov et al., Phys. Rev. B 70, 115319 (2004)): particles fly
@@ -42,6 +43,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from scipy.linalg import eigh_tridiagonal
 from scipy.interpolate import CubicSpline
+from scipy.special import airy
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "signed_particle_sim_out")
 os.makedirs(OUT, exist_ok=True)
@@ -188,13 +190,15 @@ for ax, (lab, w) in zip(axes, [("exact quantum", r["wq_end"]), ("classical flow"
     ax.set_xlabel("x"); ax.set_ylabel("p")
 fig.savefig(os.path.join(OUT, "wigner.png"), dpi=130)
 
-# the jump kernel at x = 1 over T0/50: signed weight moved by momentum transfer q
-nq, dq = 4096, 0.005
-phq = 2 * np.pi * np.fft.fftfreq(nq, d=dq)
-K = np.fft.fftshift(np.fft.ifft(np.exp(1j * T0 / 50 * phq**3 * np.exp(-(phq / 6) ** 8) / 4) - 1)).real / dq
-qq = (np.arange(nq) - nq // 2) * dq
+# the jump kernel at x = 1 over T0/50: signed weight moved by momentum transfer q.
+# The inverse transform of e^{i a p-hat^3} (a = x dt / 4, hbar = 1) is exactly an Airy
+# function, K(q) = Ai(q / c) / c with c = (3a)^(1/3).
+a = 1.0 * (T0 / 50) / 4
+c = (3 * a) ** (1 / 3)
+qq = np.linspace(-6, 3, 2000)
+K = airy(qq / c)[0] / c
 fig, ax = plt.subplots(figsize=(6, 3.4), constrained_layout=True)
 ax.plot(qq, K, color="C1"); ax.axhline(0, color="k", lw=0.5)
-ax.set_xlim(-4, 4); ax.set_xlabel("momentum transfer q"); ax.set_ylabel("K(q)")
-ax.set_title("Jump kernel at x = 1 over t = T$_0$/50 (signed; coherence window L = 6 for display)", fontsize=9)
+ax.set_xlabel("momentum transfer q"); ax.set_ylabel("K(q)")
+ax.set_title(f"Jump kernel at x = 1 over t = T$_0$/50: Ai(q/c)/c, c = {c:.2f}", fontsize=9)
 fig.savefig(os.path.join(OUT, "kernel.png"), dpi=130)
