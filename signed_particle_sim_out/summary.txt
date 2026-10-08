@@ -1,0 +1,27 @@
+Classical trajectories + signed momentum jumps vs exact quantum, V = x^4/4 (hbar = M = 1)
+grid 512 x 512 on [-6.0,6.0) x [-8.0,8.0),  dt = T0/800,  T0 = 6.5111
+
+ground state: Born-density TV distance from exact quantum   (int w0 = 1.00000)
+     t/T0    classical   trajectories+jumps
+     0.00     0.00000       2.04e-06
+     1.00     0.06254       6.95e-06
+     2.00     0.06290       5.93e-06
+     3.00     0.06251       2.29e-06
+     4.00     0.06234       9.57e-06
+     5.00     0.06259       2.77e-06
+     6.00     0.06268       5.28e-06
+   max |w - w_quantum| / max |w_quantum| at t = 6 T0:  classical 0.345,  trajectories+jumps 1.24e-05
+
+displaced Gaussian: Born-density TV distance from exact quantum   (int w0 = 1.00000)
+     t/T0    classical   trajectories+jumps
+     0.00     0.00001       5.59e-06
+     1.00     0.30684       1.96e-04
+     2.00     0.33280       5.21e-04
+     3.00     0.38337       7.51e-04
+     4.00     0.34758       5.00e-04
+     5.00     0.49659       5.78e-04
+     6.00     0.30552       1.62e-03
+   max |w - w_quantum| / max |w_quantum| at t = 6 T0:  classical 1.676,  trajectories+jumps 4.23e-03
+
+Stochastic signed particles (same kernel, coherence cutoff L = 4, cell annihilation):
+sign problem; total |weight| 1.2 -> 5 (50 steps) -> 5e5 (200 steps). Not used.
