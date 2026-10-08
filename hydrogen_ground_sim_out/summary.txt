@@ -1,0 +1,28 @@
+Hydrogen 1s Wigner function under classical Liouville (Kepler) flow, atomic units
+Grid 100x100x80 in (r, p_r, L) on [0,10.0]x[-5.0,5.0]x[0,8.0]; |p| <= 8.0
+
+Checks on the classical ensemble (exact values in parentheses):
+  norm              1.00169   (1)
+  <H>              -0.50802   (-0.5)
+  <L^2>             1.49965   (1.5 = Weyl symbol of L^2 = 0, plus 3/2)
+  <r>               1.50123   (1.5)
+  Kepler propagation: t = 0 identity error 4.0e-10, relative energy drift at 7.3 T 5.3e-13
+
+  negative Wigner weight             -0.20580
+  weight with E > 0 (unbound)         0.11920   <- classically, this part ionizes
+  drift per period ||w_t|| T/||w||     70.059   (quartic ground state: 2.0)
+
+Classical vs quantum (quantum: stationary 1s).  TV distances; noise = base vs 1.5x lattice:
+      t/T    radial TV   noise    momentum TV   noise    weight r < 20
+      0.00     0.0023    0.0019       0.0145    0.0122       1.0017
+      0.02     0.0131    0.0015       0.0163    0.0113       1.0017
+      0.04     0.0469    0.0015       0.0432    0.0161       1.0017
+      0.12     0.1211    0.0044       0.0966    0.0290       1.0017
+      0.29     0.1826    0.0088       0.1224    0.0295       1.0017
+      0.75     0.2323    0.0196       0.0852    0.0251       1.0013
+      1.93     0.2673    0.0294       0.0954    0.0312       0.9904
+      4.94     0.2076    0.0345       0.0920    0.0349       0.9177
+     12.65     0.1787    0.0317       0.0951    0.0329       0.8642
+     32.37     0.1799    0.0344       0.0918    0.0278       0.8649
+     82.86     0.1808    0.0333       0.0984    0.0368       0.8672
+    100.00     0.1827    0.0331       0.0997    0.0305       0.8663

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exact · The Looking-Glass Transform</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%23ff3b2f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="deck.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="deck.js"></script>
+</head>
+<body>
+<main class="stage">
+<section class="slide">
+  <p class="kicker">Bonus: it can be made exact</p>
+  <h2>Average the potential over the segment</h2>
+  <p>The centered difference was the only approximation. Move it into the potential instead. Define the <em>looking-glass potential</em> $\hat V$, the average of $V$ between the two branch points $x \pm \hat p/2$:</p>
+  <div class="eq">$$\hat V(x,\hat p) = \int_{-1/2}^{1/2} V(x+\sigma\hat p)\,d\sigma \qquad\Longrightarrow\qquad \hat p\,\frac{\partial\hat V}{\partial x} = V\!\left(x+\tfrac{\hat p}{2}\right) - V\!\left(x-\tfrac{\hat p}{2}\right)\ \text{exactly.}$$</div>
+  <div class="cols">
+    <ul class="small">
+      <li><strong>Schr&ouml;dinger in $V$ = Liouville in $\hat V$</strong>, with no remainder. The force is averaged over the coherence length $\hat p$.</li>
+      <li>Leading order: $\delta\hat V = \hat V - V \approx \frac{\hat p^2}{24}V''$. That is the centered difference and its $\hbar^2$ term from slide 10.</li>
+    </ul>
+    <ul class="small">
+      <li>$V$ stays an ordinary potential. The correction $\delta\hat V$ lives in the Fourier picture; <strong>inverse-transform it</strong> to a kernel $\delta V(x,q)$ over momentum transfer $q$. The dynamics is still a flux, so $w \to w + c$ stays invisible.</li>
+      <li>How big is $\delta\hat V$? It depends on the <strong>coherence length</strong>, not just $\hbar$. Two examples follow.</li>
+    </ul>
+  </div>
+</section>
+</main>
+<aside class="notes">
+<p>The integral form of the mean-value theorem: averaging the force over the segment gives exactly the difference of the potential at the ends. Carnovali and Fran&ccedil;a use this step but take the endpoints together; keeping the segment finite makes it an exact change of potential.</p>
+<p>Harmonic: $\delta\hat V$ doesn't depend on $x$, so it exerts no force. Quartic: the series stops after the $\hbar^2$ term.</p>
+</aside>
+</body>
+</html>

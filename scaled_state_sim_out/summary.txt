@@ -1,0 +1,31 @@
+Ground state of V = x^4/4 scaled by s = 10 in x and p (hbar = M = 1)
+Quantum basis: 3148 eigenstates below E = 40000; projected trace = 0.998864
+rho_0 is not positive: negative eigenvalues total -2.43e-03 (most negative -1.51e-04)
+<E> = 1372.7,  classical period at <E>: T = 0.8615
+check: max |w_0 - W_g(x/s,p/s)/s^2| / max w_0 = 4.10e-03
+
+Instantaneous size of the dropped term at t = 0:
+  ||(1/4) x w_ppp|| / ||p w_x||               = 5.75e-03
+  ||(1/4) x w_ppp|| / ||w_t (classical)||     = 1.03e-04
+  (unscaled ground state: 0.57 and 1, i.e. the whole w_t)
+
+Classical vs quantum, TV distance of the marginals (0 = identical):
+      t/T     position    momentum
+      0.00      0.0002      0.0031
+      0.08      0.0001      0.0025
+      0.17      0.0001      0.0086
+      0.38      0.0003      0.0058
+      0.82      0.0026      0.0144
+      1.77      0.0162      0.0183
+      3.85      0.0199      0.0190
+      8.36      0.0224      0.0242
+     18.15      0.0181      0.0301
+     39.43      0.0168      0.0285
+     85.63      0.0242      0.0359
+    100.00      0.0227      0.0353
+
+Noise floor: the classical marginals are sampled from a finite lattice of
+trajectories.  Two classical runs (720^2 vs 1080^2 lattices) differ by TV
+0.004 / 0.012 (position / momentum) at t = 1 T and 0.027 / 0.025 at 10 T,
+so after a few periods the classical-vs-quantum numbers above are within
+the sampling noise: an upper bound, not a measured difference.

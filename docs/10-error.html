@@ -20,15 +20,16 @@
   <p class="kicker">Error estimate</p>
   <h2>The entire difference is one term</h2>
   <p>To make the centered difference exact, the classical equation would need one more term:</p>
-  <div class="eq">$$w_t + \frac{p}{M}\,w_x - \frac{\partial V}{\partial x}\,w_p \;=\; \underbrace{-\,\frac{\hbar^2}{24}\,\frac{\partial^3 V}{\partial x^3}\,\frac{\partial^3 w}{\partial p^3}}_{\text{leading Moyal correction}} \;+\;\cdots$$</div>
+  <div class="eq" style="padding-bottom:4px;overflow:visible">$$w_t + \frac{p}{M}\,w_x - \frac{\partial V}{\partial x}\,w_p \;=\; \underbrace{-\,\frac{\hbar^2}{24}\,\frac{\partial^3 V}{\partial x^3}\,\frac{\partial^3 w}{\partial p^3}}_{\text{leading Moyal correction}} \;+\;\cdots$$</div>
   <div class="cols">
     <ul class="small">
       <li><strong>Exact</strong> when $V''' = 0$: free particles, uniform fields, harmonic oscillators, and any quadratic coupling. There, classical flow of $w$ <em>is</em> quantum mechanics.</li>
-      <li>Otherwise it's locally small ($\hbar^2$), but it accumulates. In anharmonic wells classical clouds filament, while quantum states interfere and revive.</li>
+      <li>Otherwise it has a small prefactor ($\hbar^2$), but it accumulates. In anharmonic wells classical clouds filament, while quantum states interfere and revive.</li>
     </ul>
     <ul class="small">
-      <li>Where the two disagree, <strong>experiment follows quantum mechanics</strong>. So this is not a claim that classical mechanics is fundamental.</li>
+      <li>Where the two disagree, <strong>experiment follows the full equation</strong>, with this term kept.</li>
       <li>The claim is structural: the whole dynamical gap between probabilistic classical mechanics and quantum mechanics is this term. <span class="amber">It vanishes in the setups we'll use for entanglement.</span></li>
+      <li class="amber">Spoiler: with one change to $V$, this becomes exact. (End of the talk.)</li>
     </ul>
   </div>
 </section>
