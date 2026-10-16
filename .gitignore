@@ -2,4 +2,7 @@
 *.fdb_latexmk
 *.fls
 *.log
-*.out.pixi/
+*.out
+*.bbl
+*.blg
+.pixi/
