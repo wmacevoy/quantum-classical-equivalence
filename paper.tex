@@ -50,7 +50,7 @@ The reverse direction has been explored before.
 Carnovali and Fran\c{c}a \cite{carnovali2005} derive a Schr\"odinger-type equation from the Liouville equation by an equivalent route: they replace the force at the midpoint of the segment by its average over the segment, which integrates to the difference of the potential at the end points (their mean-value step), and justify the replacement in the limit in which the end points coincide.
 Bondar et al.\ \cite{bondar2012} obtain both quantum and classical (Koopman--von Neumann \cite{koopman1931}) dynamics from operational axioms, with the Wigner function itself serving as the wave function.
 Hall, Deckert, and Wiseman \cite{hall2014} build quantum behavior from many interacting classical worlds by entirely different machinery.
-The present treatment keeps the segment finite and makes the replacement exact by assigning it to the potential: quantum dynamics is classical Liouville dynamics in the looking-glass potential (Section~\ref{sec:lg-potential}).
+The present treatment keeps the segment finite and keeps the remainder exactly: quantum dynamics is classical Liouville dynamics plus one explicit correction term (Section~\ref{sec:exact-correction}).
 Its leading-order form is the centered difference of $V$, which is exact for quadratic potentials and whose first correction is the Moyal $\hbar^2$ term; the segment average generalizes the centered difference to all orders, so nothing is removed by a limit.
 
 We are explicit about what is and is not new here.
@@ -157,7 +157,7 @@ We actually approximate $\varepsilon \cdot \frac{\partial V}{\partial x}$, so wi
 \end{equation}
 
 \section{Quantum from Probabilistic Classical Mechanics: The Looking-Glass Transform}
-We now compose the three concepts.  The result reveals the Schr\"odinger structure \textit{inside} classical mechanics.  We present the leading-order form, a centered difference of the potential, whose error term is given in Section~\ref{sec:error}; Section~\ref{sec:lg-potential} generalizes it to an exact equivalence.
+We now compose the three concepts.  The result reveals the Schr\"odinger structure \textit{inside} classical mechanics.  We present the leading-order form, a centered difference of the potential, whose error term is given in Section~\ref{sec:error}; Section~\ref{sec:exact-correction} gives the exact remainder in closed form.
 
 We start with the classical Hamiltonian ordinary differential equation:
 \begin{eqnarray}
@@ -201,7 +201,7 @@ i\hbar \hat{w}_t - \frac{\hbar^2}{2M}
 + \hat{p} \frac{\partial V}{\partial x} \hat{w} = 0
 \end{equation}
 
-Next is the only approximation. (Section~\ref{sec:lg-potential} shows that it becomes exact if $V$ is replaced by its average over the segment from $z_-$ to $z_+$.) We use (\ref{eq:approximation-derivative}) with $\varepsilon = \hat{p}$:
+Next is the only approximation. (Section~\ref{sec:exact-correction} gives the exact remainder.) We use (\ref{eq:approximation-derivative}) with $\varepsilon = \hat{p}$:
 \begin{equation}\label{eq:w-hat-pde-approximation}
 \hat{p} \frac{\partial V}{\partial x}
 \approx V(x+\hat{p}/2,t) - V(x-\hat{p}/2,t)
@@ -259,54 +259,104 @@ Read from the classical side, this is the correction that would make the centere
 We note that the reading of this $\hbar^2$ term as the small parameter of a classical limit is not universally accepted: it has been argued that the correction series carries no explicit $\hbar$ and that the classical--quantum transition is set by spatial scale rather than by $\hbar \rightarrow 0$ \cite{perepelkin2023}.
 The structural statement below does not depend on which reading one adopts.
 
-The prefactor of this term is of order $\hbar^2$, but its size is not: it is small only for distributions with a short coherence length (Section~\ref{sec:lg-potential}), and its effects are secular: in anharmonic potentials the classical and quantum evolutions diverge over long times---classically by filamentation of the phase-space distribution, quantum mechanically by interference, recurrences, and wave-packet revivals.  Where flow in the bare potential and flow in the looking-glass potential part company, experiment follows the looking-glass flow, which is the quantum dynamics.  The structural statement is that the \emph{entire} difference between the dynamics of the two theories is the replacement of $V$ by its average over the coherence segment, made exact in Section~\ref{sec:lg-potential}; for a quartic potential that difference is the single term above.
+The prefactor of this term is of order $\hbar^2$, but its size is not: it is small only for distributions with a short coherence length (Section~\ref{sec:exact-correction}), and its effects are secular: in anharmonic potentials the classical and quantum evolutions diverge over long times---classically by filamentation of the phase-space distribution, quantum mechanically by interference, recurrences, and wave-packet revivals.  Where the two part company, experiment follows the quantum dynamics.  The structural statement is that the \emph{entire} difference between the dynamics of the two theories is one term, made exact in Section~\ref{sec:exact-correction}; for a quartic potential it is the single term above.
 
-\subsection{An exact form: the looking-glass potential}\label{sec:lg-potential}
-The centered difference need not be read as an approximation.  Define the \emph{looking-glass potential} $\hat{V}$ as the average of $V$ over the segment joining the two branch points $z_\pm = x \pm \hat{p}/2$:
-\begin{equation}\label{eq:lg-potential}
-\hat{V}(x,\hat{p},t) = \frac{1}{\hat{p}}\int_{-\hat{p}/2}^{+\hat{p}/2} V(x+s,t)\,ds = \int_{-1/2}^{+1/2} V(x+\sigma\hat{p},t)\,d\sigma \,,
+\subsection{An exact form: the quantum tunneling correction}\label{sec:exact-correction}
+The error term above is the first term of an expansion, and the exact remainder has a closed form.  Trivially,
+\begin{equation}\label{eq:dq-identity}
+\left[V(x+\hat{p}/2,t) - V(x-\hat{p}/2,t)\right]\hat{w} = \hat{p}\,\frac{\partial V}{\partial x}\,\hat{w} + \Delta\hat{Q}\,\hat{w} \,,
 \end{equation}
-with $\hat{V}(x,0,t) = V(x,t)$.  By the fundamental theorem of calculus,
-\begin{equation}\label{eq:lg-identity}
-\hat{p}\,\frac{\partial \hat{V}}{\partial x} = V(x+\hat{p}/2,t) - V(x-\hat{p}/2,t)
+where
+\begin{equation}\label{eq:dq}
+\Delta\hat{Q}(x,\hat{p},t) = \left[V(x+\hat{p}/2,t) - V(x-\hat{p}/2,t)\right] - \hat{p}\,\frac{\partial V}{\partial x}(x,t)
+= \int_{x-\hat{p}/2}^{x+\hat{p}/2} dy \left[\frac{\partial V}{\partial x}(y,t) - \frac{\partial V}{\partial x}(x,t)\right]
 \end{equation}
-holds exactly.  Replacing $V$ by $\hat{V}$ in the force term of the Fourier-transformed Liouville equation (\ref{eq:w-hat-pde-vprime}) therefore yields (\ref{eq:w-hat-pde}) with no remainder.  The only change is that the force $-\partial V/\partial x$ at the point $x$ is replaced by its average over the segment from $z_-$ to $z_+$.  Because $\hat{V}$ depends on $\hat{p}$, this is not Liouville flow in a modified potential: back in phase space the averaged force acts by convolution in $p$ (below), and Section~\ref{sec:jumps} reads the result as classical trajectories with signed momentum jumps.
+is the exact remaining correction of classical dynamics to quantum mechanics.  We call it the \emph{quantum tunneling correction}, after its most striking effect: without it, every trajectory is confined to its classical path, and a particle below a barrier stays on its side forever (the square potential below).  Interference and zero-point structure are not its work: they are carried by $w$ under classical flow, exactly so in a quadratic potential, where $\Delta\hat{Q} = 0$.  In anharmonic potentials it also keeps eigenstates stationary and produces wave-packet revivals.  Adding $\Delta\hat{Q}\,\hat{w}$ to the Fourier-transformed Liouville equation (\ref{eq:w-hat-pde-vprime}) yields (\ref{eq:w-hat-pde}) with no remainder:
+\begin{equation}\label{eq:w-hat-pde-exact}
+i\hbar \hat{w}_t - \frac{\hbar^2}{2M}
+\left[\left(\frac{\partial}{\partial z_{+}}\right)^2 - \left(\frac{\partial}{\partial z_{-}}\right)^2\right]\hat{w}
++ \hat{p} \frac{\partial V}{\partial x} \hat{w} + \Delta\hat{Q}\,\hat{w} = 0 \,.
+\end{equation}
+The first three terms are classical mechanics and, simultaneously, the leading-order dynamics of quantum mechanics; $\Delta\hat{Q}$ is the remaining adjustment of classical dynamics to quantum.
 
-The correction is the difference $\delta\hat{V} = \hat{V} - V$.  Expanding (\ref{eq:lg-potential}) in a Taylor series,
-\begin{equation}\label{eq:lg-series}
-\delta\hat{V} = \sum_{k \ge 1} \frac{\hat{p}^{2k}}{2^{2k}(2k+1)!}\,\frac{\partial^{2k} V}{\partial x^{2k}}
-= \frac{\hat{p}^2}{24}\frac{\partial^2 V}{\partial x^2} + \frac{\hat{p}^4}{1920}\frac{\partial^4 V}{\partial x^4} + \cdots \,,
+The integral form in (\ref{eq:dq}) makes the size of the adjustment clear.  The exact force term averages $\partial V/\partial x$ over the segment from $x-\hat{p}/2$ to $x+\hat{p}/2$ joining the two branches; the classical term evaluates it once, at the midpoint.  Classical mechanics is the midpoint rule for that integral, and $\Delta\hat{Q}$ is the midpoint rule's error.  The linear part of $\partial V/\partial x$ integrates to zero over the symmetric segment, so $\Delta\hat{Q}$ sees only the curvature of the force, and the midpoint-rule error bound holds for every $\hat{p}$, not merely as the first term of a series:
+\begin{equation}\label{eq:dq-bound}
+|\Delta\hat{Q}(x,\hat{p},t)| \le \frac{|\hat{p}|^3}{24}\,\max_{|y-x| \le |\hat{p}|/2}\left|\frac{\partial^3 V}{\partial x^3}(y,t)\right| \,.
 \end{equation}
-and translating $\hat{p} \rightarrow -i\hbar\,\partial/\partial p$ back to phase space gives the full Moyal equation,
-\begin{equation}\label{eq:moyal-full}
-w_t + \frac{p}{M} w_x - \frac{\partial V}{\partial x} w_p
-= \sum_{k \ge 1} \frac{(-1)^k \hbar^{2k}}{2^{2k}(2k+1)!}\,\frac{\partial^{2k+1} V}{\partial x^{2k+1}}\,\frac{\partial^{2k+1} w}{\partial p^{2k+1}} \,,
-\end{equation}
-whose $k=1$ term is the correction above.  For a quadratic potential $\delta\hat{V} = \hat{p}^2 V''/24$ does not depend on $x$ and exerts no force, which is why the transform is exact there.  For a quartic potential $V = x^4/4$, $\delta\hat{V} = x^2\hat{p}^2/8 + \hat{p}^4/320$ and the series terminates, so the $\hbar^2$ term is the whole difference.  In three dimensions $\hat{p}$ is a vector, $\hat{V} = \int_{-1/2}^{1/2} V(x + \sigma\hat{p})\,d\sigma$ is an average along a line segment, and $\hat{p}\cdot\nabla\hat{V} = V(x+\hat{p}/2) - V(x-\hat{p}/2)$; for the Coulomb potential the segment average softens the $1/r$ singularity to a logarithmic one.
+Expanding (\ref{eq:dq}) about $x$ recovers the error term above as its first term and, translated back to phase space, the Moyal series \cite{moyal1949,hillery1984}.  The closed form is simpler than the series: in the $\hat{p}$ representation $\Delta\hat{Q}$ is an ordinary function, evaluated directly.
 
-Like $\hat{w}$, the correction $\delta\hat{V}$ lives in the Fourier representation, and it must be inverse-transformed to act in phase space.  The bare potential needs no such step: it does not depend on $\hat{p}$, so $V\hat{w}$ transforms to the ordinary product $Vw$.  The $\hat{p}$-dependent correction instead becomes a convolution in $p$, with kernel
-\begin{equation}\label{eq:lg-kernel}
-\delta V(x,q,t) = \int_{-\infty}^{+\infty} \frac{d\hat{p}}{2\pi\hbar}\, e^{+i\hat{p}q/\hbar}\, \delta\hat{V}(x,\hat{p},t) \,,
-\end{equation}
-a function of position and of the momentum transfer $q$, real and even in $q$ because $\delta\hat{V}$ is real and even in $\hat{p}$.  The Schr\"odinger dynamics then takes the form of an exact conservation law in phase space,
-\begin{equation}\label{eq:lg-flux}
-w_t + \frac{\partial}{\partial x}\left(\frac{p}{M}w\right) + \frac{\partial J_p}{\partial p} = 0 \,,
-\qquad
-J_p(x,p,t) = -\frac{\partial V}{\partial x}\,w - \int_{-\infty}^{+\infty} dq\, \frac{\partial\,\delta V}{\partial x}(x,q,t)\, w(x,p-q,t) \,.
-\end{equation}
-The first term is the classical flux of (\ref{eq:classical-pde}); the second is the whole quantum correction.  For a quadratic potential $\delta V = -(\hbar^2 V''/24)\,\delta''(q)$ does not depend on $x$, so the correction vanishes.  For $V = x^4/4$, $\delta V = -(\hbar^2x^2/8)\,\delta''(q) + (\hbar^4/320)\,\delta''''(q)$, which reproduces the $\hbar^2$ term above.  The correction is local in $x$ but spread over momentum transfers $q$, so it is not an ordinary Hamiltonian function $H(x,p)$ entering through a Poisson bracket; because the dynamics keeps its flux form, a uniform background $w \rightarrow w + c$ remains invisible to it, as in Section~\ref{sec:positivity}.
+For a quadratic potential $\Delta\hat{Q} = 0$ identically, which is why the transform is exact there.  For a quartic potential $V = x^4/4$, $\Delta\hat{Q} = x\hat{p}^3/4$ is exactly the leading term, and the $\hbar^2$ term is the whole difference.  For a lattice $V = -V_0\cos kx$, $\Delta\hat{Q} = V_0 \sin kx\,[\,2\sin(k\hat{p}/2) - k\hat{p}\,]$, which no finite number of Moyal terms reproduces.  In three dimensions $\hat{p}$ is a vector and $\Delta\hat{Q} = V(x+\hat{p}/2) - V(x-\hat{p}/2) - \hat{p}\cdot\nabla V$.
 
-The size of the correction is set by the coherence length rather than by $\hbar$ alone.  The variable $\hat{p} = z_+ - z_-$ is the separation between the two branches, and the correction is negligible when $\hat{w}$ is concentrated at $|\hat{p}|$ small compared with the length over which $\partial^2 V/\partial x^2$ varies.  A smooth distribution of momentum width $\Delta p$ has $|\hat{p}| \lesssim \hbar/\Delta p$ and sees almost the bare potential.  An energy eigenstate carries coherence across its entire classical orbit, so its averaging segment is as long as the orbit and the correction is of order one at every quantum number, the semiclassical regime included.  Filamentation narrows a classical distribution in $p$ and so widens $\hat{w}$ in $\hat{p}$: the averaging segment grows with time, which is the mechanism of the secular divergence described above.  The same coefficient $1/24$ appears in the Feynman--Hibbs effective potential of quantum statistical mechanics \cite{feynman1965}, a Gaussian thermal smearing of $V$ whose leading correction is $(\hbar^2\beta/24M)\,\partial^2 V/\partial x^2$.
+Like $\hat{w}$, the correction $\Delta\hat{Q}$ lives in the Fourier representation, and it must be inverse-transformed to act in phase space.  The classical force term needs no such step beyond $\hat{p} \rightarrow -i\hbar\,\partial/\partial p$.  The correction instead becomes a convolution in $p$, so that, exactly,
+\begin{equation}\label{eq:dq-phase-space}
+w_t + \frac{p}{M} w_x - \frac{\partial V}{\partial x} w_p = \int_{-\infty}^{+\infty} dq\; \Delta Q(x,q,t)\, w(x,p-q,t) \,,
+\end{equation}
+\begin{equation}\label{eq:dq-kernel}
+\Delta Q(x,q,t) = \int_{-\infty}^{+\infty} \frac{d\hat{p}}{2\pi\hbar}\, e^{+i\hat{p}q/\hbar}\, \frac{i}{\hbar}\,\Delta\hat{Q}(x,\hat{p},t) \,.
+\end{equation}
+Since $\Delta\hat{Q}$ is real and odd in $\hat{p}$, the kernel $\Delta Q$ is real and odd in $q$.  It is local in $x$ but spread over momentum transfers $q$, so it is not an ordinary Hamiltonian function $H(x,p)$ entering through a Poisson bracket: the exact dynamics is classical Liouville flow plus a nonlocal-in-momentum correction, not Liouville flow in a modified Hamiltonian.  Because $\Delta\hat{Q}$ vanishes at $\hat{p} = 0$, $\int \Delta Q\,dq = 0$: the correction conserves probability, and a uniform background $w \rightarrow w + c$ remains invisible to it, as in Section~\ref{sec:positivity}.  Section~\ref{sec:jumps} reads (\ref{eq:dq-phase-space}) as classical trajectories with signed momentum jumps.
+
+\textit{A square potential.}  For piecewise-constant $V$ the classical force is an impulse at each edge: a trajectory below a barrier reflects, and one above it refracts.  Away from the edges $\partial V/\partial x = 0$, so (\ref{eq:dq}) is the whole difference of the potential across the segment,
+\begin{equation}\label{eq:dq-square}
+\Delta\hat{Q}(x,\hat{p}) = V(x+\hat{p}/2) - V(x-\hat{p}/2) \,,
+\end{equation}
+which vanishes until one branch point $z_\pm = x \pm \hat{p}/2$ reaches an edge (Figure~\ref{fig:square-kernel}a).  A distribution whose coherence does not reach the walls feels only the classical impulse.  For a single step of height $s$ at $x_j$ the kernel (\ref{eq:dq-kernel}) is, for $x \neq x_j$,
+\begin{equation}\label{eq:dq-step}
+\Delta Q(x,q) = -\frac{s}{\pi\hbar}\,\frac{\cos\!\left(2(x-x_j)\,q/\hbar\right)}{q} \,,
+\end{equation}
+and a square well or barrier is a sum of such terms (Figure~\ref{fig:square-kernel}b).  The kernel is odd in $q$, and both $\int \Delta Q\,dq$ and $\int q\,\Delta Q\,dq$ vanish away from the edges: it moves signed weight up and down in momentum while leaving the probability and the mean momentum unchanged.  Near a wall it places weight at momenta above the barrier, and that weight then follows classical paths over the barrier and out.  This is tunneling read from the classical side: free flight and classical reflection, plus momentum redistribution with zero mean.
+
+The kernel itself does not fall off away from the barriers.  For a thin barrier $V = \alpha\,\delta(x-x_0)$, $\Delta Q(x,q) = -(2\alpha/\pi\hbar^2)\sin\!\left(2(x_0-x)q/\hbar\right)$: distance from the barrier sets how fast the kernel oscillates in $q$, with period $\pi\hbar/|x-x_0|$, not how large it is, and $\max_q|\Delta Q|$ is the same everywhere (Figure~\ref{fig:square-kernel}c).  What localizes the correction is the distribution it acts on.  A $w$ that is smooth on a momentum scale $\Delta p$ averages away oscillations finer than $\Delta p$, which is the coherence-length statement above: smoothing the kernel over $\Delta p$ multiplies $\Delta\hat{Q}$ by $e^{-\hat{p}^2\Delta p^2/2\hbar^2}$, and the smoothed kernel is confined to within about $\hbar/\Delta p$ of the barriers.  The map of where tunneling matters is therefore a property of the kernel and a momentum resolution together, not of the kernel alone.  Unsmoothed, Figure~\ref{fig:square-kernel}b suggests the simplest particle reading of the correction, a signed rate of momentum jumps $q$ at each $x$; Section~\ref{sec:jumps} develops it.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{square_well_sim_out/square_kernel.png}
+\caption{The quantum tunneling correction for a square well $|x| < 3$ between barriers $V_0 = 8$ of width $0.5$ ($\hbar = 1$; edges marked).  (a) $\Delta\hat{Q}(x,\hat{p})$ of (\ref{eq:dq-square}), nonzero only where a branch point $x \pm \hat{p}/2$ lies in a barrier.  (b) Its phase-space kernel $\Delta Q(x,q)$, the sum of (\ref{eq:dq-step}) over the four edges: odd in $q$, with fringes that become finer, not weaker, away from the barriers.  (c) $\max_q|\Delta Q(x,q)|$, unsmoothed (black) and smoothed over momentum resolutions $\Delta p = 0.7$, the width of the packet in Figure~\ref{fig:square}, and $\Delta p = 2$.}
+\label{fig:square-kernel}
+\end{figure}
+
+Figure~\ref{fig:square} shows a Gaussian ($p_0 = 2$, energy well below the barrier) in a well $|x| < 3$ bounded by barriers of height $V_0 = 8$ and width $0.5$ ($\hbar = M = 1$).  Classical flow lets out only the $0.23\%$ of the distribution that starts above the barrier; classical flow plus $\Delta Q$ lets out $32\%$ by $t = 10$, matching exact quantum evolution to within $10^{-3}$ in the escaped probability.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{square_well_sim_out/square_well.png}
+\caption{Escape from the square well of Figure~\ref{fig:square-kernel} ($\hbar = M = 1$), starting from a Gaussian with $p_0 = 2$ below the barrier.  (a) $w$ at $t = 5$ under classical flow plus $\Delta Q$; weight leaves the well at $|p| < \sqrt{2V_0}$ (dotted), which no classical trajectory can do.  (b) Probability outside the well.  Classical flow (dashed) stays trapped; classical flow plus $\Delta Q$ (orange) follows exact quantum evolution (black).}
+\label{fig:square}
+\end{figure}
+
+The size of the correction is set by the coherence length rather than by $\hbar$ alone.  The variable $\hat{p} = z_+ - z_-$ is the separation between the two branches, and $\Delta\hat{Q}$ is negligible when $\hat{w}$ is concentrated at $|\hat{p}|$ small compared with the length over which $\partial V/\partial x$ departs from linear.  A smooth distribution of momentum width $\Delta p$ has $|\hat{p}| \lesssim \hbar/\Delta p$ and sees almost the classical force.  An energy eigenstate carries coherence across its entire classical orbit, so the correction is of order one at every quantum number, the semiclassical regime included.  Filamentation narrows a classical distribution in $p$ and so widens $\hat{w}$ in $\hat{p}$: the correction grows with time, which is the mechanism of the secular divergence described above.
+
+\subsection{Efficient modeling via operator splitting}\label{sec:splitting}
+Equation (\ref{eq:dq-phase-space}) separates the exact dynamics into two parts,
+\begin{equation}\label{eq:split-generator}
+w_t = \mathcal{C}\,w + \Delta\mathcal{Q}\,w \,, \qquad
+\mathcal{C}\,w = -\frac{p}{M}\,w_x + \frac{\partial V}{\partial x}\,w_p \,, \qquad
+\Delta\mathcal{Q}\,w = \int dq\; \Delta Q(x,q,t)\, w(x,p-q,t) \,,
+\end{equation}
+where $\mathcal{C}$ is the classical Liouville operator, including the classical potential, and $\Delta\mathcal{Q}$ is the quantum tunneling correction.  Each part is easy on its own.  $e^{h\mathcal{C}}$ is classical mechanics: $w$ is carried along classical trajectories, $w(x,p,t+h) = w(\Phi_{-h}(x,p),t)$, where the flow $\Phi$ comes from any ordinary differential equation solver for Hamilton's equations.  $e^{h\Delta\mathcal{Q}}$ needs no solver at all: in $\hat{p}$, at fixed $x$, the correction is a multiplication, so $e^{h\Delta\mathcal{Q}}$ multiplies $\hat{w}$ by $\exp(ih\,\Delta\hat{Q}/\hbar)$ exactly.  Strang splitting \cite{strang1968}, with adjacent half-steps of $\mathcal{C}$ merged, advances $w$ through a time $T = nh$ as
+\begin{equation}\label{eq:strang}
+w(T) = e^{h\mathcal{C}/2}\left(e^{h\Delta\mathcal{Q}}\,e^{h\mathcal{C}}\right)^{n-1} e^{h\Delta\mathcal{Q}}\,e^{h\mathcal{C}/2}\; w(0) + O(h^2) \,.
+\end{equation}
+The error per step is $h^3\left(\frac{1}{12}[\Delta\mathcal{Q},[\Delta\mathcal{Q},\mathcal{C}]] - \frac{1}{24}[\mathcal{C},[\mathcal{C},\Delta\mathcal{Q}]]\right) + O(h^5)$.  Every term contains the commutator $[\mathcal{C},\Delta\mathcal{Q}]$, so the error is small wherever the correction is small, whatever the step size, and for a quadratic potential, where $\Delta\mathcal{Q} = 0$, the scheme is exact for any $h$.  This is the natural factoring of the problem into classical mechanics plus quantum corrections.  The usual split-step method for the Wigner function, the phase-space form of the split-step Fourier method for Schr\"odinger's equation \cite{feit1982}, instead alternates free flight with the full force, so it carries the commutator of free flight and classical force, which does not vanish even for a purely classical state.
+
+We compared the two factorings in $V = x^4/4$ ($M = 1$) against exact quantum evolution in the eigenbasis at $t = 2T_0$, for step sizes from $T_0/800$ to $T_0/12.5$: the ground state and a displaced Gaussian at $\hbar = 1$, where the correction is of order one, and a coherent state at $\hbar = 0.1$.  In (\ref{eq:strang}) the classical flow $e^{h\mathcal{C}}$ was computed accurately, by classical substeps of $T_0/1600$; the correction was applied exactly.  Both schemes converge at second order (Figure~\ref{fig:splitting}).  At the same step size, away from the coarsest steps and the grid floor, factoring into classical flow and correction gives errors typically $2$ to $3$ times smaller in $w$ and $2$ to $5$ times smaller in the Born density.  The gain is modest rather than dramatic.  For these pure states the correction is not small where the error accumulates, plausibly because its $\partial_p^3$ structure acts on the fine momentum structure that develops along the orbit.  Larger gains are expected for states with short coherence lengths and for nearly quadratic potentials, which we have not tested.  The practical advantage of (\ref{eq:strang}) is structural: the classical step can use any accurate trajectory integrator, including large adaptive steps or exact orbits, and the only quantum work per step is one Fourier transform in $p$ and one multiplication.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{splitting_sim_out/error_vs_h.png}
+\caption{Error of operator splitting in $V = x^4/4$ at $t = 2T_0$ against exact quantum evolution, versus steps per classical period.  A: the usual split of free flight and full force.  B: the split (\ref{eq:strang}) into classical flow $e^{h\mathcal{C}}$, computed accurately, and the exact correction $e^{h\Delta\mathcal{Q}}$.  Both are second order; B is $2$--$3$ times more accurate at the same step.  The $\hbar = 0.1$ panel levels off near $3\times 10^{-3}$ at the grid resolution.}
+\label{fig:splitting}
+\end{figure}
 
 \subsection{Classical trajectories with signed momentum jumps}\label{sec:jumps}
-Section~\ref{sec:lg-potential} kept the classical force and added a correction.  Returning the \emph{whole} force term of (\ref{eq:w-hat-pde}) to phase space gives a simpler picture: particles fly freely between events, and the force acts by moving signed weight across finite momentum transfers.  In (\ref{eq:w-hat-pde}) the force enters as the multiplier $\hat{w}_t = (i/\hbar)[V(z_+,t)-V(z_-,t)]\,\hat{w} + \cdots$.  A product in $\hat{p}$ is a convolution in $p$, so, with nothing dropped,
+Away from the edges of a square potential the classical force vanishes, so $\Delta Q$ is the entire force, and $\Delta Q(x,q)\,dq\,dt$ is the signed weight sent from momentum $p$ to $p+q$ (Figure~\ref{fig:square-kernel}b).  Nothing in that reading needs smoothing: sampled as jumps, the kernel reproduces the exact dynamics on average.  We now develop it for a general potential.  Section~\ref{sec:exact-correction} kept the classical force and added a correction.  Returning the \emph{whole} force term of (\ref{eq:w-hat-pde}) to phase space gives a simpler picture: particles fly freely between events, and the force acts by moving signed weight across finite momentum transfers.  In (\ref{eq:w-hat-pde}) the force enters as the multiplier $\hat{w}_t = (i/\hbar)[V(z_+,t)-V(z_-,t)]\,\hat{w} + \cdots$.  A product in $\hat{p}$ is a convolution in $p$, so, with nothing dropped,
 \begin{equation}\label{eq:jump-equation}
 w_t + \frac{p}{M}\,w_x = \int_{-\infty}^{+\infty} dq\; \Theta(x,q,t)\, w(x,p-q,t) \,,
 \end{equation}
 \begin{equation}\label{eq:jump-kernel}
 \Theta(x,q,t) = \int_{-\infty}^{+\infty} \frac{d\hat{p}}{2\pi\hbar}\, e^{+i\hat{p}q/\hbar}\, \frac{i}{\hbar}\left[V(x+\hat{p}/2,t) - V(x-\hat{p}/2,t)\right] \,.
 \end{equation}
-This is the integral form of the Wigner equation \cite{wigner1932,hillery1984}.  The bracket is real and odd in $\hat{p}$, so $\Theta$ is real and odd in $q$.  The left side of (\ref{eq:jump-equation}) is classical free flight; the right side replaces the classical force term $(\partial V/\partial x)\, w_p$, which corresponds to the kernel $(\partial V/\partial x)\,\delta'(q)$.  The difference between the two kernels, $\partial^2 \delta V/\partial q\,\partial x$, is the correction flux of (\ref{eq:lg-flux}).
+This is the integral form of the Wigner equation \cite{wigner1932,hillery1984}.  The bracket is real and odd in $\hat{p}$, so $\Theta$ is real and odd in $q$.  The left side of (\ref{eq:jump-equation}) is classical free flight; the right side replaces the classical force term $(\partial V/\partial x)\, w_p$, which corresponds to the kernel $(\partial V/\partial x)\,\delta'(q)$.  The difference between the two kernels is the correction $\Delta Q(x,q)$ of (\ref{eq:dq-phase-space}).
 
 Read (\ref{eq:jump-equation}) as a rule for particles.  Because $\Theta$ is odd, its effect comes in pairs: in a time $dt$, a particle at $(x,p)$ produces a copy of weight $+\Theta(x,q)\,dq\,dt$ at $p+q$ and a copy of the opposite weight at $p-q$, for each $q > 0$.  The moments of the kernel say what these pairs do:
 \begin{equation}\label{eq:jump-moments}
@@ -315,7 +365,7 @@ Read (\ref{eq:jump-equation}) as a rule for particles.  Because $\Theta$ is odd,
 \int q^2\,\Theta\, dq = 0 \,, \qquad
 \int q^3\,\Theta\, dq = \frac{\hbar^2}{4}\frac{\partial^3 V}{\partial x^3} \,.
 \end{equation}
-The pairs create no probability.  On average they deliver exactly the classical force, and at each $x$ they change the first two momentum moments of $w$ exactly as the classical force does.  They first differ from the classical force at the third moment; expanding $w(x,p-q)$ in powers of $q$ recovers the Moyal series (\ref{eq:moyal-full}) term by term.  The motion between events is classical and the average push is classical; what is not classical is that weight branches into signed pairs, so this is not a Liouville flow along a Hamiltonian vector field.
+The pairs create no probability.  On average they deliver exactly the classical force, and at each $x$ they change the first two momentum moments of $w$ exactly as the classical force does.  They first differ from the classical force at the third moment; expanding $w(x,p-q)$ in powers of $q$ recovers the Moyal series \cite{moyal1949} term by term.  The motion between events is classical and the average push is classical; what is not classical is that weight branches into signed pairs, so this is not a Liouville flow along a Hamiltonian vector field.
 
 \textit{A lattice: discrete jumps.}  For a single Fourier mode the kernel is a pair of delta functions.  For $V = -V_0 \cos kx$,
 \begin{equation}\label{eq:jump-lattice}
@@ -323,7 +373,7 @@ w_t + \frac{p}{M}\,w_x = \frac{V_0 \sin kx}{\hbar}\left[ w\!\left(x,p+\tfrac{\hb
 \end{equation}
 The force term is a centered difference in momentum with step $\hbar k$, the counterpart of the centered difference in position (\ref{eq:approximation-derivative}) on which the looking-glass transform is built, and it becomes $(\partial V/\partial x)\,w_p$ as $\hbar k \rightarrow 0$.  Every jump is exactly $\pm\hbar k/2$, and a general potential contributes such a pair of jumps for each of its Fourier components.  The half-step is a feature of $w$, not of measured momenta: $w$ places interference terms midway between momentum components, and these integrate to zero over $x$.
 
-\textit{Polynomial potentials: Airy jumps.}  For a polynomial potential $\Theta$ is a finite sum of derivatives of $\delta(q)$, and (\ref{eq:jump-equation}) is the terminating Moyal equation.  The jumps then appear over a finite time step $\Delta t$.  For $V = x^4/4$, the classical kick plus the residual multiplier $\exp(i\,\Delta t\, x\hat{p}^3/4\hbar)$ is exact, and the residual's kernel is an Airy function,
+\textit{Polynomial potentials: Airy jumps.}  For a polynomial potential $\Theta$ is a finite sum of derivatives of $\delta(q)$, and (\ref{eq:jump-equation}) is the terminating Moyal equation.  The jumps then appear over a finite time step $\Delta t$.  For $V = x^4/4$, the classical kick plus the residual multiplier $\exp(i\,\Delta t\,\Delta\hat{Q}/\hbar) = \exp(i\,\Delta t\, x\hat{p}^3/4\hbar)$ is exact, and the residual's kernel is an Airy function,
 \begin{equation}\label{eq:jump-airy}
 K_{\Delta t}(x,q) = \frac{1}{|c|}\,\mathrm{Ai}\!\left(\frac{q}{c}\right) \,, \qquad c = \left(\frac{3\hbar^2 x\, \Delta t}{4}\right)^{1/3} \,.
 \end{equation}
@@ -360,7 +410,7 @@ Lattice Gaussian, $0.3 \le t \le 3$ & $0.17$--$0.34$ & $\le 3.4\times 10^{-4}$ \
 \label{fig:lattice}
 \end{figure}
 
-\textit{Particles and the sign problem.}  This reading is the basis of signed-particle Monte Carlo methods for Wigner transport in semiconductor devices \cite{nedjalkov2004}, where particles follow classical trajectories and the kernel $\Theta$ (there called the Wigner potential) creates $\pm$ particle pairs.  Sellier promoted that method to a formulation of non-relativistic quantum mechanics in its own right: quantum systems as ensembles of field-less classical particles that carry a sign and interact with the potential only through creation and annihilation events \cite{sellier2015}.  Here the same picture arises from the classical side, as the phase-space form of the looking-glass potential, and (\ref{eq:jump-lattice}) shows its simplest case: in a lattice the creation events are a centered difference.  Sampled one particle at a time, the pairs carry a cost: each pair leaves $\int w$ unchanged but adds $2|\Theta|\,dq\,dt$ to $\int |w|$, so the total absolute weight grows exponentially unless positive and negative copies are allowed to annihilate.  In our quartic test, stochastic pairs drove the total absolute weight from $1.2$ to $5$ within 50 time steps and to $5\times 10^5$ within 200.  Applied deterministically, as above, the same kernel has no such growth.  The exact dynamics is therefore classical in its trajectories and in its mean force, with the quantum content carried by signed branching of the weight.
+\textit{Particles and the sign problem.}  This reading is the basis of signed-particle Monte Carlo methods for Wigner transport in semiconductor devices \cite{nedjalkov2004}, where particles follow classical trajectories and the kernel $\Theta$ (there called the Wigner potential) creates $\pm$ particle pairs.  Sellier promoted that method to a formulation of non-relativistic quantum mechanics in its own right: quantum systems as ensembles of field-less classical particles that carry a sign and interact with the potential only through creation and annihilation events \cite{sellier2015}.  Here the same picture arises from the classical side, as the phase-space form of the exact correction $\Delta\hat{Q}$, and (\ref{eq:jump-lattice}) shows its simplest case: in a lattice the creation events are a centered difference.  Sampled one particle at a time, the pairs carry a cost: each pair leaves $\int w$ unchanged but adds $2|\Theta|\,dq\,dt$ to $\int |w|$, so the total absolute weight grows exponentially unless positive and negative copies are allowed to annihilate.  In our quartic test, stochastic pairs drove the total absolute weight from $1.2$ to $5$ within 50 time steps and to $5\times 10^5$ within 200.  The square well is the sharp case.  There the rate $\gamma(x) = \int|\Delta Q(x,q)|\,dq$ does not depend on the distance to the barriers (Figure~\ref{fig:square-kernel}c), and it grows logarithmically with the largest jump allowed, from $16$ for $|q| < 8$ to $35$ for $|q| < 256$.  Every particle in the well jumps tens of times per unit time, and tunneling emerges only from near-complete cancellation between signs; the absolute weight grows like $e^{\gamma t}$, about $5\times 10^8$ by $t = 1$ for $|q| < 16$, the time at which the packet first reaches the wall.  Applied deterministically, as above, the same kernel has no such growth.  The exact dynamics is therefore classical in its trajectories and in its mean force, with the quantum content carried by signed branching of the weight.
 
 \section{The Born Projection}\label{sec:born}
 
@@ -559,7 +609,7 @@ We have not found this reading in the negativity literature, where negativity is
 A model is judged by its predictions, and every prediction made here is non-negative.
 The Born projection $\born w = \int dp\, w = |\Psi(x,t)|^2$ and the momentum marginal $\int dx\, w = |\tilde{\Psi}(p,t)|^2$ are genuine probability densities whatever the sign of $w$, as are the pointer readings of Section~\ref{sec:collapse}.
 Intermediate quantities in a calculation need not be probabilities; Feynman made this argument for negative probabilities in general \cite{feynman1987}.
-With the looking-glass potential of Section~\ref{sec:lg-potential} the model is exact, and that is the only test that applies to it; flow in the bare potential is its approximation, accurate where the error term of Section~\ref{sec:error} is negligible.
+With the correction $\Delta\hat{Q}$ of Section~\ref{sec:exact-correction} the model is exact, and that is the only test that applies to it; flow in the bare potential is its approximation, accurate where the error term of Section~\ref{sec:error} is negligible.
 None of this has anything to do with sign.
 
 \paragraph{What the negative regions mark.}

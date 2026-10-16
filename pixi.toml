@@ -18,3 +18,5 @@ hydrogen-ground-sim = { cmd = "python hydrogen_ground_sim.py", description = "Hy
 glass-figs = { cmd = "python glass_potential_figs.py", description = "Looking-glass potential slide figures (Lennard-Jones, transmon) into docs/img/" }
 signed-particle-sim = { cmd = "python signed_particle_sim.py", description = "Classical trajectories + signed momentum jumps vs exact quantum in x^4/4; writes signed_particle_sim_out/ (~3 min)" }
 lattice-jump-sim = { cmd = "python lattice_jump_sim.py", description = "Lattice -V0 cos kx: classical flight + discrete jumps of +/- hbar k/2 vs exact quantum; writes lattice_jump_sim_out/ (~12 min)" }
+splitting-sim = { cmd = "python splitting_sim.py", description = "Operator splitting in x^4/4: classical flow / exact correction vs drift / kick, error vs step size; writes splitting_sim_out/ (~20 min)" }
+square-well-sim = { cmd = "python square_well_sim.py", description = "Square well between finite barriers: classical flow vs classical + quantum tunneling correction vs exact quantum; writes square_well_sim_out/ (~4 min)" }
